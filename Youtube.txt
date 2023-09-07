@@ -1,7 +1,9 @@
 https://youtu.be/N_W7kcFmHlg
-1:15:38 / 1:34:52
+1:25:35 / 1:34:52
 
+    #Falta criar a autenticação e o bloqueio da tela de dashboard para agentes não logado
 
+    #Criar variações de cargo (admin, usuario, guest, supervisão)
 
 
 https://www.youtube.com/watch?v=ALyO4vA7sKU&ab_channel=IsraTech

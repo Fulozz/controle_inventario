@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './Login.css'
 import '../../App.css'
 import { Link , useNavigate} from 'react-router-dom'
@@ -21,6 +21,10 @@ const Login = () => {
   const [loginUsername, setLoginUserName] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
   const navigateTo = useNavigate()
+
+
+  const [loginStatus, setLoginStatus] = useState('')
+  const [statusHolder, setStatusHolder] = useState('message')
 const LoginUser = (e)=> {
   e.preventDefault()
   Axios.post('http://localhost:3002/login', {
@@ -29,15 +33,33 @@ const LoginUser = (e)=> {
   loginUsername: loginUsername,
   loginPassword: loginPassword
 }).then((response)=>{
-  if(response.status != 200){
+  console.log(response)
+  if(response.status != 200  || loginUsername == '' || loginPassword == ''){
     navigateTo('/')
+    setLoginStatus('Usuário ou senha incorretos');
   } else{
          navigateTo('/dashboard')
   }
-  
-})
+}).catch((error) => {
+        console.error(error);
+        setLoginStatus('Erro ao fazer login');
+      })
 }
 
+useEffect(()=>{
+  if(loginStatus !== ''){
+    setStatusHolder('showMessage')
+    setTimeout(() => {
+      setStatusHolder('message')
+    }, 4000);
+  }
+}, [loginStatus])
+
+
+const onSubmit = () =>{
+  setLoginPassword('')
+  setLoginUserName('')
+}
 
   return (
     <div className="loginPage flex">
@@ -63,8 +85,8 @@ const LoginUser = (e)=> {
             <img src={logo} alt="logo image" className='logo' />
             <h3>Welcome Back!</h3>
             </div>
-            <form action="" className='form grid'>
-              <span className='showMessage'>Login status will go here</span>
+            <form action="" className='form grid' onSubmit={onSubmit}>
+              <span className={statusHolder}>{loginStatus}</span>
               <div className="inputDiv">
                 <label htmlFor="username">Username</label>
                 <div className="input flex">
@@ -89,7 +111,7 @@ const LoginUser = (e)=> {
                 <AiOutlineSwapRight className='icon' />
               </button>
               <span className="forgotPassword">
-                Passe livre?<a href="/dashboard">Dashboard</a>
+              <a href="/dashboard">Dashboard</a>
               </span>
               <span className="forgotPassword">
                 Forgot your password <a href="">click Here</a>
