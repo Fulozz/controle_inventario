@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import './Login.css'
 import '../../App.css'
-import { Link } from 'react-router-dom'
+import { Link , useNavigate} from 'react-router-dom'
+
+import Axios from 'axios'
 
 // //import video
 import video from '../../LoginAssets/video.mp4'
@@ -10,22 +12,31 @@ import logo from '../../LoginAssets/image.png'
 import {FaUserShield} from 'react-icons/fa'
 import {BsFillShieldLockFill} from 'react-icons/bs'
 import {AiOutlineSwapRight} from 'react-icons/ai'
-const Login = () => {
 
-  const [email, setEmail] = useState('')
-  const [username, setUserName] = useState('')
-  const [password, setPassword] = useState('')
+
+
+const Login = () => {
   
+  // useState hook to store the inputs
+  const [loginUsername, setLoginUserName] = useState('')
+  const [loginPassword, setLoginPassword] = useState('')
+  const navigateTo = useNavigate()
+const LoginUser = (e)=> {
+  e.preventDefault()
   Axios.post('http://localhost:3002/login', {
     
   //variable for the server through the route
-  email: email,
-  password: password
-}).then(()=>{
-  console.log('logged in successfully ')
-}).catch((err)=>{
-  console.log(err)
+  loginUsername: loginUsername,
+  loginPassword: loginPassword
+}).then((response)=>{
+  if(response.status != 200){
+    navigateTo('/')
+  } else{
+         navigateTo('/dashboard')
+  }
+  
 })
+}
 
 
   return (
@@ -58,7 +69,9 @@ const Login = () => {
                 <label htmlFor="username">Username</label>
                 <div className="input flex">
                   <FaUserShield className='icon' />
-                  <input type="text" id='username' placeholder=' Enter Username' />
+                  <input type="text" id='username' placeholder=' Enter Username' onChange={(event)=>{
+                    setLoginUserName(event.target.value)
+                  }} />
 
                 </div>
               </div>
@@ -66,10 +79,12 @@ const Login = () => {
                 <label htmlFor="password">Password</label>
                 <div className="input flex">
                   <BsFillShieldLockFill className='icon' />
-                  <input type="password" id='password' placeholder=' Enter Password' />
+                  <input type="password" id='password' placeholder=' Enter Password' onChange={(event)=>{
+                    setLoginPassword(event.target.value)
+                  }} />
                 </div>
               </div>
-              <button type='submit' className='btn flex'>
+              <button type='submit' className='btn flex' onClick={LoginUser}>
                 <span>Login</span>
                 <AiOutlineSwapRight className='icon' />
               </button>
