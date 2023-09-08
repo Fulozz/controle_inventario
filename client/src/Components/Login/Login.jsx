@@ -35,7 +35,7 @@ const Login = () => {
   loginUserName: loginUserName,
   loginPassword: loginPassword
 }).then((response)=>{
-  if(response.status !== 200  || loginUsername !== '' || loginPassword !== ''){
+  if(response.status !== 200  || loginUserName !== '' || loginPassword !== ''){
     setLoginStatus('Usuário ou senha incorretos');
     navigateTo('/')
   } else{

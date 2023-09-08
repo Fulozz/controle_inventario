@@ -113,7 +113,7 @@ db.query(selectDBQuery, (selectDBError) => {
   } else {
     console.log('Banco de dados "cadastro" selecionado com sucesso.');
 
-    const sentLoginUserName = req.body.loginUsername
+    const sentLoginUserName = req.body.loginUserName
     const sentLoginPassword = req.body.loginPassword
 
 
