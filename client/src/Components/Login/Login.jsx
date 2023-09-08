@@ -29,20 +29,20 @@ const Login = () => {
   
   e.preventDefault()
   
-  Axios.post('http://localhost:3002/login', {
+  Axios.post('http://localhost:3006/login', {
     
   //variable for the server through the route
   loginUsername: loginUsername,
   loginPassword: loginPassword
 }).then((response)=>{
-  if(response.status != 200  || loginUsername == '' || loginPassword == ''){
+  if(response.status !== 200  || loginUsername !== '' || loginPassword !== ''){
     setLoginStatus('Usuário ou senha incorretos');
     navigateTo('/')
   } else{
          navigateTo('/dashboard')
   }
-}).catch((error) => {
-        console.error(error);
+}).catch((err) => {
+        console.error(err);
         setLoginStatus('Erro ao fazer login');
       })
 }
