@@ -18,7 +18,7 @@ import {AiOutlineSwapRight} from 'react-icons/ai'
 const Login = () => {
   
   // useState hook to store the inputs
-  const [loginUsername, setLoginUserName] = useState('')
+  const [loginUserName, setLoginUserName] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
   const navigateTo = useNavigate()
 
@@ -29,18 +29,24 @@ const Login = () => {
   
   e.preventDefault()
   
-  Axios.post('http://localhost:3002/login', {
+  Axios.post('http://localhost:3006/login', {
     
   //variable for the server through the route
-  loginUsername: loginUsername,
+  loginUserName: loginUserName,
   loginPassword: loginPassword
 }).then((response)=>{
+
   if(response.status !== 200  || loginUsername !== '' || loginPassword !== ''){
     setLoginStatus('Usuário ou senha incorretos')
+
+  if(response.status !== 200  || loginUserName !== '' || loginPassword !== ''){
+    setLoginStatus('Usuário ou senha incorretos');
+
     navigateTo('/')
   } else{
          navigateTo('/dashboard')
   }
+}
 }).catch((err) => {
         console.error(err);
         setLoginStatus('Erro ao fazer login');

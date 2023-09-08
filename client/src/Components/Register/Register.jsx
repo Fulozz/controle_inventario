@@ -17,9 +17,9 @@ import { MdAttachEmail } from 'react-icons/md'
 const Register = () => {
 //useState to hold our inputs
 
-const [email, setEmail] = useState('')
-const [username, setUserName] = useState('')
-const [password, setPassword] = useState('')
+const [email, sentEmail] = useState('')
+const [username, sentUserName] = useState('')
+const [password, sentPassword] = useState('')
 const navigateTo = useNavigate()
 
 // onclick let us get what user has entered
@@ -31,7 +31,7 @@ const createUser = (e)=>{
     return;
   }
   //Require axios to create an API to connect with the server
-  Axios.post('http://localhost:3002/register', {
+  Axios.post('http://localhost:3006/register', {
     
     //variable for the server through the route
     email: email,
@@ -40,9 +40,9 @@ const createUser = (e)=>{
   }).then(()=>{
     console.log('user has been created ')
     navigateTo('/')
-    setPassword('')
-    setUserName('')
-    setEmail('')
+    sentPassword('')
+    sentUserName('')
+    sentEmail('')
   }).catch((err)=>{
     console.log(err)
   })
@@ -80,7 +80,7 @@ const createUser = (e)=>{
                   <div className="input flex">
                     <MdAttachEmail className='icon' />
                     <input type="email" id='email' placeholder=' Enter e-mail' onChange={(event)=>{
-                    setEmail(event.target.value)
+                    sentEmail(event.target.value)
                   }}/>
 
                   </div>
@@ -90,7 +90,7 @@ const createUser = (e)=>{
                 <div className="input flex">
                   <FaUserShield className='icon' />
                   <input type="text" id='name' placeholder=' Enter Username' onChange={(event)=>{
-                    setUserName(event.target.value)
+                    sentUserName(event.target.value)
                   }}/>
 
                 </div>
