@@ -18,7 +18,7 @@ import {AiOutlineSwapRight} from 'react-icons/ai'
 const Login = () => {
   
   // useState hook to store the inputs
-  const [loginUsername, setLoginUserName] = useState('')
+  const [loginUserName, setLoginUserName] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
   const navigateTo = useNavigate()
 
@@ -32,7 +32,7 @@ const Login = () => {
   Axios.post('http://localhost:3006/login', {
     
   //variable for the server through the route
-  loginUsername: loginUsername,
+  loginUserName: loginUserName,
   loginPassword: loginPassword
 }).then((response)=>{
   if(response.status !== 200  || loginUsername !== '' || loginPassword !== ''){
