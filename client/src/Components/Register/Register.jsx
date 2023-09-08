@@ -1,7 +1,7 @@
 import { React, useState} from 'react'
 import './Register.css'
 import '../../App.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Axios from 'axios'
 // //import video
 import video from '../../LoginAssets/video.mp4'
@@ -20,11 +20,12 @@ const Register = () => {
 const [email, setEmail] = useState('')
 const [username, setUserName] = useState('')
 const [password, setPassword] = useState('')
-
+const navigateTo = useNavigate()
 
 // onclick let us get what user has entered
 
-const createUser = ()=>{
+const createUser = (e)=>{
+  e.preventDefault()
   if (!email || !username || !password) {
     console.log('Por favor, preencha todos os campos.');
     return;
@@ -38,6 +39,10 @@ const createUser = ()=>{
     password: password
   }).then(()=>{
     console.log('user has been created ')
+    navigateTo('/')
+    setPassword('')
+    setUserName('')
+    setEmail('')
   }).catch((err)=>{
     console.log(err)
   })

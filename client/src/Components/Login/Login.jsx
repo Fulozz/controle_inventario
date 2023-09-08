@@ -25,18 +25,19 @@ const Login = () => {
 
   const [loginStatus, setLoginStatus] = useState('')
   const [statusHolder, setStatusHolder] = useState('message')
-const LoginUser = (e)=> {
+  const LoginUser = (e)=> {
+  
   e.preventDefault()
+  
   Axios.post('http://localhost:3002/login', {
     
   //variable for the server through the route
   loginUsername: loginUsername,
   loginPassword: loginPassword
 }).then((response)=>{
-  console.log(response)
   if(response.status != 200  || loginUsername == '' || loginPassword == ''){
-    navigateTo('/')
     setLoginStatus('Usuário ou senha incorretos');
+    navigateTo('/')
   } else{
          navigateTo('/dashboard')
   }
