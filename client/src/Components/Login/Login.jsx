@@ -3,7 +3,7 @@ import './Login.css'
 import '../../App.css'
 import { Link , useNavigate} from 'react-router-dom'
 
-import Axios from 'axios'
+import Axios from 'axios';
 
 // //import video
 import video from '../../LoginAssets/video.mp4'
@@ -18,55 +18,75 @@ import {AiOutlineSwapRight} from 'react-icons/ai'
 const Login = () => {
   
   // useState hook to store the inputs
-  const [loginUserName, setLoginUserName] = useState('')
+  const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
   const navigateTo = useNavigate()
 
 
   const [loginStatus, setLoginStatus] = useState('')
   const [statusHolder, setStatusHolder] = useState('message')
-  const LoginUser = (e)=> {
+
+
+  const LoginUser = async (e)=> {
   
-  e.preventDefault()
+  e.preventDefault();
   
   Axios.post('http://localhost:3006/login', {
-    
-  //variable for the server through the route
-  loginUserName: loginUserName,
-  loginPassword: loginPassword
-}).then((response)=>{
+      loginEmail: loginEmail,
+      loginPassword: loginPassword,
+    },{
+      validateStatus: function (status) {
+        return status === 200 || status === 404 || status === 401; // Trate 404 como bem-sucedido
+      },
+    })
+    .then((response) => {
+      switch (response.status) {
+        case 200:
+          if (loginEmail !== '' && loginPassword !== '') {
+            navigateTo('/dashboard');
+          } else {
+            setLoginStatus('Usuário ou senha incorretos');
+            navigateTo('/');
+          }
+          break;
+        case 404:
+          console.log('Usuario nao encontrado');
+          setLoginStatus('Usuário não encontrado');
+          navigateTo('/');
+          break;
+        case 401:
+          console.log('Credenciais não coincidem');
+          setLoginStatus('Credenciais não coincidem');
+          navigateTo('/');
+          break;
+        default:
+          console.log('Erro desconhecido');
+          setLoginStatus('Erro desconhecido');
+          navigateTo('/');
+          break;
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      setLoginStatus('Erro ao fazer login');
+    });
+  };
 
-  if(response.status !== 200  || loginUsername !== '' || loginPassword !== ''){
-    setLoginStatus('Usuário ou senha incorretos')
+  useEffect(() => {
+    if (loginStatus !== '') {
+      setStatusHolder('showMessage');
+      setTimeout(() => {
+        setStatusHolder('message');
+      }, 2000);
+    }
+  }, [loginStatus]);
 
-  if(response.status !== 200  || loginUserName !== '' || loginPassword !== ''){
-    setLoginStatus('Usuário ou senha incorretos');
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setLoginUsername('')
+    setLoginPassword('')
 
-    navigateTo('/')
-  } else{
-         navigateTo('/dashboard')
-  }
-}
-}).catch((err) => {
-        console.error(err);
-        setLoginStatus('Erro ao fazer login');
-      })
-}
-
-useEffect(()=>{
-  if(loginStatus !== ''){
-    setStatusHolder('showMessage')
-    setTimeout(() => {
-      setStatusHolder('message')
-    }, 4000);
-  }
-}, [loginStatus])
-
-
-const onSubmit = () =>{
-  setLoginPassword('')
-  setLoginUserName('')
-}
+  };
 
   return (
     <div className="loginPage flex">
@@ -95,11 +115,11 @@ const onSubmit = () =>{
             <form action="" className='form grid' onSubmit={onSubmit}>
               <span className={statusHolder}>{loginStatus}</span>
               <div className="inputDiv">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="email">Email</label>
                 <div className="input flex">
                   <FaUserShield className='icon' />
-                  <input type="text" id='username' placeholder=' Enter Username' onChange={(event)=>{
-                    setLoginUserName(event.target.value)
+                  <input type="email" id='email' placeholder=' Enter E-mail' onChange={(event)=>{
+                    setLoginEmail(event.target.value)
                   }} />
 
                 </div>

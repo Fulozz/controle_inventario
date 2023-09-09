@@ -18,9 +18,9 @@ const Register = () => {
 //useState to hold our inputs
 
 const [email, sentEmail] = useState('')
-const [username, sentUserName] = useState('')
+const [username, sentUsername] = useState('')
 const [password, sentPassword] = useState('')
-const navigateTo = useNavigate()
+const navigateTo = useNavigate('')
 
 // onclick let us get what user has entered
 
@@ -41,7 +41,7 @@ const createUser = (e)=>{
     console.log('user has been created ')
     navigateTo('/')
     sentPassword('')
-    sentUserName('')
+    sentUsername('')
     sentEmail('')
   }).catch((err)=>{
     console.log(err)
@@ -90,7 +90,7 @@ const createUser = (e)=>{
                 <div className="input flex">
                   <FaUserShield className='icon' />
                   <input type="text" id='name' placeholder=' Enter Username' onChange={(event)=>{
-                    sentUserName(event.target.value)
+                    sentUsername(event.target.value)
                   }}/>
 
                 </div>
@@ -100,7 +100,7 @@ const createUser = (e)=>{
                 <div className="input flex">
                   <BsFillShieldLockFill className='icon' />
                   <input type="password" id='password' placeholder=' Enter Password' onChange={(event)=>{
-                    setPassword(event.target.value)
+                    sentPassword(event.target.value)
                   }} />
                 </div>
               </div>

@@ -3,6 +3,7 @@ const mysql = require('mysql2')
 const cors = require('cors')
 const app = express()
 const bcrypt = require('bcryptjs')
+
 // const userController = require('./controllers/UserRegister.controller')
 
 // const bcrypt = require("bcryptjs")
@@ -48,7 +49,7 @@ db.query(selectDBQuery, (selectDBError) => {
 
 
 
-    const sentUserName = req.body.username
+    const sentUsername = req.body.username
     const sentEmail    = req.body.email
     const sentPassword = req.body.password
     
@@ -56,7 +57,7 @@ db.query(selectDBQuery, (selectDBError) => {
 
 
 
-    if (sentEmail !== undefined && sentUserName !== undefined && sentPassword !== undefined) {
+    if (sentEmail !== undefined && sentUsername !== undefined && sentPassword !== undefined) {
       // TESTE PARA VALIDAR SE NO BANCO DE DADOS JA POSSUI UM CADASTRO COM O MESMO EMAIL
       
         db.query('SELECT * FROM users WHERE email = ?',[sentEmail], (err, results) => {
@@ -76,7 +77,7 @@ db.query(selectDBQuery, (selectDBError) => {
                   res.status(500).send({ error: 'Erro interno do servidor' });
                 }else {
                   db.query("INSERT INTO users SET?", 
-                  {username: sentUserName, email: sentEmail, password: hash}, 
+                  {username: sentUsername, email: sentEmail, password: hash}, 
                     (err) => {
                         if (err) {
                           console.error('Erro ao verificar o email no banco de dados: ' + err.message);
@@ -113,21 +114,21 @@ db.query(selectDBQuery, (selectDBError) => {
   } else {
     console.log('Banco de dados "cadastro" selecionado com sucesso.');
 
-    const sentLoginUserName = req.body.loginUserName
+    const sentLoginEmail = req.body.loginEmail
     const sentLoginPassword = req.body.loginPassword
 
 
-    if (sentLoginUserName !== undefined && sentLoginPassword !== undefined) {
+    if (sentLoginEmail !== undefined && sentLoginPassword !== undefined) {
       // TESTE PARA VALIDAR SE NO BANCO DE DADOS JA POSSUI REALMENTE UM CADASTRO
  
-        db.query('SELECT * FROM users WHERE username = ?',[sentLoginUserName], (err, results) => {
+        db.query('SELECT * FROM users WHERE email = ?',[sentLoginEmail], (err, results) => {
             if (err) {
-              console.error('Erro ao verificar o username no banco de dados: ' + err.message);
               res.status(500).send({ error: 'Erro interno do servidor' });
+              console.error('Erro ao verificar o username no banco de dados: ' + err.message);
               }
-              if( results.length === 0 ) {
-                console.log({message: 'Usuário não encontrado'} )
+              if( results.length <= 0 ) {
                 res.status(404).send({ message: 'Usuário não encontrado' });
+                console.log({message: 'Usuário não encontrado'})
             }
             else{
               const storedHash = results[0].password;
@@ -135,33 +136,26 @@ db.query(selectDBQuery, (selectDBError) => {
 
               bcrypt.compare(sentLoginPassword, storedHash, (compareError, result) => {
                 if (compareError) {
+                  res.status(500).send({ error: 'Erro interno do servidor' });
                   console.error('Erro ao comparar as senhas: ' + compareError.message);
-                  return res.status(500).json({ error: 'Erro interno do servidor' });
                 }
         
                 if (result) {
+                  res.status(200).send({ message: 'Login bem-sucedido' });
                   console.log({ message: 'Login bem-sucedido' });
-                  res.status(200).json({ message: 'Login bem-sucedido' });
                 } else {
+                  res.status(401).send({ message: 'Credenciais não coincidem' });
                   console.log({ message: 'Credenciais não coincidem' });
-                  res.status(401).json({ message: 'Credenciais não coincidem' });
                 }
-                  } //db.querry
-                  
-                  
-                )
-                }// else
+                  } //db.querry   
+                )}// else
              }
          );
-
-        
+     
     } else {
         // Caso algum dos campos seja undefined, retorne um erro
-        res.status(400).send({ message: 'Missing or undefined fields' });
-        console.log(sentLoginUserName,sentLoginPassword)
+        res.status(400).send({ message: 'Missing or undefined fields' })
     }
-
-
   }
   })
 })
