@@ -25,7 +25,7 @@ const navigateTo = useNavigate('')
 // onclick let us get what user has entered
 
 const createUser = (e)=>{
-  e.preventDefault()
+  e.preventDefault();
   if (!email || !username || !password) {
     console.log('Por favor, preencha todos os campos.');
     return;
@@ -37,6 +37,10 @@ const createUser = (e)=>{
     email: email,
     username: username,
     password: password
+  },{
+    validateStatus: function (status) {
+      return status === 400 || status === 401 ; // Trate 404 como bem-sucedido
+    },
   }).then(()=>{
     console.log('user has been created ')
     navigateTo('/')
@@ -48,7 +52,6 @@ const createUser = (e)=>{
   })
   
 }
-
 
   return (
     <div className="registerPage flex">

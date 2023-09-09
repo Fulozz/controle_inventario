@@ -4,9 +4,6 @@ const cors = require('cors')
 const app = express()
 const bcrypt = require('bcryptjs')
 
-// const userController = require('./controllers/UserRegister.controller')
-
-// const bcrypt = require("bcryptjs")
 
 
 // OBRIGATORIO PARA QUE SEJA POSSIVEL ENVIAR O POST PARA O BANCO DE DADOS
@@ -35,8 +32,6 @@ app.post('/register',  (req, res)=>{
     
   const saltRounds = 8
 
-
-  
  // Conexao com o banco de dados e tabela 
 const selectDBQuery = 'USE cadastro';
 
@@ -47,30 +42,23 @@ db.query(selectDBQuery, (selectDBError) => {
   } else {
     console.log('Banco de dados "cadastro" selecionado com sucesso.');
 
-
-
     const sentUsername = req.body.username
     const sentEmail    = req.body.email
     const sentPassword = req.body.password
-    
-    // TESTE
-
 
 
     if (sentEmail !== undefined && sentUsername !== undefined && sentPassword !== undefined) {
       // TESTE PARA VALIDAR SE NO BANCO DE DADOS JA POSSUI UM CADASTRO COM O MESMO EMAIL
-      
         db.query('SELECT * FROM users WHERE email = ?',[sentEmail], (err, results) => {
             if (err) {
                 console.error('Erro ao verificar o email no banco de dados: ' + err.message);
-                // Trate o erro adequadamente, como enviar uma resposta de erro ao cliente.
+                res.status(500).send({ error: 'Erro interno do servidor' })
               } 
             if( results.length > 0 ) {
               res.status(401).send({ message: 'Usuario já possui uma conta' });
               console.log({ message: 'Usuario já possui uma conta' })   
             } else{
               // criptografia da senha 
-
               bcrypt.hash(sentPassword, saltRounds, (err, hash)=>{
                 if(err){
                   console.error('Erro ao criar o hash da senha: ' + err);
@@ -85,7 +73,6 @@ db.query(selectDBQuery, (selectDBError) => {
                         } else {
                             console.log('User inserted successfully')
                              res.status(400).send({  message: 'User registered!' })
-                            
                             }
                         }); //db.querry
                      } //else
@@ -98,11 +85,10 @@ db.query(selectDBQuery, (selectDBError) => {
     } else {
         // Caso algum dos campos seja undefined, retorne um erro
         res.status(400).send({ message: 'Missing or undefined fields' });
-        console.log(sentUserName,sentEmail,sentPassword)
+        console.log(sentUsername,sentEmail,sentPassword)
     }
   }
 });
-
 } )
 
 app.post('/login', (req, res)=>{
