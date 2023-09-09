@@ -6,13 +6,10 @@ const bcrypt = require('bcryptjs')
 
 
 
+
+
 // OBRIGATORIO PARA QUE SEJA POSSIVEL ENVIAR O POST PARA O BANCO DE DADOS
 app.use(express.urlencoded({extended: 'false'}))
-
-
-
-
-
 app.use(express.json())
 app.use(cors())
 
