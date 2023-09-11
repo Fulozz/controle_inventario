@@ -20,7 +20,7 @@ const Login = () => {
   // useState hook to store the inputs
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
-  const navigateTo = useNavigate()
+  const navigateTo = useNavigate('')
 
 
   const [loginStatus, setLoginStatus] = useState('')
@@ -28,65 +28,65 @@ const Login = () => {
 
 
   const LoginUser = async (e)=> {
-  
-  e.preventDefault();
-  
-  Axios.post('http://localhost:3006/login', {
-      loginEmail: loginEmail,
-      loginPassword: loginPassword,
-    },{
-      validateStatus: function (status) {
-        return status === 200 || status === 404 || status === 401; // Trate 404 como bem-sucedido
-      },
-    })
-    .then((response) => {
-      switch (response.status) {
-        case 200:
-          if (loginEmail !== '' && loginPassword !== '') {
-            navigateTo('/dashboard');
-          } else {
-            setLoginStatus('Usuário ou senha incorretos');
-            navigateTo('/');
-          }
-          break;
-        case 404:
-          console.log('Usuario nao encontrado');
-          setLoginStatus('Usuário não encontrado');
-          navigateTo('/');
-          break;
-        case 401:
-          console.log('Credenciais não coincidem');
-          setLoginStatus('Credenciais não coincidem');
-          navigateTo('/');
-          break;
-        default:
-          console.log('Erro desconhecido');
-          setLoginStatus('Erro desconhecido');
-          navigateTo('/');
-          break;
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      setLoginStatus('Erro ao fazer login');
-    });
-  };
-
-  useEffect(() => {
-    if (loginStatus !== '') {
-      setStatusHolder('showMessage');
-      setTimeout(() => {
-        setStatusHolder('message');
-      }, 2000);
+    if (loginEmail === '' || loginPassword === '') {
+      setLoginStatus('Preencha todos os campos');
+      return;
     }
-  }, [loginStatus]);
-
-  const onSubmit = (e) => {
     e.preventDefault();
-    setLoginUsername('')
-    setLoginPassword('')
+    
+    Axios.post('http://localhost:3006/login', {
+        loginEmail: loginEmail,
+        loginPassword: loginPassword,
+      },{
+        validateStatus: function (status) {
+          return status === 200 || status === 404 || status === 401; // Trate 404 como bem-sucedido
+        },
+      })
+      .then((response) => {
+        console.log(response)
+        switch (response.status) {
+          case 200:
+            if (response.data.role === 'admin') {
+              navigateTo('/dashboard');
+            } else if (response.data.role === 'user'){
+              navigateTo('/userprofile');
+            }
+            break;
+          case 404:
+            console.log('Usuario nao encontrado');
+            setLoginStatus('Usuário não encontrado');
+            navigateTo('/');
+            break;
+          case 401:
+            console.log('Credenciais não coincidem');
+            setLoginStatus('Credenciais não coincidem');
+            navigateTo('/');
+            break;
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoginStatus('Erro ao fazer login');
+      });
 
-  };
+    };
+  
+    useEffect(() => {
+      if (loginStatus !== '') {
+        setStatusHolder('showMessage');
+        setTimeout(() => {
+          setStatusHolder('message');
+        }, 2000);
+      }
+    }, [loginStatus],
+    );
+  
+    const onSubmit = (e) => {
+      e.preventDefault();
+      setLoginUsername('')
+      setLoginPassword('')
+  
+    };
 
   return (
     <div className="loginPage flex">
