@@ -120,17 +120,18 @@ if (selectDBError) {
       
               if (result) {
                 const userRole = results[0].role;
-                const token = jwt.sign({
+                const loginToken = jwt.sign({
                   user: results[0]
                 }, `${process.env.SECRET_KEY}`, { // é necessario estar entre `para funcionar`
                   expiresIn: '7h'
                 })
                 if (userRole === 'admin') {
                   // Usuário é um administrador, pode acessar recursos específicos
+                  
                   res.status(200).send({
                     message: 'Login bem-sucedido',
                     role: userRole,
-                    token: token
+                    token: loginToken
                   })
                   console.log({message: 'Vc ta na parte de admin'})
                   
@@ -165,24 +166,19 @@ if (selectDBError) {
 }
 })
 })
-// app.get('/api/auth/me', (req, res) => {
-//   // Verifica se o usuário está autenticado
-//   if (!req.user) {
-//     // Redireciona o usuário para a página de login
-//     res.redirect('/');
-//     return;
+//LocalStorage util para coisas que voce usa sempre para nao ficar requisitando do banco de dados
+// exports.getUserLocalStorage = function() {
+//   const json = localStorage.getItem('u')
+//   if(!json){
+//       return null
 //   }
-
-//   // Retorna as informações do usuário autenticado
-//   res.json({
-//     id: req.user.id,
-//     name: req.user.name,
-//     email: req.user.email,
-//     role: req.user.role,
-//     token: req.token
-//   });
-// });
-
+//   const user = JSON.parse(json)
+//   return user ?? null; // se for user null ou algo que nao seja util retorna null
+// }
+// const IUser = [loginEmail, loginToken ]
+// exports.setUserLocalStorage = function(IUser){
+//   localStorage.setItem('u', JSON.stringify(IUser));
+// }
 const port = 3006
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`)

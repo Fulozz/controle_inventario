@@ -15,8 +15,8 @@ import {AiOutlineSwapRight} from 'react-icons/ai'
 
 
 
+
 const Login = () => {
-  
   // useState hook to store the inputs
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
@@ -47,6 +47,8 @@ const Login = () => {
         switch (response.status) {
           case 200:
             if (response.data.role === 'admin') {
+              const IUser = [response.data.token, loginEmail]
+              localStorage.setItem('u', JSON.stringify(IUser), console.log('salvo com sucesso'));
               navigateTo('/dashboard');
             } else if (response.data.role === 'user'){
               navigateTo('/userprofile');
