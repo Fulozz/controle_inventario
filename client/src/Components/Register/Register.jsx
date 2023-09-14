@@ -31,7 +31,7 @@ const createUser = (e)=>{
     return;
   }
   //Require axios to create an API to connect with the server
-  Axios.post('http://localhost:3006/register', {
+  Axios.post('/register', {
     
     //variable for the server through the route
     email: email,
@@ -39,7 +39,7 @@ const createUser = (e)=>{
     password: password
   },{
     validateStatus: function (status) {
-      return status === 400 || status === 401 ; // Trate 404 como bem-sucedido
+      return status === 400 || status === 401 || status === 200 ; // Trate <400 como bem-sucedido
     },
   }).then(()=>{
     console.log('user has been created ')

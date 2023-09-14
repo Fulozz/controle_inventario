@@ -3,6 +3,7 @@ import './Login.css'
 import '../../App.css'
 import { Link , useNavigate} from 'react-router-dom'
 
+
 import Axios from 'axios';
 
 // //import video
@@ -12,56 +13,54 @@ import logo from '../../LoginAssets/image.png'
 import {FaUserShield} from 'react-icons/fa'
 import {BsFillShieldLockFill} from 'react-icons/bs'
 import {AiOutlineSwapRight} from 'react-icons/ai'
-
+import { setUserLocalStorage } from '../AuthProvider/AuthTS/utils';
 
 
 
 const Login = () => {
   // useState hook to store the inputs
-  const [loginEmail, setLoginEmail] = useState('')
-  const [loginPassword, setLoginPassword] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const navigateTo = useNavigate('')
-
+  
 
   const [loginStatus, setLoginStatus] = useState('')
   const [statusHolder, setStatusHolder] = useState('message')
 
 
   const LoginUser = async (e)=> {
-    if (loginEmail === '' || loginPassword === '') {
+    if (email === '' || password === '') {
       setLoginStatus('Preencha todos os campos');
       return;
     }
     e.preventDefault();
     
     Axios.post('http://localhost:3006/login', {
-        loginEmail: loginEmail,
-        loginPassword: loginPassword,
+        email: email,
+        password: password,
       },{
         validateStatus: function (status) {
-          return status === 200 || status === 404 || status === 401; // Trate 404 como bem-sucedido
+          return status === 200 || status === 404 || status === 401 ; // Trate 404 como bem-sucedido
         },
       })
       .then((response) => {
-        const IUser = {token: response.data.token, loginEmail}
-        const [user, setUser] = useState(IUser | null)
-
-
-
-
+        // const IUser = {token: response.data.token, email}
+            
+        // =============== Payload
+        const payload = {token: response.data.token, email}
         console.log(response)
         
         switch (response.status) {
           case 200:
             if (response.data.role === 'admin') {    
-              localStorage.setItem('u', JSON.stringify(IUser), console.log('salvo com sucesso'));
+              setUserLocalStorage(payload)
               navigateTo('/dashboard');
-              setUser(payload)
+              // setUser(payload)
             } 
             else if (response.data.role === 'user'){
-              localStorage.setItem('u', JSON.stringify(IUser), console.log('salvo com sucesso'));
+              setUserLocalStorage(payload)
               navigateTo('/userprofile');
-              setUser(payload)
+              // setUser(payload)
             }
             break;
           case 404:
@@ -95,8 +94,8 @@ const Login = () => {
   
     const onSubmit = (e) => {
       e.preventDefault();
-      setLoginUsername('')
-      setLoginPassword('')
+      setEmail('')
+      setPassword('')
   
     };
 
@@ -131,7 +130,7 @@ const Login = () => {
                 <div className="input flex">
                   <FaUserShield className='icon' />
                   <input type="email" id='email' placeholder=' Enter E-mail' onChange={(event)=>{
-                    setLoginEmail(event.target.value)
+                    setEmail(event.target.value)
                   }} />
 
                 </div>
@@ -141,7 +140,7 @@ const Login = () => {
                 <div className="input flex">
                   <BsFillShieldLockFill className='icon' />
                   <input type="password" id='password' placeholder=' Enter Password' onChange={(event)=>{
-                    setLoginPassword(event.target.value)
+                    setPassword(event.target.value)
                   }} />
                 </div>
               </div>

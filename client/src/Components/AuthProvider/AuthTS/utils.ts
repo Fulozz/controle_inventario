@@ -1,6 +1,8 @@
 import { IUser } from './types';
 import { Api } from '../../../Services/API';
-
+export function logout(){
+    localStorage.removeItem('u')
+}
 export function setUserLocalStorage(user: IUser | null){
     localStorage.setItem('u', JSON.stringify(user));
 }

@@ -30,8 +30,6 @@ const router = createBrowserRouter([
     path: '/userprofile',
     element: <div><UserProfile /></div>,
   }
-
-
 ])
 
 function App() {
