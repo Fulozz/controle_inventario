@@ -43,15 +43,25 @@ const Login = () => {
         },
       })
       .then((response) => {
+        const IUser = {token: response.data.token, loginEmail}
+        const [user, setUser] = useState(IUser | null)
+
+
+
+
         console.log(response)
+        
         switch (response.status) {
           case 200:
-            if (response.data.role === 'admin') {
-              const IUser = [response.data.token, loginEmail]
+            if (response.data.role === 'admin') {    
               localStorage.setItem('u', JSON.stringify(IUser), console.log('salvo com sucesso'));
               navigateTo('/dashboard');
-            } else if (response.data.role === 'user'){
+              setUser(payload)
+            } 
+            else if (response.data.role === 'user'){
+              localStorage.setItem('u', JSON.stringify(IUser), console.log('salvo com sucesso'));
               navigateTo('/userprofile');
+              setUser(payload)
             }
             break;
           case 404:

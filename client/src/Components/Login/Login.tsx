@@ -1,4 +1,4 @@
-import { IUser } from '../AuthProvider/types'
+import { IUser } from '../AuthProvider/AuthTS/types'
 import { Api } from '../../Services/API';
 
 export function setUserLocalStorage(user: IUser | null) {

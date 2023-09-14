@@ -6,7 +6,7 @@ export const UserProfile = () => {
   return (
     <div className='dashboard flex'>
       <div className="dashboardContainer flex">
-        <h1>AREA DOS USUARIOS NORMAIS</h1>
+        <h1>Esse é o componente user Profile</h1>
         <Sidebar /> 
         <Body /> 
         <br />

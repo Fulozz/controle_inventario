@@ -119,6 +119,7 @@ if (selectDBError) {
               }
       
               if (result) {
+                
                 const userRole = results[0].role;
                 const loginToken = jwt.sign({
                   user: results[0]
@@ -126,6 +127,7 @@ if (selectDBError) {
                   expiresIn: '7h'
                 })
                 if (userRole === 'admin') {
+                  
                   // Usuário é um administrador, pode acessar recursos específicos
                   
                   res.status(200).send({
@@ -142,7 +144,7 @@ if (selectDBError) {
                   res.status(200).send({
                     message: 'Login bem-sucedido',
                     role: userRole,
-                    token: token
+                    token: loginToken
                   })
                   console.log({message: 'Vc ta na parte de user'})
 
