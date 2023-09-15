@@ -47,9 +47,8 @@ const Login = () => {
         // const IUser = {token: response.data.token, email}
             
         // =============== Payload
-        const payload = {token: response.data.token, email}
-        console.log(response)
-        
+        const payload = {token: response.data.token, email, id: response.data.id}
+
         switch (response.status) {
           case 200:
             if (response.data.role === 'admin') {    
@@ -60,7 +59,7 @@ const Login = () => {
             else if (response.data.role === 'user'){
               setUserLocalStorage(payload)
               navigateTo('/userprofile');
-              // setUser(payload)
+              //setUser(payload)
             }
             break;
           case 404:

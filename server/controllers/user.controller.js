@@ -41,7 +41,7 @@ if (selectDBError) {
               }
       
               if (result) {
-                
+                const id = results[0].id;
                 const userRole = results[0].role;
                 const loginToken = jwt.sign({
                   user: results[0]
@@ -55,7 +55,8 @@ if (selectDBError) {
                   res.status(200).send({
                     message: 'Login bem-sucedido',
                     role: userRole,
-                    token: loginToken
+                    token: loginToken,
+                    id: id
                   })
                   console.log({message: 'Vc ta na parte de admin'})
                   
@@ -66,7 +67,8 @@ if (selectDBError) {
                   res.status(200).send({
                     message: 'Login bem-sucedido',
                     role: userRole,
-                    token: loginToken
+                    token: loginToken,
+                    id: id
                   })
                   console.log({message: 'Vc ta na parte de user'})
 
@@ -155,3 +157,44 @@ db.query(selectDBQuery, (selectDBError) => {
 });
 } 
 
+exports.userProfile = async (req,res)=>{
+  const id = req.body.id;
+  
+  // Obter o token do usuário
+  const token = req.body.token
+
+  // Validar o token
+  const validateToken = (token, secret_key) => {
+    // Validar o token
+    try {
+      const decoded = jwt.verify(token, secret_key);
+      return decoded;
+    } catch (error) {
+      // Token inválido
+      return false;
+    }
+  };
+
+  const decoded = validateToken(token, `${process.env.SECRET_KEY}`);
+  if (!decoded) {
+    res.status(401).send({ message: 'Credenciais não coincidem' });
+    console.log({ message: 'Credenciais não coincidem' });
+  } 
+  db.query('SELECT * FROM user WHERE id = ?',[id], (err, results) => {
+    if (err) {
+      console.error('Erro ao verificar o email no banco de dados: ' + err.message);
+      res.status(500).send({ error: 'Erro interno do servidor' })
+    } else {
+      return results[0];
+    }
+  })
+  // O token é válido
+  // Obter as informações do usuário
+  const user = {
+    id,
+    decoded,
+  };
+
+  // Retornar as informações do usuário
+  res.status(200).send(user);
+}
