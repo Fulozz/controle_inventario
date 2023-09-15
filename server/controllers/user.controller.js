@@ -185,7 +185,7 @@ exports.userProfile = async (req,res)=>{
       console.error('Erro ao verificar o email no banco de dados: ' + err.message);
       res.status(500).send({ error: 'Erro interno do servidor' })
     } else {
-      return results[0];
+      return results;
     }
   })
   // O token é válido
@@ -198,3 +198,4 @@ exports.userProfile = async (req,res)=>{
   // Retornar as informações do usuário
   res.status(200).send(user);
 }
+

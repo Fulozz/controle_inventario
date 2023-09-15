@@ -18,6 +18,8 @@ export const UserProfile = ()  => {
           setUserStatus(false),
           console.log(json)
           )
+      }else{
+        userStatus(true)
       }
     } 
   const navigateTo = useNavigate()
