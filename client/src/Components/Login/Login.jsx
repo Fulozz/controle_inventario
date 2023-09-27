@@ -16,16 +16,15 @@ import {AiOutlineSwapRight} from 'react-icons/ai'
 import { setUserLocalStorage } from '../AuthProvider/AuthTS/utils';
 
 
-
 const Login = () => {
   // useState hook to store the inputs
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigateTo = useNavigate('')
-  
 
   const [loginStatus, setLoginStatus] = useState('')
   const [statusHolder, setStatusHolder] = useState('message')
+
 
 
   const LoginUser = async (e)=> {
@@ -54,12 +53,12 @@ const Login = () => {
             if (response.data.role === 'admin') {    
               setUserLocalStorage(payload)
               navigateTo('/dashboard');
-              // setUser(payload)
+              // setUser("authenticated")
             } 
             else if (response.data.role === 'user'){
               setUserLocalStorage(payload)
               navigateTo('/userprofile');
-              //setUser(payload)
+              //setUser(authenticated)
             }
             break;
           case 404:

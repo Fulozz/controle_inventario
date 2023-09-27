@@ -12,7 +12,7 @@ router.post('/register', userController.registerUser)
 
 router.post('/validate', authUsers.validate)
 
-router.get('/user/:id', userController.userProfile)
+router.post('/user/:id', userController.userProfile)
 
 
 module.exports = router

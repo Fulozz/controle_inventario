@@ -27,7 +27,10 @@ if (selectDBError) {
             console.error('Erro ao verificar o username no banco de dados: ' + err.message);
             }
             if( results.length <= 0 ) {
-              res.status(404).send({ message: 'Usuário não encontrado' });
+              res.status(404).send({ 
+                message: 'Usuário não encontrado',
+                
+               });
               console.log({message: 'Usuário não encontrado'})
           }
           else{
@@ -36,7 +39,10 @@ if (selectDBError) {
             
             bcrypt.compare(sentLoginPassword, storedHash, (compareError, result) => {
               if (compareError) {
-                res.status(500).send({ error: 'Erro interno do servidor' });
+                res.status(500).send({ 
+                  error: 'Erro interno do servidor', 
+                  
+                });
                 console.error('Erro ao comparar as senhas: ' + compareError.message);
               }
       
@@ -56,7 +62,8 @@ if (selectDBError) {
                     message: 'Login bem-sucedido',
                     role: userRole,
                     token: loginToken,
-                    id: id
+                    id: id,            
+                    
                   })
                   console.log({message: 'Vc ta na parte de admin'})
                   
@@ -68,7 +75,7 @@ if (selectDBError) {
                     message: 'Login bem-sucedido',
                     role: userRole,
                     token: loginToken,
-                    id: id
+                    id: id,
                   })
                   console.log({message: 'Vc ta na parte de user'})
 
@@ -77,8 +84,12 @@ if (selectDBError) {
                   // console.log(decoded);
                 }               
               } else {
-                res.status(401).send({ message: 'Credenciais não coincidem' });
+                res.status(401).send({ 
+                  message: 'Credenciais não coincidem',
+                  
+                 });
                 console.log({ message: 'Credenciais não coincidem' });
+
               }
                 } //db.querry   
               )}// else
@@ -87,7 +98,10 @@ if (selectDBError) {
    
   } else {
       // Caso algum dos campos seja undefined, retorne um erro
-      res.status(400).send({ message: 'Missing or undefined fields' })
+      res.status(400).send({ 
+        message: 'Missing or undefined fields',
+        
+     })
   }
 }
 })
@@ -185,17 +199,9 @@ exports.userProfile = async (req,res)=>{
       console.error('Erro ao verificar o email no banco de dados: ' + err.message);
       res.status(500).send({ error: 'Erro interno do servidor' })
     } else {
-      return results;
+      return results[0], console.log(results[0]);
     }
   })
   // O token é válido
-  // Obter as informações do usuário
-  const user = {
-    id,
-    decoded,
-  };
-
-  // Retornar as informações do usuário
-  res.status(200).send(user);
 }
 

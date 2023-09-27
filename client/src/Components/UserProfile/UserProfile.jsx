@@ -15,8 +15,7 @@ export const UserProfile = ()  => {
         return (
           null, 
           navigateTo('/'),
-          setUserStatus(false),
-          console.log(json)
+          setUserStatus(false)
           )
       }else{
         userStatus(true)
@@ -43,10 +42,11 @@ useEffect(() => {
   })
     .then((response) => {
       console.log('PASSOU AQUI');
+
       // Validar o token
-      if (response.status !== 200) {
+      if (response.status != 200) {
         // Token inválido
-        throw new Error('Token inválido');
+        console.log("TA ACONTECENDO PROBLEMA");
       }
 
       // Obter as informações do usuário
