@@ -8,19 +8,7 @@ import { useEffect } from 'react'
 
 import Axios from 'axios'
 export const UserProfile = ()  => {
-  const [userStatus, setUserStatus] = useState(true)
-  window.onload= function(){
-      const json = localStorage.getItem('u')
-      if(!json){
-        return (
-          null, 
-          navigateTo('/'),
-          setUserStatus(false)
-          )
-      }else{
-        userStatus(true)
-      }
-    } 
+ 
   const navigateTo = useNavigate()
   const [profileUser, setProfileUser] = useState({
     name: '',
