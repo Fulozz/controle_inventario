@@ -6,11 +6,11 @@ module.exports = (req, res, next)=>{
 // ==> Um console para verificar o token
     console.log(token);
 
-    const decoded = jwt.verify(token, 'secret');
+    const decoded = jwt.verify(token,'secret');
     req.userData = decoded;
     next();
 
     } catch (err) {
-        res.status(401).json({ message: 'Falha na autenticacao!' })
+        res.status(401).json({ message: 'Falha na autenticacao!', err: err })
     }
 };
