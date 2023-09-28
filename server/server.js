@@ -1,10 +1,11 @@
+// APP principal
 
 
-const app = require('./app')
+const app = require('./src/app')
+
+const port = process.env.PORT || 3000
 
 
-
-const port = 3006
-app.listen(port,()=>{
-    console.log(`Server is running on port ${port}`)
-})
+//teste
+app.listen(port, ()=> {console.log('Ta funcionando na porta: ' + port);});
+// DEPURAR SEMPRE O CODIGO PARA SABER AS REGRAS DE NEGOCIOS E GARANTIR QUE ESTA INDO CERTO

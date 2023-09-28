@@ -34,7 +34,7 @@ const Login = () => {
     }
     e.preventDefault();
     
-    Axios.post('http://localhost:3006/login', {
+    Axios.post('http://localhost:3000/api/v1/login', {
         email: email,
         password: password,
       },{
@@ -43,22 +43,15 @@ const Login = () => {
         },
       })
       .then((response) => {
-        // const IUser = {token: response.data.token, email}
-            
-        // =============== Payload
+       
         const payload = {token: response.data.token, email, id: response.data.id}
+        // =============== Payload
+        console.log(response);
 
         switch (response.status) {
-          case 200:
-            if (response.data.role === 'admin') {    
-              setUserLocalStorage(payload)
-              navigateTo('/dashboard');
-              // setUser("authenticated")
-            } 
-            else if (response.data.role === 'user'){
-              setUserLocalStorage(payload)
-              navigateTo('/userprofile');
-              //setUser(authenticated)
+          case 200: {
+            setUserLocalStorage(payload);
+            navigateTo('/dashboard');
             }
             break;
           case 404:

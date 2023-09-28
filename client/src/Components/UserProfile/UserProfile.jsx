@@ -14,21 +14,17 @@ export const UserProfile = ()  => {
     name: '',
     email: '',
   });
-
-useEffect(() => {
-
-  // Obter o ID do usuário e token
-  
-  const userData = JSON.parse(localStorage.getItem('u'))
-  const id = userData.id
+  const userData = JSON.parse(localStorage.getItem('jwt'))
+  const email = userData.email
   const token = userData?.token
 
   // Fazer a requisição POST
-  Axios.post(`http://localhost:3006/user/${id}`, {
+  Axios.get(`http://localhost:3000/api/v1/profile`, {
     token: token,
-    id: id
+    email: email
   })
     .then((response) => {
+
       console.log('PASSOU AQUI');
 
       // Validar o token
@@ -50,6 +46,11 @@ useEffect(() => {
       // Erro ao validar o token
       console.log(err);
     });
+useEffect(() => {
+
+  // Obter o ID do usuário e token
+  
+  
 }, [profileUser]); // Executa apenas uma vez ao montar o componente
 
 const LogoutUser = async (e) => {
