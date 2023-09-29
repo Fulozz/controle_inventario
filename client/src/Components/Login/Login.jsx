@@ -1,15 +1,13 @@
-import React, {useState, useEffect, createContext} from 'react'
+import React, {useState, useEffect} from 'react'
+import { Link , useNavigate} from 'react-router-dom'
+import Axios from 'axios';
+// CSS
 import './Login.css'
 import '../../App.css'
-import { Link , useNavigate} from 'react-router-dom'
-
-import Authenticated from '../../App'
-import Axios from 'axios';
-
 // //import video
 import video from '../../LoginAssets/video.mp4'
 import logo from '../../LoginAssets/image.png'
-
+// ICONS
 import {FaUserShield} from 'react-icons/fa'
 import {BsFillShieldLockFill} from 'react-icons/bs'
 import {AiOutlineSwapRight} from 'react-icons/ai'
@@ -44,14 +42,12 @@ const Login = () => {
         },
       })
       .then((response) => {
-       
-        const payload = {token: response.data.token, email, id: response.data.id}
+       console.log(response)
+        const payload = {token: response.data.token} // , email, id: response.data.id
         // =============== Payload
-        console.log(response);
-
+        
         switch (response.status) {
           case 200: 
-          
             console.log('Logado com sucesso');
             setUserLocalStorage(payload);
             navigateTo('/dashboard');

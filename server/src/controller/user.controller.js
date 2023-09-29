@@ -1,11 +1,11 @@
 const User = require('../models/User.model')
 
+const jwt = require('jsonwebtoken')
 
 
 exports.registerNewUser = async (req, res)=>{
     try {
         let isUser = await User.find({ email: req.body.email});
-        console.log(isUser);
 
         if(isUser.length >= 1) {
             return res.status(409).json({ message: 'Sorry! This email is already registered!' });
@@ -28,15 +28,21 @@ exports.loginUser = async(req,res)=>{
         const user = await User.findByCredentials(email, password);
 
         if( !user ){
-            return res.status(401).json({ error:'Erro ao realizar o login, verifique suas credenciais' })
+            return res.status(401).send({ 
+                error:'Erro ao realizar o login, verifique suas credenciais', 
+                userStatus: 'unauthenticated' })
         }
         const token = await user.generateAuthToken()
 
-        return res.status(200).json({ message: ' Usuario(a) logado com sucesso!', user, token})
+        return res.status(200).send({ 
+            message: ' Usuario(a) logado com sucesso!', 
+            user, 
+            token, 
+            userStatus: 'authenticated'})
 
     } catch (err) { 
         console.log(err);
-        return res.status(400).json({ err: err })
+        
     }
 
 };
@@ -45,3 +51,32 @@ exports.loginUser = async(req,res)=>{
 exports.returnUserProfile = async (req, res) => {
     await res.json( req.userData );
 };
+
+exports.validateUser = async(req, res) =>{
+    try{
+        const json = req.body.token
+        const jsonP = JSON.parse(json)
+        const token = (jsonP.token)
+
+        console.log(token)
+
+        const decoded = jwt.decode(token, 'secret')
+        console.log(decoded);
+        if (decoded !== undefined) {
+                  
+            console.log('passou aqui');
+            return res.status(200).json({
+              userStatus: 'authenticated',
+            });
+          }
+          
+          
+        }  catch (err) { 
+            console.log(err, 'erro!!!!!');
+            return res.status(401).json({
+                userStatus: 'unauthenticated',
+              });
+        
+        
+    }
+}

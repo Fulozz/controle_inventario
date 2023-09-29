@@ -73,9 +73,8 @@ const LogoutUser = async (e) => {
         <br />
         
         <button type='submit' className='btn flex' onClick={LogoutUser}>
-                <span>\Logout!</span>
-                
-              </button>
+                <span>Logout!</span>
+        </button>
        </div>
     </div>
   )
