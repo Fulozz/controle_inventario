@@ -30,7 +30,7 @@ exports.loginUser = async(req,res)=>{
         if( !user ){
             return res.status(401).send({ 
                 error:'Erro ao realizar o login, verifique suas credenciais', 
-                userStatus: 'unauthenticated' })
+                status: 'notAuthenticated' })
         }
         const token = await user.generateAuthToken()
 
@@ -38,7 +38,7 @@ exports.loginUser = async(req,res)=>{
             message: ' Usuario(a) logado com sucesso!', 
             user, 
             token, 
-            userStatus: 'authenticated'})
+            status: 'authenticated'})
 
     } catch (err) { 
         console.log(err);
@@ -52,14 +52,9 @@ exports.returnUserProfile = async (req, res) => {
     await res.json( req.userData );
 };
 
+
 exports.validateUser = async(req, res) =>{
     const json = req.body.token
-    if(json === undefined || null){
-        return  res.status(401).json({
-            userStatus: 'unauthenticated',
-          });
-    }
-    
     try{
         const jsonP = JSON.parse(json)
         const token = (jsonP.token)
@@ -68,18 +63,14 @@ exports.validateUser = async(req, res) =>{
         if (decoded !== undefined) {
                   
             console.log('passou aqui');
-            return res.status(200).json({
-              userStatus: 'authenticated',
+            return res.status(201).send({
+              status: true
             });
           }
-          
-          
         }  catch (err) { 
             console.log(err, 'erro!!!!!');
-            return res.status(401).json({
-                userStatus: 'unauthenticated',
+            return res.status(401).send({
+                status: false,
               });
-        
-        
     }
 }
