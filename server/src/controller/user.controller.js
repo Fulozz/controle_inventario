@@ -13,7 +13,7 @@ exports.registerNewUser = async (req, res)=>{
         const newUser = new User(req.body);
         const user = await newUser.save();
         const token =  await newUser.generateAuthToken();
-        return res.status(200).json({ message: 'User created successfully!', user, token})
+        return res.status(201).json({ message: 'User created successfully!', user, token})
     } catch (error) {
         res.status(400).json({ error: error })
     }
@@ -34,15 +34,14 @@ exports.loginUser = async(req,res)=>{
 
         return res.status(200).json({ message: ' Usuario(a) logado com sucesso!', user, token})
 
-    } catch (error) {
-        return res.status(400).json({ error: error })
+    } catch (err) { 
+        console.log(err);
+        return res.status(400).json({ err: err })
     }
 
 };
 
 // ==> Método responsável por retornar um determinado 'User'
 exports.returnUserProfile = async (req, res) => {
-    await res.json( {
-        userData: req.userData
-    } );
+    await res.json( req.userData );
 };

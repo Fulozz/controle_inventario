@@ -1,3 +1,4 @@
+import { Api } from './API/API';
 import { IUser } from './types';
 
 export function logout(){
@@ -15,3 +16,14 @@ export function getUserLocalStorage() {
         const user = JSON.parse(json)
         return user ?? null; // se for user null ou algo que nao seja util retorna null
     }
+
+   
+  export async function LoginRequest(email: string, password: string) {
+    try {
+      const request = await Api.post('login', { email, password });
+
+      return request.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }

@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, createContext} from 'react'
 import './Login.css'
 import '../../App.css'
 import { Link , useNavigate} from 'react-router-dom'
 
-
+import Authenticated from '../../App'
 import Axios from 'axios';
 
 // //import video
@@ -14,6 +14,7 @@ import {FaUserShield} from 'react-icons/fa'
 import {BsFillShieldLockFill} from 'react-icons/bs'
 import {AiOutlineSwapRight} from 'react-icons/ai'
 import { setUserLocalStorage } from '../AuthProvider/AuthTS/utils';
+
 
 
 const Login = () => {
@@ -27,14 +28,14 @@ const Login = () => {
 
 
 
-  const LoginUser = async (e)=> {
+  const LoginUser =  (e)=> {
     if (email === '' || password === '') {
       setLoginStatus('Preencha todos os campos');
       return;
     }
     e.preventDefault();
     
-    Axios.post('http://localhost:3000/api/v1/login', {
+      Axios.post('http://localhost:3000/api/v1/login', {
         email: email,
         password: password,
       },{
@@ -49,10 +50,11 @@ const Login = () => {
         console.log(response);
 
         switch (response.status) {
-          case 200: {
+          case 200: 
+          
+            console.log('Logado com sucesso');
             setUserLocalStorage(payload);
             navigateTo('/dashboard');
-            }
             break;
           case 404:
             console.log('Usuario nao encontrado');

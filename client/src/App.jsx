@@ -1,14 +1,16 @@
 import './App.scss'
+import isAuthenticated from './Components/Auth/PriviteRoute'
 import  Dashboard from './Components/Dashboard/Dashboard.jsx'
 import Login from './Components/Login/Login.jsx'
 import Register from './Components/Register/Register.jsx'
 import UserProfile from './Components/UserProfile/UserProfile'
 
+// import validateJWTToken from './services/validate'
 
-// Import React router dom
 import{
   createBrowserRouter,
   RouterProvider,
+
 } from 'react-router-dom'
 
 
@@ -16,7 +18,8 @@ import{
 
 
 function App() {
-
+  const [user, setUser] = useState(null)
+  isAuthenticated(token)
 
 
   const router = createBrowserRouter([
@@ -30,7 +33,7 @@ function App() {
     },
     {
       path: '/dashboard',
-      element: <> <Dashboard /> </>,
+      element:  <><Dashboard user={user} />   </>,
     },
     {
       path: '/userprofile',
