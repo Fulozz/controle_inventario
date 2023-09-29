@@ -33,7 +33,6 @@ export const AdminDashboard = () => {
                   </button>
             </div>
           </div>
-      
     </>
   )
 }

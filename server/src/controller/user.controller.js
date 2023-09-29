@@ -53,13 +53,16 @@ exports.returnUserProfile = async (req, res) => {
 };
 
 exports.validateUser = async(req, res) =>{
+    const json = req.body.token
+    if(json === undefined || null){
+        return  res.status(401).json({
+            userStatus: 'unauthenticated',
+          });
+    }
+    
     try{
-        const json = req.body.token
         const jsonP = JSON.parse(json)
         const token = (jsonP.token)
-
-        console.log(token)
-
         const decoded = jwt.decode(token, 'secret')
         console.log(decoded);
         if (decoded !== undefined) {

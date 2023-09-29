@@ -15,10 +15,7 @@ import{ createBrowserRouter, RouterProvider } from 'react-router-dom'
   
 
 // router
-function goToLogin(){
-    
-    window.location.href = '/'
-  }
+
 
 function App() {
   
@@ -33,22 +30,12 @@ function App() {
         token: localStorage.getItem('jwt')
       }),
     };
-    const response  = await fetch('http://localhost:3000/api/v1/validate', requestInit,
-    {
-      validateStatus: function (status) {
-        return status === 200 || status === 404 || status === 401 ; // Trate 404 como bem-sucedido
-      },
-    } )
+    const response  = await fetch('http://localhost:3000/api/v1/validate', requestInit )
     if (response.status === 200) {
-      return true;
-    } 
-    if (response.status === 400) {
-      return false;
-    } 
-    if (response.status === 401) {
-      
-      return false;
-    } 
+      return status === 'authenticated';
+    } if(response.status === 401){
+      return status === 'unauthenticated';
+    }
   }; 
   const { status } = validate()
  
@@ -64,7 +51,7 @@ function App() {
       },
       {
         path: '/dashboard',
-        element:  <> {status === true ? <Login /> : <Dashboard /> } </>,
+        element:  <> {status === "unauthenticated" ? ( window.location.href = '/' ): ( <Dashboard /> )} </>,
       },
       {
         path: '/userprofile',
