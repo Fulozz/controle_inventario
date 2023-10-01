@@ -6,32 +6,27 @@ import Sidebar from '../Dashboard/Components/Sidebar Section/Sidebar'
 import Body from '../Dashboard/Components/Body Section/Body'
 import { useNavigate } from 'react-router-dom'
 
+import './dashboard.css'
+
 
 
 // const jwt = require('jsonwebtoken')
 export const AdminDashboard = () => {
 
-    const navigate = useNavigate();
+
 
    
-    const LogoutUser = async () => {
-      logout();
-      navigate('/');
-    };
+    
   
   return (
     <>    
-        <div className='dashboard flex'>
-            <div className="dashboardContainer flex">
-              <h1>AREA DOS ADMINISTRADORES</h1>
-              <Sidebar /> 
-              <Body /> 
+        <div className='container'>
+            <Sidebar /> 
               
-              <br />
-                  <button type='submit' className='btn flex' onClick={LogoutUser}>
-                      <span>\Logout!</span>
-                  </button>
-            </div>
+              
+
+              <Body /> 
+             
           </div>
     </>
   )

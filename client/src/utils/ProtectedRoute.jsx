@@ -18,16 +18,18 @@ const PrivateRoutes = () => {
     return response
   }
   useEffect(() => {
-    if (!status) {
+    if (status === false) {
       validate().then((response) => {
         setStatus(response.ok);
+        console.log(response.ok)
+        console.log(status)
       });
     }
   }, [status]);
      
-        let auth = { token: status}
+        let auth = status
         return (
-            auth.token ? <Outlet /> : <Navigate to='/'/>
+            auth ? <Outlet /> : <Navigate to='/'/>
         )
 }
 

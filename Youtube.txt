@@ -4,5 +4,26 @@
 
 [] info if the user is logged
 
+[] Functional search-bar that search in database for the contents
+    {
+        pratrimonio: TODOS
+        category,
+        serial_number,
+        ou componente eletronioco
+    }
+    {
+        computador,
+        monitor,
+        telefone,
+        switch,
+        notebook,
+        impressora,
+        Servidor
+    }
 
-https://www.youtube.com/watch?v=2k8NleFjG7I&ab_channel=DennisIvy
+https://www.youtube.com/watch?v=ALyO4vA7sKU&ab_channel=IsraTech
+
+
+
+
+58:26 / 1:40:40

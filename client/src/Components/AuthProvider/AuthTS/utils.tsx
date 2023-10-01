@@ -2,6 +2,7 @@ import { Api } from './API/API';
 import { IUser } from './types';
 
 export function logout(){
+  
     localStorage.removeItem('jwt')
 }
 export function setUserLocalStorage(user: IUser | null){

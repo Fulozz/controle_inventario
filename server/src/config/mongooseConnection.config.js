@@ -9,13 +9,13 @@ mongoose.Promise = global.Promise;
 mongoose.set("strictQuery", false);
 
 mongoose
-.connect(database.nuvem.DataBaseURL,
+  .connect(database.nuvem.DataBaseURL,
     { useNewUrlParser: true, useUnifiedTopology: true })
-    
-.then(() => {
-  console.log('A Base de Dados foi conectada com sucesso!')
-})
-.catch( (err) => {
+
+  .then(() => {
+    console.log('A Base de Dados foi conectada com sucesso!')
+  })
+  .catch((err) => {
     console.log(`Erro ao conectar com a Base de Dados...: ${err}`);
     process.exit();
-});
+  });

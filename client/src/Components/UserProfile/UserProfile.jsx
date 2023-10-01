@@ -1,22 +1,22 @@
-import React,  { useState } from 'react'
+import React, { useState } from 'react';
 
-import Sidebar from '../Dashboard/Components/Sidebar Section/Sidebar'
-import Body from '../Dashboard/Components/Body Section/Body'
-import { logout } from '../AuthProvider/AuthTS/utils'
-import {  useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import Sidebar from '../Dashboard/Components/Sidebar Section/Sidebar';
+import Body from '../Dashboard/Components/Body Section/Body';
+import { logout } from '../AuthProvider/AuthTS/utils';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-import Axios from 'axios'
-export const UserProfile = ()  => {
- 
-  const navigateTo = useNavigate()
+import Axios from 'axios';
+export const UserProfile = () => {
+
+  const navigateTo = useNavigate();
   const [profileUser, setProfileUser] = useState({
     name: '',
     email: '',
   });
-  const userData = JSON.parse(localStorage.getItem('jwt'))
-  const email = userData.email
-  const token = userData?.token
+  const userData = JSON.parse(localStorage.getItem('jwt'));
+  const email = userData.email;
+  const token = userData?.token;
 
   // Fazer a requisição POST
   Axios.get(`http://localhost:3000/api/v1/profile`, {
@@ -46,17 +46,17 @@ export const UserProfile = ()  => {
       // Erro ao validar o token
       console.log(err);
     });
-useEffect(() => {
+  useEffect(() => {
 
-  // Obter o ID do usuário e token
-  
-  
-}, [profileUser]); // Executa apenas uma vez ao montar o componente
+    // Obter o ID do usuário e token
 
-const LogoutUser = async (e) => {
-  logout();
-  navigateTo('/');
-};
+
+  }, [profileUser]); // Executa apenas uma vez ao montar o componente
+
+  const LogoutUser = async (e) => {
+    logout();
+    navigateTo('/');
+  };
 
   return (
     <div className='dashboard flex'>
@@ -68,14 +68,14 @@ const LogoutUser = async (e) => {
           <p>E-mail: {profileUser.email}</p>
         </div>
         <br />
-        <Sidebar /> 
-        <Body /> 
+        <Sidebar />
+        <Body />
         <br />
-        
+
         <button type='submit' className='btn flex' onClick={LogoutUser}>
-                <span>Logout!</span>
+          <span>Logout!</span>
         </button>
-       </div>
+      </div>
     </div>
   )
 }
