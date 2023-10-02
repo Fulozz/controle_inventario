@@ -9,6 +9,7 @@ import UserProfile from './Components/UserProfile/UserProfile'
 
 
 import{ BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import Write from './Components/write/write'
 
   
 
@@ -59,6 +60,7 @@ function App() {
               
               <Route element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} path='/dashboard'exact/>
               <Route element={isAuthenticated ? <UserProfile /> : <Navigate to='/' />} path='/profile' exact/>
+              <Route element={isAuthenticated ? <Write /> : <Navigate to='/' />} path='/write' exact/> 
            
         </Routes>
       </Router>

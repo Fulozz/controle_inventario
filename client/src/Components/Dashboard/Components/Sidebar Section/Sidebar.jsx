@@ -1,12 +1,12 @@
 import React from 'react'
 
-import logo from '../../Assets//logo.png'
+import logo from '../../Assets//Perfil GS.png'
 import './sidebar.css'
 import { IoMdSpeedometer } from 'react-icons/io'
-import { MdDeliveryDining, MdOutlineExplore, MdOutlinePermContactCalendar } from 'react-icons/md'
+import {  MdOutlineExplore, MdOutlinePermContactCalendar } from 'react-icons/md'
 
 import { AiOutlinePieChart, AiOutlinePoweroff } from 'react-icons/ai'
-import { BsQuestionCircle } from 'react-icons/bs'
+import { BsQuestionCircle, BsArrowReturnRight } from 'react-icons/bs'
 import { logout } from '../../../AuthProvider/AuthTS/utils'
 import { useNavigate } from 'react-router-dom'
 const Sidebar = () => {
@@ -22,7 +22,7 @@ const Sidebar = () => {
     <div className='sideBar grid'>
       <div className="logoDiv flex">
         <img src={logo} alt="Image" className='logo' />
-        <h2>LOGO</h2>
+        <h2>Inventario</h2>
       </div>
       <div className="menuDiv">
         <h3 className="divTitle">
@@ -41,10 +41,10 @@ const Sidebar = () => {
 
 
           <li className="listItem">
-            <a href="" className='menuLink flex'>
-              <MdDeliveryDining className='icon' />
+            <a href="/write" className='menuLink flex'>
+              <BsArrowReturnRight className='icon' />
               <span className="smallText">
-                My Inputs
+                Incluir
               </span>
             </a>
           </li>
@@ -53,14 +53,10 @@ const Sidebar = () => {
             <a href="" className='menuLink flex'>
               <MdOutlineExplore className='icon' />
               <span className="smallText">
-                Explorer
+                Todos
               </span>
             </a>
           </li>
-
-
-
-
         </ul>
       </div>
 

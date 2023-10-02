@@ -27,3 +27,23 @@ https://www.youtube.com/watch?v=ALyO4vA7sKU&ab_channel=IsraTech
 
 
 58:26 / 1:40:40
+
+
+
+  <div className="singleItem">
+          <AiFillHeart className='icon'/>
+          <div className="textContainer">
+            <div className="containerDescription">
+                <h3>Patrimonio: 01</h3>
+              <div className="datails">
+                  <span className='date'>Manuteção: 02/10/2023 </span>
+                  <span className="desc">
+                    Maquina não possui avarias, 
+                    esta em perfeito estando na P.A
+                  </span>
+              </div>
+            </div>
+          </div>
+          <span className='foot'>GS-PA-07</span>
+          <Link to='/:id_patrimonio' className='link'>Saiba mais</Link>
+        </div>

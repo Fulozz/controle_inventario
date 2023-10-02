@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.itemForm{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: end;
+    input{
+        margin: 10px;
+        padding: 10px;
+    }
+    .submit{
+        text-align: center;
+    }
+    .submitButton{
+        border: none;
+        outline: none;
+        cursor: pointer;
+        border-radius: 8px;
+        padding: 0.8rem 1rem;
+        &:hover{
+            border: 1px solid #000;
+            
+        }
+    }
+    
+
+    
+}

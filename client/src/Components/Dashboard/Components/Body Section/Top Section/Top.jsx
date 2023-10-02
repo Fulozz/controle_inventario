@@ -7,9 +7,9 @@ import { TbMessageCircle } from 'react-icons/tb'
 import { IoIosNotificationsOutline } from 'react-icons/io'
 import { BsArrowRightShort } from 'react-icons/bs'
 //Imported Images
-import img from '../../../Assets/1693004941361.jpeg'
+import img from '../../../Assets/Perfil GS.png'
 import computer from '../../../Assets/computer.png'
-import video from '../../../Assets/video.mp4'
+import img2 from '../../../Assets/gscN.jpg'
 const Top = () => {
   return (
     <div className="topSection">
@@ -27,6 +27,8 @@ const Top = () => {
           <IoIosNotificationsOutline className='icon' />
           <div className="adminImage">
             <img src={img} alt="Admin Image" />
+             {/* incluir uma maneira de puxar essa imagem do usuario do banco de dados, 
+             e uma maneira de envia-la para lá pelo frontend*/}
           </div>
         </div>
       </div>
@@ -42,7 +44,7 @@ const Top = () => {
             <button className="btn transparent">Veja todos</button>
           </div>
           <div className="videoDiv">
-            <video src={video} autoPlay muted loop></video>
+          <img src={img2} alt="Admin Image" className='topImage' />
           </div>
         </div>
 
@@ -68,6 +70,7 @@ const Top = () => {
             <div className="imgDiv">
               <img src={computer} alt="img name" />
             </div>
+           
 
             {/* Use this card to the base
                   <div className="sideBarCard">

@@ -4,9 +4,9 @@
   --paleGree: hsl(96, 75%, 89%);
   --whiteColor: hsl(0, 0%, 100%);
   --blackColor: hsl(0, 0%, 18%);
-  --textColor: hsl(240, 1%, 48%)
-  --greyText: hsl(0, 0%, 75%);
-  --bgColor: hsl(220, 10%, 94%);
+  --textColor: hsl(240, 1%, 48%);
+  --greyText: hsl(240, 1%, 48%);
+  --bgColor: #0f172a;
   --inputColor: hsl(330, 12%, 97%);
   --itemCardColor: hsl(120, 5%, 88%);
   --itemCardHover: hsl(120, 27%, 87%);
@@ -48,18 +48,46 @@
 }
 .listingSection .secContainer .singleItem {
   position: relative;
-  width: 170px;
+  width: 200px;
   height: 190px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 10px;
   background: var(--itemCardColor);
 }
 .listingSection .secContainer .singleItem:hover {
   background: var(--itemCardHover);
   box-shadow: 0 2px 2px var(--inputColor);
+}
+.listingSection .secContainer .singleItem .textContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+.listingSection .secContainer .singleItem .link {
+  border-bottom: 1px solid crimson;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 2px 0px;
+  color: var(--blackColor);
+  font-weight: 400;
+}
+.listingSection .secContainer .singleItem .containerDescription, .listingSection .secContainer .singleItem span {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--normalFontSize);
+  font-weight: 400;
+  align-items: center;
+  justify-content: center;
+}
+.listingSection .secContainer .singleItem .containerDescription .title, .listingSection .secContainer .singleItem span .title {
+  font-weight: 700;
 }
 .listingSection .secContainer .singleItem img {
   top: 10px;
@@ -75,4 +103,5 @@
   font-size: var(--h3FontSize);
   color: var(--blackColor);
   padding: 1rem 0;
-}/*# sourceMappingURL=listing.css.map */
+}
+/*# sourceMappingURL=listing.css.map */

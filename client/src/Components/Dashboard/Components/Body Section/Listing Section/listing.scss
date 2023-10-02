@@ -4,8 +4,8 @@
     --paleGree: hsl(96, 75%, 89%);
     --whiteColor: hsl(0, 0%, 100%);
     --blackColor: hsl(0, 0%, 18%);
-    --textColor: hsl(240, 1%, 48%)
-    --greyText: hsl(0, 0%, 75%);
+    --textColor: hsl(240, 1%, 48%);
+    --greyText: hsl(240, 1%, 48%);
     --bgColor: hsl(220, 10%, 94%);
     --inputColor: hsl(330, 12%, 97%);
     --itemCardColor: hsl(120, 5%, 88%);
@@ -36,10 +36,8 @@
 
         .btn {
             border: 1px solid transparent;
-
             font-weight: 500;
         }
-
         .btn:hover {
             border: 1px solid var(--primaryColor);
         }
@@ -55,12 +53,12 @@
 
         .singleItem{
             position: relative;
-            width: 170px;
+            width: 200px;
             height: 190px;
             display: flex;
             align-items: center;
             flex-direction: column;
-            padding: 1rem;
+            padding: .5rem;
             border-radius: 10px;
             background: var(--itemCardColor);
 
@@ -69,6 +67,35 @@
                 box-shadow: 0 2px 2px var(--inputColor);
 
             }
+            .textContainer {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                align-items: center;
+              }
+              .link {
+                border-bottom: 1px solid crimson;
+                width: max-content;
+                padding: 2px 0px;
+                color: var(--blackColor);
+                font-weight: 400;
+              }
+              
+              .containerDescription, span{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                font-size: var(--normalFontSize);
+                font-weight: 400;
+                align-items: center;
+                justify-content: center;
+
+                .title{
+                    font-weight: 700;
+                }
+            }
+            
             img{
                 top: 10px;
                 max-width: 100px ;
@@ -85,6 +112,9 @@
                 color: var(--blackColor);
                 padding: 1rem 0;
             }
+            
         }
     }
+
+    
 }
