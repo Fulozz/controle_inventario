@@ -68,7 +68,7 @@ const Top = () => {
             <div className="imgDiv">
               <img src={computer} alt="img name" />
             </div>
-            
+
             {/* Use this card to the base
                   <div className="sideBarCard">
                   <BsQuestionCircle className='icon' />

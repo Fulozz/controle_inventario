@@ -13,9 +13,9 @@ const Listing = () => {
     <div className='listingSection'>
 
       <div className="heading flex">
-        <h1>Lists</h1>
+        <h1>Ultimas inclusões</h1>
         <button className='btn flex'>
-          See all <BsArrowRightShort className='icon' />
+          Ver todas <BsArrowRightShort className='icon' />
         </button>
       </div>
 
@@ -23,7 +23,62 @@ const Listing = () => {
         <div className="singleItem">
           <AiFillHeart className='icon'/>
           <img src={img} alt="Image Name" />
-          <h3>Anual</h3>
+          <h3>Teste 1</h3>
+        </div>
+
+        <div className="singleItem">
+          <AiFillHeart className='icon'/>
+          <img src={img} alt="Image Name" />
+          <h3>Teste 2</h3>
+        </div>
+
+
+        <div className="singleItem">
+          <AiFillHeart className='icon'/>
+          <img src={img} alt="Image Name" />
+          <h3>Teste 3</h3>
+        </div>
+
+        <div className="singleItem">
+          <AiFillHeart className='icon'/>
+          <img src={img} alt="Image Name" />
+          <h3>Teste 4</h3>
+        </div>
+        
+        <div className="singleItem">
+          <AiFillHeart className='icon'/>
+          <img src={img} alt="Image Name" />
+          <h3>Teste 4</h3>
+        </div>
+
+        <div className="singleItem">
+          <AiFillHeart className='icon'/>
+          <img src={img} alt="Image Name" />
+          <h3>Teste 4</h3>
+        </div>
+
+        <div className="singleItem">
+          <AiFillHeart className='icon'/>
+          <img src={img} alt="Image Name" />
+          <h3>Teste 4</h3>
+        </div>
+
+        <div className="singleItem">
+          <AiFillHeart className='icon'/>
+          <img src={img} alt="Image Name" />
+          <h3>Teste 4</h3>
+        </div>
+        
+      </div>
+
+      <div className="sellers flex">
+        <div className="topSollers">
+          <div className="heading flex">
+            <h3>Top</h3>
+            <button className='btn flex'>
+              See all <BsArrowRightShort className='icon' />
+            </button>
+          </div>
         </div>
       </div>
     </div>
