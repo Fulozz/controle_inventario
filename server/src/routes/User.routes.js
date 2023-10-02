@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controller/user.controller')
-const itemController = require('../controller/items.controlller')
+const productController = require('../controller/product.controller')
 const auth  = require('../middleware/auth');
 
 // ==> Rota responsavel por criar o novo 'User': (POST) localhost:3000/api/v1/register
@@ -18,5 +18,7 @@ router.get('/profile', auth, userController.returnUserProfile)
 // ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
 router.get('/dashboard', auth, userController.returnUserProfile)
 
-router.post('/items', itemController.registerNewItem)
+router.post('/createitem', productController.createProduct)
+
+
 module.exports = router
