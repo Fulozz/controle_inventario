@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./write.css";
 import Sidebar from "../Dashboard/Components/Sidebar Section/Sidebar";
-import Cadastro from "./components/cadastro.write";
+import Cadastro from "./components/cadastro";
 function Write() {
 
   return (
