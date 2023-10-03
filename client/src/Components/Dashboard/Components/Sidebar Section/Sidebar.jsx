@@ -5,7 +5,7 @@ import './sidebar.css'
 import { IoMdSpeedometer } from 'react-icons/io'
 import {  MdOutlineExplore, MdOutlinePermContactCalendar } from 'react-icons/md'
 
-import { AiOutlinePieChart, AiOutlinePoweroff } from 'react-icons/ai'
+import { AiOutlineUserAdd, AiOutlinePoweroff } from 'react-icons/ai'
 import { BsQuestionCircle, BsArrowReturnRight } from 'react-icons/bs'
 import { logout } from '../../../AuthProvider/AuthTS/utils'
 import { useNavigate } from 'react-router-dom'
@@ -31,7 +31,7 @@ const Sidebar = () => {
         <ul className="menuLists grid">
 
           <li className="listItem">
-            <a href="" className='menuLink flex'>
+            <a href="/dashboard" className='menuLink flex'>
               <IoMdSpeedometer className='icon' />
               <span className="smallText">
                 Dashboard
@@ -62,15 +62,15 @@ const Sidebar = () => {
 
       <div className="settingsDiv">
         <h3 className="divTitle">
-          SETTINGS
+          Confirgurações
         </h3>
         <ul className="menuLists grid">
 
           <li className="listItem">
-            <a href="" className='menuLink flex'>
-              <AiOutlinePieChart className='icon' />
+            <a href="/register" className='menuLink flex'>
+              <AiOutlineUserAdd className='icon' />
               <span className="smallText">
-                Charts
+                Add user
               </span>
             </a>
           </li>
@@ -80,7 +80,7 @@ const Sidebar = () => {
             <a href="" className='menuLink flex'>
               <MdOutlinePermContactCalendar className='icon' />
               <span className="smallText">
-                My Inputs
+                Incluões
               </span>
             </a>
           </li>

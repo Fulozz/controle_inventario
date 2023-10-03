@@ -3,8 +3,8 @@ import '../../App.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 // //import video
-import video from '../../LoginAssets/video.mp4';
-import logo from '../../LoginAssets/logo.png';
+import video from '../Login/LoginAssets/video.mp4';
+import logo from '../Login/LoginAssets/Perfil GS.png';
 
 import { FaUserShield } from 'react-icons/fa';
 import { BsFillShieldLockFill } from 'react-icons/bs';
@@ -54,24 +54,10 @@ const Register = () => {
     <div className="registerPage flex">
       <div className="container flex">
 
-        <div className="videoDiv">
-          <video src={video} autoPlay muted loop></video>
-
-          <div className="textDiv">
-            <h2 className="title">Create and sell Extraordinary Products</h2>
-            <p>Adopt the peace of nature!</p>
-          </div>
-          <div className="footerDiv flex">
-            <span className="text">Have an account?</span>
-            <Link to={'/'}>
-              <button className='btn'>Login!</button>
-            </Link>
-          </div>
-        </div>
 
         <div className="formDiv flex">
           <div className="headerDiv">
-            <img src={logo} alt="logo image" className='logo' />
+            <a href="/dashboard"><img src={logo} alt="logo image" className='logo' /></a>
             <h3>Let Us know You!</h3>
           </div>
           <form action="" className='form grid'>
@@ -108,9 +94,7 @@ const Register = () => {
               <span>Register</span>
               <AiOutlineSwapRight className='icon' />
             </button>
-            <span className="forgotPassword">
-              Forgot your password <a href="">click Here</a>
-            </span>
+
           </form>
 
         </div>

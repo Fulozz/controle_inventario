@@ -4,16 +4,19 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-  name: { type: String, maxLenght: 50, required: true},
-  description: { type: String, maxLenght: 30, required: true, unique: true},
-  category: { type: String, maxLenght: 50, required: true},
+  host_name: { type: String, maxLenght: 50, required: true},
+  serial_number: { type: String, maxLenght: 30, required: true, unique: true},
+  category: { type: String, maxLenght: 50, required: true },
+  patrimonio: { type: String, maxLenght: 50, required: true, unique: true},
 },{
   timestamps: true,
-  collection: 'product'
+  collection: 'Product'
 });
 
 
-// Exportar o modelo
+
+
+// => Exportar o modelo
 const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product;

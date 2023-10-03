@@ -36,7 +36,7 @@ const Top = () => {
       <div className="cardSection flex">
 
         <div className="rightCard flex">
-          <h1>Thats the recent computers</h1>
+          <h1>Esse é o inventario de Patrimonio GS/VMP</h1>
           <p>Esses foram os ultimos computadores inclusos em sistema</p>
 
           <div className="buttons flex">
@@ -48,52 +48,9 @@ const Top = () => {
           </div>
         </div>
 
-        <div className="leftCard flex">
-          <div className="main flex">
-            <div className="textDiv">
-              <h1>My status</h1>
-
-              <div className="flex">
-                <span>
-                  Inclusões feitas por você hoje <br /> <small> Includes </small>
-                </span>
-                <span>
-                  Inclusões feitas recentes geral <br /> <small> Incluodes</small>
-                </span>
-
-                <span className="flex link">
-                  Go to Includes <BsArrowRightShort className='icon' />
-                </span>
-              </div>
-            </div>
-
-            <div className="imgDiv">
-              <img src={computer} alt="img name" />
-            </div>
-           
-
-            {/* Use this card to the base
-                  <div className="sideBarCard">
-                  <BsQuestionCircle className='icon' />
-                  <div className="cardContent">
-                    <div className="circle1"></div>
-                    <div className="circle2"></div>
-                    <h3>Help Center</h3>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Veritatis esse, dolor,
-                    </p>
-                    <button className="btn">Go to Help Center</button>
-                  </div>
-                </div>
-              
-             */}
 
           </div>
         </div>
-      </div>
-
-    </div>
   )
 }
 

@@ -1,3 +1,28 @@
+:root {
+    --primaryColor: hsl(195, 100%, 33%);
+    --secundaryColor: hsl(195, 78%, 59%); //hoverColor
+    --tertiary: hsl(37, 100%, 66%); //paleGreen
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(0, 0%, 18%);
+    --textColor: hsl(240, 1%, 48%);
+    --greyText: hsl(240, 1%, 48%);
+    --bgColor: hsl(220, 10%, 94%);
+    --inputColor: hsl(330, 12%, 97%);
+    --itemCardColor: hsl(218, 31%, 84%);
+    --itemCardHover: hsl(213, 44%, 89%);
+    /* Font and Typography */
+    --biggestFontSize: 2.5rem;
+    --h1FontSize: 1.5rem;
+    --h2FontSize: 1.25rem;
+    --h3FontSize: 1rem;
+    --normalFontSize: .938rem;
+    --smallFontSize: .813rem;
+    --smallestFontSize: .75rem;
+  }
+  
+  
+  
+
 .container{
     display: flex;
     justify-content: center;
@@ -7,7 +32,11 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    text-align: end;
+    text-align: center;
+    width: 82%;
+    height: 100%;
+    padding: 2rem;
+    overflow: auto;
     input{
         margin: 10px;
         padding: 10px;

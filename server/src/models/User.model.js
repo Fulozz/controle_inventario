@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 
 const Schema = mongoose.Schema;
-
+// => Criar o esquema do modelo
 const userSchema = new Schema({
     name: { type: String, maxLenght: 50, required: true},
     email: { type: String, maxLenght: 30, required: true, unique: true},
@@ -19,7 +19,6 @@ const userSchema = new Schema({
 });
 
 // => Criptografia da senha
-
 userSchema.pre('save', async function(next){
     const user = this;
     if(user.isModified('password')){
@@ -38,9 +37,9 @@ userSchema.methods.generateAuthToken = async function(){
 
     return token
 };
-
-userSchema.statics.findByCredentials = async(email, password) =>{
-    const user = await User.findOne({ email });
+// => Procura as credenciais na database
+userSchema.statics.findByCredentials = async(name, password) =>{
+    const user = await User.findOne({ name });
 
     if(!user){
         throw new Error({ erro: 'Login invalido'});
@@ -52,7 +51,7 @@ userSchema.statics.findByCredentials = async(email, password) =>{
     return user;
 };
 
-
+// => Exportar o modelo
 const User = mongoose.model('User', userSchema);
 
 

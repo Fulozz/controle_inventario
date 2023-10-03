@@ -5,8 +5,8 @@ import Axios from 'axios';
 
 import '../../App.scss';
 // //import video
-import video from '../../LoginAssets/video.mp4';
-import logo from '../../LoginAssets/logo.png';
+
+import logo from './LoginAssets/Perfil GS.png';
 // ICONS
 import { FaUserShield } from 'react-icons/fa';
 import { BsFillShieldLockFill } from 'react-icons/bs';
@@ -18,7 +18,7 @@ import { setUserLocalStorage } from '../AuthProvider/AuthTS/utils';
 const Login = () => {
   
   // useState hook to store the inputs
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const navigateTo = useNavigate('');
 
@@ -28,14 +28,14 @@ const Login = () => {
 
 
   const LoginUser = () => {
-    if (email === '' || password === '') {
+    if (name === '' || password === '') {
       setLoginStatus('Preencha todos os campos');
       return;
     };
 
 
     Axios.post('http://localhost:3000/api/v1/login', {
-      email: email,
+      name: name,
       password: password,
     }, {
       validateStatus: function (status) {
@@ -44,7 +44,7 @@ const Login = () => {
     })
       .then((response) => {
         console.log(response)
-        const payload = { token: response.data.token } // , email, id: response.data.id
+        const payload = { token: response.data.token } // , name, id: response.data.id
         // =============== Payload
 
         switch (response.status) {
@@ -84,7 +84,7 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setEmail('');
+    setName('');
     setPassword('');
 
   };
@@ -92,21 +92,6 @@ const Login = () => {
   return (
     <div className="loginPage flex">
       <div className="container flex">
-
-        <div className="videoDiv">
-          <video src={video} autoPlay muted loop></video>
-
-          <div className="textDiv">
-            <h2 className="title">Create and sell Extraordinary Products</h2>
-            <p>Adopt the peace of nature!</p>
-          </div>
-          <div className="footerDiv flex">
-            <span className="text">Dont han an account?</span>
-            <Link to={'./register'}>
-              <button className='btn'>Sign Up!</button>
-            </Link>
-          </div>
-        </div>
 
         <div className="formDiv flex">
           <div className="headerDiv">
@@ -116,11 +101,11 @@ const Login = () => {
           <form action="" className='form grid' onSubmit={onSubmit}>
             <span className={statusHolder}>{loginStatus}</span>
             <div className="inputDiv">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="name">Email</label>
               <div className="input flex">
                 <FaUserShield className='icon' />
-                <input type="email" id='email' placeholder=' Enter E-mail' onChange={(event) => {
-                  setEmail(event.target.value)
+                <input type="text" id='name' placeholder=' Enter E-mail' onChange={(event) => {
+                  setName(event.target.value)
                 }} />
 
               </div>

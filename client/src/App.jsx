@@ -45,19 +45,14 @@ function App() {
     statusValidate()
   }, [])
   
-  useEffect(() => {
-    if(!isAuthenticated){
-       <Navigate to="/" />
-    }
-  }, [isAuthenticated])
+
 
   return (
     <div>
       <Router>
         <Routes>
           <Route element={<Login />} path='/' exact/>
-          <Route element={<Register />} path='/register' exact/>
-              
+              <Route element={isAuthenticated ? <Register /> : <Navigate to="/" />} path='/register'exact/>
               <Route element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} path='/dashboard'exact/>
               <Route element={isAuthenticated ? <UserProfile /> : <Navigate to='/' />} path='/profile' exact/>
               <Route element={isAuthenticated ? <Write /> : <Navigate to='/' />} path='/write' exact/> 

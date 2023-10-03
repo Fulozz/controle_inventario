@@ -19,6 +19,7 @@ router.get('/profile', auth, userController.returnUserProfile)
 router.get('/dashboard', auth, userController.returnUserProfile)
 
 router.post('/createitem', productController.createProduct)
+router.get('/listing', productController.getProductListing)
 
 
 module.exports = router

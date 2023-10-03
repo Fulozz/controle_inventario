@@ -1,14 +1,24 @@
-import React from "react";
-import "./listing.css";
-
-// imported icons
+import React, { useEffect, useState } from "react";
+import "./listing.css";;
+import Axios from 'axios'
+// imported icons;
 import { BsArrowRightShort } from "react-icons/bs";
-import { AiFillHeart } from "react-icons/ai";
+import { BiLink } from "react-icons/bi";
 import { Link } from "react-router-dom";
 //imported image
 import computer from "../../../Assets/computer.png";
 
+
+
+
 const Listing = () => {
+
+  const [product, setProduct] = useState([])
+  useEffect(()=>{
+    Axios.get('http://localhost:3000/api/v1/listing').then((response)=>{
+      setProduct(response.data), console.log(response)
+    })
+  },[])
   return (
     <div className="listingSection">
       <div className="heading flex">
@@ -19,52 +29,25 @@ const Listing = () => {
       </div>
 
       <div className="secContainer flex">
-        <div className="singleItem">
-          <AiFillHeart className="icon" />
+        {/* <div className="singleItem">
+        <h5>GS-PA-01</h5>
+          <BiLink className="icon" />
           <img src={computer} alt="Image Name" />
           <Link to="/:patrimonio">
             <h3>0165</h3>
           </Link>
-        </div>
+          </div> */}
+          {product && product.map((product) => (
+            <div className="singleItem" key={product.id}>
+            <h5>{product.host_name}</h5>
+              <BiLink className="icon" />
+              <img src={computer} alt="Image Name" />
+              <Link to={`/product/${product.patrimonio}`}>
+                <h3>{product.patrimonio}</h3>
+              </Link>
+              </div>
 
-        <div className="singleItem">
-          <AiFillHeart className="icon" />
-          <img src={computer} alt="Image Name" />
-          <Link to="/:patrimonio">
-            <h3>0166</h3>
-          </Link>
-        </div>
-
-        <div className="singleItem">
-          <AiFillHeart className="icon" />
-          <img src={computer} alt="Image Name" />
-          <Link to="/:patrimonio">
-            <h3>0167</h3>
-          </Link>
-        </div>
-        <div className="singleItem">
-          <AiFillHeart className="icon" />
-          <img src={computer} alt="Image Name" />
-          <Link to="/:patrimonio">
-            <h3>0168</h3>
-          </Link>
-        </div>
-
-        <div className="singleItem">
-          <AiFillHeart className="icon" />
-          <img src={computer} alt="Image Name" />
-          <Link to="/:patrimonio">
-            <h3>0169</h3>
-          </Link>
-        </div>
-
-        <div className="singleItem">
-          <AiFillHeart className="icon" />
-          <img src={computer} alt="Image Name" />
-          <Link to="/:patrimonio">
-            <h3>0170</h3>
-          </Link>
-        </div>
+          ))}   
       </div>
     </div>
   );

@@ -5,10 +5,10 @@ const jwt = require('jsonwebtoken')
 
 exports.registerNewUser = async (req, res) => {
     try {
-        let isUser = await User.find({ email: req.body.email });
+        let isUser = await User.find({ name: req.body.name });
 
         if (isUser.length >= 1) {
-            return res.status(409).json({ message: 'Sorry! This email is already registered!' });
+            return res.status(409).json({ message: 'Sorry! This name is already registered!' });
         }
         const newUser = new User(req.body);
         const user = await newUser.save();
@@ -22,9 +22,9 @@ exports.registerNewUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
     try {
-        const email = req.body.email;
+        const name = req.body.name;
         const password = req.body.password;
-        const user = await User.findByCredentials(email, password);
+        const user = await User.findByCredentials(name, password);
 
         if (user) {
         const token = await user.generateAuthToken()

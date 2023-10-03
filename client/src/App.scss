@@ -7,17 +7,17 @@
 }
 
 :root {
-  --primaryColor: hsl(94,59%, 35%);
-  --hoverColor: hsl(93, 75%, 76%);
-  --paleGree: hsl(96, 75%, 89%);
+  --primaryColor: hsl(195, 100%, 33%);
+  --secundaryColor: hsl(195, 78%, 59%); //hoverColor
+  --tertiary: hsl(37, 100%, 66%); //paleGreen
   --whiteColor: hsl(0, 0%, 100%);
   --blackColor: hsl(0, 0%, 18%);
-  --textColor: hsl(240, 1%, 48%)
-  --greyText: hsl(0, 0%, 75%);
+  --textColor: hsl(240, 1%, 48%);
+  --greyText: hsl(240, 1%, 48%);
   --bgColor: hsl(220, 10%, 94%);
   --inputColor: hsl(330, 12%, 97%);
-  --itemCardColor: hsl(120, 5%, 88%);
-  --itemCardHover: hsl(120, 27%, 87%);
+  --itemCardColor: hsl(218, 31%, 84%);
+  --itemCardHover: hsl(213, 44%, 89%);
   /* Font and Typography */
   --biggestFontSize: 2.5rem;
   --h1FontSize: 1.5rem;
@@ -27,6 +27,9 @@
   --smallFontSize: .813rem;
   --smallestFontSize: .75rem;
 }
+
+
+
 
 .flex {
   display: flex;
@@ -88,8 +91,9 @@ img, video {
 }
 
 .btn:hover {
-  color: var(--hoverColor);
-  background: var(--paleGree);
+  color: var(--tertiary);
+  font-weight: 500;
+  background: var(--secundaryColor);
 }
 
 .loginPage, .registerPage {
@@ -173,14 +177,14 @@ img, video {
   transition: 0.3s ease;
 }
 .loginPage .container .videoDiv .btn:hover, .registerPage .container .videoDiv .btn:hover {
-  background: var(--hoverColor);
+  background: var(--tertiary);
   color: var(--blackColor);
 }
 .loginPage .container .formDiv, .registerPage .container .formDiv {
   flex-basis: 50%;
   margin: auto;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   transform: translateY(-1rem);
 }
 .loginPage .container .formDiv .headerDiv, .registerPage .container .formDiv .headerDiv {
@@ -239,7 +243,7 @@ img, video {
   transition: 0.3s ease;
 }
 .loginPage .container .formDiv .form .btn:hover, .registerPage .container .formDiv .form .btn:hover {
-  background: var(--hoverColor);
+  background: var(--tertiary);
   color: var(--blackColor);
 }
 .loginPage .container .formDiv .form .btn:hover .icon, .registerPage .container .formDiv .form .btn:hover .icon {

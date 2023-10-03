@@ -1,12 +1,15 @@
 :root {
-    --primaryColor: hsl(94, 55%, 56%); // Trocar furamente as cores para adaptar para temas dark
-    --hoverColor: hsl(93, 75%, 76%);
-    --paleGreen: hsl(96, 75%, 89%);
+    --primaryColor: hsl(195, 100%, 33%);
+    --secundaryColor: hsl(195, 78%, 59%); //hoverColor
+    --tertiary: hsl(37, 100%, 66%); //paleGreen
     --whiteColor: hsl(0, 0%, 100%);
     --blackColor: hsl(0, 0%, 18%);
-    --greyText: hsl(0, 0%, 75%);
-    --bgColor: hsl(113, 11%, 85%);
+    --textColor: hsl(240, 1%, 48%);
+    --greyText: hsl(240, 1%, 48%);
+    --bgColor: hsl(220, 10%, 94%);
     --inputColor: hsl(330, 12%, 97%);
+    --itemCardColor: hsl(218, 31%, 84%);
+    --itemCardHover: hsl(213, 44%, 89%);
     /* Font and Typography */
     --biggestFontSize: 2.5rem;
     --h1FontSize: 1.5rem;
@@ -15,8 +18,9 @@
     --normalFontSize: .938rem;
     --smallFontSize: .813rem;
     --smallestFontSize: .75rem;
-}
-
+  }
+  
+  
 
 .sideBar {
     background: var(--whiteColor);
@@ -80,6 +84,7 @@
             transition: 0;
 
             .icon {
+                width: 25px;
                 margin-right: .5rem;
             }
         }
@@ -103,7 +108,7 @@
         position: relative;
         .icon{
             position: absolute;
-            background: var(--hoverColor);
+            background: var(--secundaryColor);
             border: 10px solid var(--whiteColor);
             font-size: 3rem;
             border-radius: 50%;
@@ -116,7 +121,7 @@
         .cardContent{
             position: relative;
             padding: 1rem;
-            background: var(--hoverColor);
+            background: var(--secundaryColor);
             border-radius: 10px;
             overflow: hidden;
 
@@ -140,7 +145,7 @@
                 }
                 .circle1, .circle2{
                     position: absolute;
-                    background: var(--paleGreen);
+                    background: var(--tertiary);
                     border-radius: 50%;
                     opacity: .7;
                 }
