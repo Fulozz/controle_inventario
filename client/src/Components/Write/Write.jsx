@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./write.css";
 import Sidebar from "../Dashboard/Components/Sidebar Section/Sidebar";
-import Cadastro from "./components/cadastro";
+import Form from "./components/Form";
 function Write() {
 
   return (
@@ -10,7 +10,7 @@ function Write() {
       <Sidebar />
       <div className="itemForm">
         <div className="editor">
-            <Cadastro />
+            <Form />
         </div>
       </div>
     </div>
