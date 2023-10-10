@@ -29,16 +29,8 @@ const Listing = () => {
       </div>
 
       <div className="secContainer flex">
-        {/* <div className="singleItem">
-        <h5>GS-PA-01</h5>
-          <BiLink className="icon" />
-          <img src={computer} alt="Image Name" />
-          <Link to="/:patrimonio">
-            <h3>0165</h3>
-          </Link>
-          </div> */}
-          {product && product.map((product) => (
-            <div className="singleItem" key={product.id}>
+        {product && product.map((product, index) => (
+            <div className="singleItem" key={index}>
             <h5>{product.host_name}</h5>
               <BiLink className="icon" />
               <img src={computer} alt="Image Name" />

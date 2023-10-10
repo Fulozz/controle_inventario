@@ -1,125 +1,191 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 const Form = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0)
+
   const [formData, setFormData] = useState({
-    nome: "",
-    email: "",
-    endereco: "",
-    telefone: "",
+    hostName: "",
+    serialNumber: "",
+    brand: "",
+    model: "",
+    cpu: "",
+    gpu: "",
+    memoryRam: "",
+    hardDisk: "",
+    location: "",
+    department: "",
+    status: "",
   });
 
-  const handleSubmit = () => {
-    // Validar formulário
-    
-    // Se formulário for válido, avançar para próxima página
-    setPage(page + 1);
-    
-    // Atualizar o estado formData
-    setFormData({
-      ...formData,
-      nome: formData.nome,
-      email: formData.email,
-      endereco: formData.endereco,
-      telefone: formData.telefone,
-    });
+  const { register, handleSubmit } = useForm({
+    initialValues: formData,
+  });
+
+  useEffect(() => {
+    // Rerender the form on input change
+    setFormData(formData);
+  }, [formData]);
+  const Next = ()=>{
+    setPage(page + 1)
+  }
+
+  const onSubmit = (data) => {
+    // Do something with the submitted data
+    console.log(data.hostName);
   };
 
   return (
-    <div>
-      {page === 1 ? (
-        <Page1 handleSubmit={handleSubmit} setFormData={setFormData} />
-      ) : page === 2 ? (
-        <Page2 handleSubmit={handleSubmit} setFormData={setFormData} />
-      ) : page === 3  && formData ? (
-        <Page3 formData={formData} />
-      ) : null}
-    </div>
-  );
-};
-
-const Page1 = ({ handleSubmit }) => {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-
-  console.log(nome, email);
-  const handleChangeName = (e) => {
-    const { name, value } = e.target;
-    setNome(value);
-  };
-  const handleChangeEmail = (e) => {
-    const { email, value } = e.target;
-    setEmail(value);
-  };
-  console.log(handleSubmit);
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="Nome"
-        name="nome"
-        onChange={handleChangeName}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        name="email"
-        onChange={handleChangeEmail}
-      />
-      <button onClick={handleSubmit}>Avançar</button>
-    </div>
-  );
-};
-
-const Page2 = ({ handleSubmit }) => {
-  const [endereco, setEndereco] = useState("");
-  const [telefone, setTelefone] = useState("");
-  console.log(endereco, telefone);
-  const handleChangeEndereco = (e) => {
-    const { endereco , value } = e.target;
-    setEndereco(value);
-  };
-  const handleChangeTelefone = (e) => {
-    const { telefone , value } = e.target;
-    setTelefone(value);
-  };
-  console.log(handleSubmit);
-
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="Endereço"
-        name="endereco"
-        onChange={handleChangeEndereco}
-      />
-      <input
-        type="tel"
-        placeholder="Telefone"
-        name="telefone"
-        onChange={handleChangeTelefone}
-      />
-      <button onClick={handleSubmit}>Avançar</button>
-    </div>
-  );
-};
-
-const Page3 = ({ formData }) => {
-  console.log(formData);
-      if (formData) {
-        return (
-          <div>
-            <h1>Confirmação de dados</h1>
-            <p>Nome: {formData.nome}</p>
-            <p>Email: {formData.email}</p>
-            <p>Endereço: {formData.endereco}</p>
-            <p>Telefone: {formData.telefone}</p>
+<>
+      {page === 0 ? (
+        <form onSubmit={handleSubmit(onSubmit)} >
+              <div>
+            <h1>Informações de cadastro</h1>
+            <label htmlFor="hostName">Host Name</label>
+            <input
+              type="text"
+              name="hostName"
+              id="hostName"
+              placeholder="Host Name"
+              {...register("hostName", { required: true, maxLength: 30 })}
+            />
           </div>
-        );
-      } else {
-        return null;
+          <div>
+            <label htmlFor="serialNumber">Serial Number</label>
+            <input
+              type="text"
+              name="serialNumber"
+              id="serialNumber"
+              placeholder="Serial Number"
+              {...register("serialNumber", { required: true, maxLength: 30 })}
+            />
+          </div>
+          <div>
+            <label htmlFor="brand">Brand</label>
+            <input
+              type="text"
+              name="brand"
+              id="brand"
+              placeholder="Brand"
+              {...register("brand", { required: true, maxLength: 30 })}
+            />
+          </div>
+          <div>
+            <label htmlFor="model">Model</label>
+            <input
+              type="text"
+              name="model"
+              id="model"
+              placeholder="Model"
+              {...register("model", { required: true, maxLength: 30 })}
+            />
+          </div>
+          <input type="submit" value="submit" onClick={Next} />
+        </form>
+      ) : page === 1 ? (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <h1>Hardware</h1>
+              <div>
+                <label htmlFor="cpu">CPU</label>
+                <input
+                  type="text"
+                  name="cpu"
+                  id="cpu"
+                  placeholder="CPU"
+                  {...register("cpu", { required: true, maxLength: 30 })}
+                />
+              </div>
+              <div>
+                <label htmlFor="gpu">GPU</label>
+                <input
+                  type="text"
+                  name="gpu"
+                  id="gpu"
+                  placeholder="GPU"
+                  {...register("gpu", { required: true, maxLength: 30 })}
+                />
+              </div>
+              <div>
+                <label htmlFor="memoryRam">Memory RAM</label>
+                <select name="memoryRam" id="memoryRam" {...register("memoryRam", { required: true, maxLength: 30 })}>
+                  <option value="DDR2">DDR2</option>
+                  <option value="DDR3">DDR3</option>
+                  <option value="DDR4">DDR4</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="hardDisk">Hard Disk</label>
+                <input
+                  type="text"
+                  name="hardDisk"
+                  id="hardDisk"
+                  placeholder="Hard Disk"
+                  {...register("hardDisk", { required: true, maxLength: 30 })}
+                />
+              </div>
+            </div>
+            <input type="submit" value="submit" onClick={Next} />
+        </form>
+      ) : page === 2 ? (
+        <form onSubmit={handleSubmit(onSubmit)}> 
+          <div>
+            <h1>Local</h1>
+              <div>
+                <label htmlFor="location">Location</label>
+                <input
+                  type="text"
+                  name="location"
+                  id="location"
+                  placeholder="Location"
+                  {...register("location", { required: true, maxLength: 30 })}
+                />
+              </div>
+              <div>
+                <label htmlFor="department">Department</label>
+                <input
+                  type="text"
+                  name="department"
+                  id="department"
+                  placeholder="Department"
+                  {...register("department", { required: true, maxLength: 30 })}
+                />
+              </div>
+              <div>
+                <label htmlFor="status">Status</label>
+                <select name="status" id="status" {...register("status", { required: true, maxLength: 30 })}>
+                  <option value="Ativo">Ativo</option>
+                  <option value="Manutenção">Manutenção</option>
+                  <option value="Reserva">Reserva</option>
+                </select>
+                </div>
+            </div>
+          <input type="submit" value="Next" onClick={Next}/>
+        </form>
+      ) : page === 3 ? (
+        <div>
+          <h1>Confirmação de dados</h1>
+          <div id="confirmation-data">
+            <p>Nome do host: {formData.hostName}</p>
+            <p>Número de série: {formData.serialNumber}</p>
+            <p>Marca: {formData.brand}</p>
+            <p>Modelo: {formData.model}</p>
+            <p>CPU: {formData.cpu}</p>
+            <p>GPU: {formData.gpu}</p>
+            <p>Memória RAM: {formData.memoryRam}</p>
+            <p>Disco rígido: {formData.hardDisk}</p>
+            <p>Localização: {formData.location}</p>
+            <p>Departamento: {formData.department}</p>
+            <p>Status: {formData.status}</p>
+          </div>
+          <button type="button" onClick={onSubmit}>
+            Confirmar
+          </button>
+        </div>
+      ) : null}
+        
+        </>
+        )
       }
-    
-};
 
-export default Form;
+      export default Form
