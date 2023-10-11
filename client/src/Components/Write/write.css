@@ -30,7 +30,7 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  margin-left: 100px;
   width: 82%;
   height: 100%;
   padding: 2rem;
@@ -38,19 +38,57 @@
 }
 .itemForm input {
   margin: 10px;
-  padding: 10px;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
 }
-.itemForm .submit {
+.itemForm .btn-form {
+  border: 1px solid #000;
   text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
 }
 .itemForm .submitButton {
-  border: none;
+  text-align: center;
+  border: 1px solid #000;
   outline: none;
   cursor: pointer;
   border-radius: 8px;
   padding: 0.8rem 1rem;
 }
-.itemForm .submitButton:hover {
+.itemForm .appearance-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: black;
+  place-items: center;
+  padding: 1rem 4rem 1rem 1rem;
+  width: 10rem;
+  height: 30px;
   border: 1px solid #000;
+  color: black;
+  border-radius: 0.25em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+}
+.itemForm #confirmation-data input-left, .itemForm .form input-left {
+  text-align: left;
+  width: 50px !important;
+}
+.itemForm #confirmation-data .input-right, .itemForm .form .input-right {
+  text-align: right;
+  width: 50px !important;
+}
+.itemForm #confirmation-data table, .itemForm .form table {
+  width: auto;
+  padding-left: 10px;
+}
+.itemForm #confirmation-data th, .itemForm .form th {
+  height: 30px;
+  text-align: right;
+  font-size: 18px;
+}
+.itemForm #confirmation-data h1, .itemForm .form h1 {
+  text-align: left;
+  margin-left: 20%;
+  margin-bottom: 2%;
 }
 /*# sourceMappingURL=write.css.map */

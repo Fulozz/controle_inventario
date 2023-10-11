@@ -18,7 +18,7 @@ router.get('/profile', auth, userController.returnUserProfile)
 // ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
 router.get('/dashboard', auth, userController.returnUserProfile)
 
-router.post('/createitem', productController.createProduct)
+router.post('/create', productController.createComputer)
 router.get('/listing', productController.getProductListing)
 
 

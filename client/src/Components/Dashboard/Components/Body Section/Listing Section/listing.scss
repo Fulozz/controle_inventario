@@ -46,12 +46,10 @@
     }
 
     .secContainer{
-        width: 100%;
-        margin: 1rem 0;
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
+            width: 100%;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
 
         .singleItem{
             position: relative;

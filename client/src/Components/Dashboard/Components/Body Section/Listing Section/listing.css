@@ -41,10 +41,9 @@
 }
 .listingSection .secContainer {
   width: 100%;
-  margin: 1rem 0;
-  gap: 1rem;
+  display: flex;
+  gap: 16px;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 .listingSection .secContainer .singleItem {
   position: relative;

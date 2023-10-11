@@ -15,7 +15,7 @@ exports.getProductListing = async(req,  res )=>{
     }
 };
 
-exports.createProduct = async(req,res)=> {
+exports.createComputer = async(req,res)=> {
     try{
         let findProduct = await Product.find({ 
             patrimonio: req.body.patrimonio, serial_number: req.body.serial_number
@@ -25,9 +25,17 @@ exports.createProduct = async(req,res)=> {
         }
         const product = new Product({
             patrimonio: req.body.patrimonio,
-            serial_number: req.body.serial_number,
-            host_name: req.body.host_name,
-            category: req.body.category,
+            serial_number: req.body.serialNumber,
+            host_name: req.body.hostName,
+            marca: req.body.marca,
+            cpu: req.body.cpu,
+            gpu: req.body.gpu,
+            memoryRam: req.body.memoryRam,
+            hardDisk: req.body.hardDisk,
+            location: req.body.location,
+            departamento: req.body.departamento,
+            status: req.body.status,
+            category: 'computer',
           });
           // Salvar o produto
       await product.save();
