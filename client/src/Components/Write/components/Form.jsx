@@ -36,7 +36,6 @@ const Form = () => {
   }
   const Cancel = () =>{
     navigate('/dashboard')
-    setFormData(formData)
   }
 
   const onSubmit = (data) => {
@@ -119,7 +118,7 @@ const Form = () => {
               </th>
             </tr>
             <tr>
-              <th><input type="submit" value="Cancelar" onClick={Cancel} className="btn-form" /></th>
+              
               <th><input type="submit" value="submit" onClick={Next} className="btn-form" /></th>
             </tr>
             </tbody>
@@ -163,7 +162,7 @@ const Form = () => {
               </th>
             </tr>
             <tr>
-              <th><input type="submit" value="Anterior" onClick={Previous} className="btn-form" /></th>
+              
               <th><input type="submit" value="Proximo" onClick={Next} className="btn-form" /></th>
             </tr>
             </tbody>
@@ -200,7 +199,6 @@ const Form = () => {
             </th>
           </tr>
           <tr>
-              <th><input type="submit" value="Anterior" onClick={Previous} className="btn-form" /></th>
               <th><input type="submit" value="Proximo" onClick={Next} className="btn-form" /></th>
             </tr>
             </tbody>
