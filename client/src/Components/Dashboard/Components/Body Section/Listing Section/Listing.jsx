@@ -16,7 +16,7 @@ const Listing = () => {
   const [product, setProduct] = useState([])
   useEffect(()=>{
     Axios.get('http://localhost:3000/api/v1/listing').then((response)=>{
-      setProduct(response.data), console.log(response)
+      setProduct(response.data)
     })
   },[])
   return (

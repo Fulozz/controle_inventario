@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controller/user.controller')
-const productController = require('../controller/product.controller')
+const productController = require('../controller/patrimonio.controller')
 const auth  = require('../middleware/auth');
 
 // ==> Rota responsavel por criar o novo 'User': (POST) localhost:3000/api/v1/register
@@ -12,14 +12,15 @@ router.post('/login', userController.loginUser)
 
 // ==> Rota responsavel por fazer a validação de usuario logado ou não logado
 router.post('/validate', userController.validateUser)
-// ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
-router.get('/profile', auth, userController.returnUserProfile)
+
 
 // ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
 router.get('/dashboard', auth, userController.returnUserProfile)
 
-router.post('/create', productController.createComputer)
-router.get('/listing', productController.getProductListing)
+router.post('/create', auth,  productController.createPatrimonio)
 
+router.get('/listing',  productController.getPatrimonioListing)
 
+// ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
+router.get('/profile', auth, userController.returnUserProfile)
 module.exports = router

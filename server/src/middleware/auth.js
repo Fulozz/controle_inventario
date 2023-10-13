@@ -1,14 +1,27 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
+    const json = req.body.token;
+  
     try {
-        const token = req.headers.authorization.replace('Bearer ', '');
-        // ==> Um console para verificar o token
-        const decoded = jwt.verify(token, 'secret');
-        req.userData = decoded;
-        next();
-
+      const jsonP = JSON.parse(json);
+      const token = (jsonP.token);
+      const decodedToken = jwt.decode(token, 'secret');
+      if (decodedToken.exp > Date.now()) {
+        return res.status(200).send({
+          message: 'Token válido',
+          userStatus: 'authenticated',
+        });
+      } 
+      if(decodedToken <= Date.now()){
+        return res.status(401).send({
+            message: 'Token expirado',
+          }) && localStorage.removeItem('jwt')
+      }
+      
     } catch (err) {
-        res.status(401).json({ message: 'Falha na autenticacao!', err: err })
+      return res.status(500).send({
+        message: 'error',
+      });
     }
 };

@@ -1,11 +1,11 @@
-const Product = require('../models/Product.model')
-exports.getProductListing = async(req,  res )=>{
+const Patrimonio = require('../models/Patrimonio.model')
+exports.getPatrimonioListing = async(req,  res )=>{
     try{
         
-        await Product.find({category: "computador"}).sort({updateAt: -1})
+        await Patrimonio.find({category: "computador"}).sort({updateAt: -1})
         .limit(6)
-        .then((products)=>{
-            return res.json(products)
+        .then((patrimonios)=>{
+            return res.json(patrimonios)
         })
     } catch (err) {
         return res.status(401).send({
@@ -15,15 +15,15 @@ exports.getProductListing = async(req,  res )=>{
     }
 };
 
-exports.createComputer = async(req,res)=> {
+exports.createPatrimonio = async(req,res)=> {
     try{
-        let findProduct = await Product.find({ 
+        let findPatrimonio = await Patrimonio.find({ 
             patrimonio: req.body.patrimonio, serial_number: req.body.serial_number
         })
-        if(findProduct.length >= 1){
-            return res.status(409).json({ message: 'Produto já registrado' });
+        if(findPatrimonio.length >= 1){
+            return res.status(409).json({ message: 'Patrimonio já registrado' });
         }
-        const product = new Product({
+        const patrimonio = new Patrimonio({
             patrimonio: req.body.patrimonio,
             serial_number: req.body.serialNumber,
             host_name: req.body.hostName,
@@ -38,28 +38,28 @@ exports.createComputer = async(req,res)=> {
             category: 'computer',
           });
           // Salvar o produto
-      await product.save();
+      await patrimonio.save();
     
       // Enviar a resposta
-      await res.send(product);
+      await res.send(patrimonio);
     } catch (error) {
         res.status(400).json({ error: error })
     }
     
 };
 
-exports.searchProduct = async(req, res)=> {
-    const product = await Product.findById(req.params.id);
+exports.searchPatrimonio = async(req, res)=> {
+    const patrimonio = await Patrimonio.findById(req.params.id);
 
     // Atualizar o produto
-    product.name = req.body.name;
-    product.serial_number = req.body.serial_number;
-    product.host_name = req.body.host_name;
-    product.category = req.body.category;
+    patrimonio.name = req.body.name;
+    patrimonio.serial_number = req.body.serial_number;
+    patrimonio.host_name = req.body.host_name;
+    patrimonio.category = req.body.category;
   
     // Salvar o produto
-    await product.save();
+    await patrimonio.save();
   
     // Enviar a resposta
-    res.send(product);
+    res.send(patrimonio);
 };

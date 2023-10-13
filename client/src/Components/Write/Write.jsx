@@ -2,8 +2,8 @@ import React from "react";
 import { FormProvider } from "react-hook-form";
 import "./write.css";
 import Sidebar from "../Dashboard/Components/Sidebar Section/Sidebar";
-import Form from "./components/Form";
-import FormTest from "./components/FormTest";
+import Form from "./components/Form"
+// import FormTest from "./register-form/FormTest";
 
 function Write() {
   return (

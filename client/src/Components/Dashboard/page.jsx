@@ -2,8 +2,8 @@
 
 import React from 'react'
 
-import Sidebar from '../Dashboard/Components/Sidebar Section/Sidebar'
-import Body from '../Dashboard/Components/Body Section/Body'
+import Sidebar from './Components/Sidebar Section/Sidebar'
+import Body from './Components/Body Section/Body'
 
 
 import './dashboard.css'

@@ -20,7 +20,7 @@ const Login = () => {
   // useState hook to store the inputs
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const navigateTo = useNavigate('');
+  const navigate = useNavigate('');
 
   const [loginStatus, setLoginStatus] = useState('');
   const [statusHolder, setStatusHolder] = useState('message');
@@ -39,7 +39,7 @@ const Login = () => {
       password: password,
     }, {
       validateStatus: function (status) {
-        return status === 200 || status === 404 || status === 401; // Trate 404 como bem-sucedido
+        return status === 200 || status === 401 || status === 404 || status === 500; // Trate 404 como bem-sucedido
       },
     })
       .then((response) => {
@@ -50,19 +50,27 @@ const Login = () => {
         switch (response.status) {
           case 200:
             console.log('Logado com sucesso');
+            navigate('/dashboard');
             setUserLocalStorage(payload);
-            navigateTo('/dashboard');
             break;
           case 401:
+            navigate('/');
             console.log('Credenciais não coincidem');
             setLoginStatus('Credenciais não coincidem');
-            navigateTo('/');
+            window.location.reload();
             break;
           case 404:
+            navigate('/');
             console.log('Usuario nao encontrado');
             setLoginStatus('Usuário não encontrado');
-            navigateTo('/');
+            window.location.reload();
             break;
+            case 500:
+              navigate('/');
+              console.log('Erro de servidor');
+              setLoginStatus('Erro de servidor');
+              window.location.reload();
+              break;
         }
       })
       .catch((err) => {
@@ -96,25 +104,25 @@ const Login = () => {
         <div className="formDiv flex">
           <div className="headerDiv">
             <img src={logo} alt="logo image" className='logo' />
-            <h3>Welcome Back!</h3>
+            <h3>Bem vindo de volta!</h3>
           </div>
           <form action="" className='form grid' onSubmit={onSubmit}>
             <span className={statusHolder}>{loginStatus}</span>
             <div className="inputDiv">
-              <label htmlFor="name">Email</label>
+              <label htmlFor="name">Nome</label>
               <div className="input flex">
                 <FaUserShield className='icon' />
-                <input type="text" id='name' placeholder=' Enter E-mail' onChange={(event) => {
+                <input type="text" id='name' placeholder=' Nome' onChange={(event) => {
                   setName(event.target.value)
                 }} />
 
               </div>
             </div>
             <div className="inputDiv">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Senha</label>
               <div className="input flex">
                 <BsFillShieldLockFill className='icon' />
-                <input type="password" id='password' placeholder=' Enter Password' onChange={(event) => {
+                <input type="password" id='password' placeholder=' Senha' onChange={(event) => {
                   setPassword(event.target.value)
                 }} />
               </div>
@@ -127,7 +135,7 @@ const Login = () => {
               <a href="/dashboard">Dashboard</a>
             </span>
             <span className="forgotPassword">
-              Forgot your password <a href="">click Here</a>
+               <a href="/">Esqueceu a senha</a>
             </span>
           </form>
 

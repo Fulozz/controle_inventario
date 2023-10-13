@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-import Dashboard from './Components/Dashboard/Dashboard.jsx'
+import Dashboard from './Components/Dashboard/page.jsx'
 import Login from './Components/Login/Login.jsx'
 import Register from './Components/Register/Register.jsx'
 import UserProfile from './Components/UserProfile/UserProfile'
@@ -9,7 +9,7 @@ import UserProfile from './Components/UserProfile/UserProfile'
 
 
 import{ BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import Write from './Components/write/write'
+import Write from './Components/Write/Write'
 
   
 
@@ -21,6 +21,7 @@ function App() {
 
   
   const statusValidate = async()=>{
+    
     const requestInit = {
         method: 'POST',
         headers: {
@@ -31,10 +32,8 @@ function App() {
         }),
       };
     const response = await fetch('http://localhost:3000/api/v1/validate', requestInit)
-    if(response.status !== 201){
+    if(response.status !== 200){
       return setIsAuthenticated(false) && <Navigate to='/' />
-     
-      
     } else{
       return setIsAuthenticated(true) && <Navigate to='/dashboard' />
     }

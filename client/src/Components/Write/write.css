@@ -69,26 +69,25 @@
   border-radius: 0.25em;
   box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
 }
-.itemForm #confirmation-data input-left, .itemForm .form input-left {
+.itemForm #confirmation-data input-left, .itemForm form input-left {
   text-align: left;
   width: 50px !important;
 }
-.itemForm #confirmation-data .input-right, .itemForm .form .input-right {
+.itemForm #confirmation-data .input-right, .itemForm form .input-right {
   text-align: right;
   width: 50px !important;
 }
-.itemForm #confirmation-data table, .itemForm .form table {
+.itemForm #confirmation-data table, .itemForm form table {
   width: auto;
   padding-left: 10px;
 }
-.itemForm #confirmation-data th, .itemForm .form th {
+.itemForm #confirmation-data th, .itemForm form th {
   height: 30px;
   text-align: right;
   font-size: 18px;
 }
-.itemForm #confirmation-data h1, .itemForm .form h1 {
+.itemForm #confirmation-data h1, .itemForm form h1 {
   text-align: left;
-  margin-left: 20%;
   margin-bottom: 2%;
 }
 /*# sourceMappingURL=write.css.map */

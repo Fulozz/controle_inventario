@@ -72,7 +72,7 @@
       box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
   }
     
-    #confirmation-data, .form{
+    #confirmation-data, form{
         input-left{
             text-align: left;
             width: 50px !important;
@@ -92,7 +92,6 @@
           }
         h1{
             text-align: left;
-            margin-left: 20%;
             margin-bottom: 2%;
         }
     }

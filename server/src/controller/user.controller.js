@@ -8,14 +8,14 @@ exports.registerNewUser = async (req, res) => {
         let isUser = await User.find({ name: req.body.name });
 
         if (isUser.length >= 1) {
-            return res.status(409).json({ message: 'Sorry! This name is already registered!' });
+            return res.status(400).send({ message: 'Sorry! This name is already registered!' });
         }
         const newUser = new User(req.body);
         const user = await newUser.save();
         const token = await newUser.generateAuthToken();
-        return res.status(201).json({ message: 'User created successfully!', user, token })
+        return res.status(200).json({ message: 'User created successfully!', user, token })
     } catch (error) {
-        res.status(400).json({ error: error })
+        res.status(500).send({ error: error, message: "Erro interno do servidor" })
     }
 };
 
@@ -34,16 +34,12 @@ exports.loginUser = async (req, res) => {
             user,
             token,
         })
-        }
-        
-
+        } 
     } catch (err) {
-        return res.status(401).send({
+        return res.status(404).send({
             message: 'Erro ao realizar o login, verifique suas credenciais'
         })
-
     }
-
 };
 
 // ==> Método responsável por retornar um determinado 'User'
@@ -53,23 +49,28 @@ exports.returnUserProfile = async (req, res) => {
 
 
 exports.validateUser = async (req, res) => {
-    const json = req.body.token
+    const json = req.body.token;
+  
     try {
-        const jsonP = JSON.parse(json)
-        const token = (jsonP.token)
-        const decoded = jwt.decode(token, 'secret')
-        console.log(decoded);
-        if (decoded !== undefined) {
-
-            console.log('passou aqui');
-            return res.status(201).send({
-                status: true
-            });
-        }
-    } catch (err) {
-        console.log(err, 'erro!!!!!');
-        return res.status(401).send({
-            status: false,
+      const jsonP = JSON.parse(json);
+      const token = (jsonP.token);
+      const decodedToken = jwt.decode(token, 'secret');
+      if (decodedToken.exp > Date.now()) {
+        return res.status(200).send({
+          message: 'Token válido',
+          userStatus: 'authenticated',
         });
+      } 
+      if(decodedToken <= Date.now()){
+        return res.status(401).send({
+            message: 'Token expirado',
+          }) && localStorage.removeItem('jwt')
+      }
+      
+    } catch (err) {
+      return res.status(500).send({
+        message: 'error',
+      });
     }
+
 }

@@ -19,20 +19,22 @@ const Form = () => {
   });
 
   const { register, handleSubmit } = useForm({
-    initialValues: formData,
+    defaultValues: formData,
   });
 
   useEffect(() => {
     // Rerender the form on input change
     setFormData(formData);
   }, [formData]);
-  const Next = ()=>{
-    setPage(page + 1)
-  }
+
+  const Next = () => setPage(page + 1);
+  const Previous = () => setPage(page - 1);
+  const Cancel = () => navigate("/dashboard");
 
   const onSubmit = (data) => {
     // Do something with the submitted data
-    console.log(data.hostName);
+    
+    console.log(data);
   };
 
   return (
@@ -80,7 +82,8 @@ const Form = () => {
               {...register("model", { required: true, maxLength: 30 })}
             />
           </div>
-          <input type="submit" value="submit" onClick={Next} />
+            <input type="submit" value="Cancelar" onClick={Cancel} className="btn-form" />
+            <input type="submit" value="Next" onClick={Next} className="btn-form" />
         </form>
       ) : page === 1 ? (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -125,7 +128,8 @@ const Form = () => {
                 />
               </div>
             </div>
-            <input type="submit" value="submit" onClick={Next} />
+            <input type="submit" value="Anterior" onClick={Previous} className="btn-form" />
+            <input type="submit" value="Next" onClick={Next} className="btn-form" />
         </form>
       ) : page === 2 ? (
         <form onSubmit={handleSubmit(onSubmit)}> 
@@ -160,9 +164,11 @@ const Form = () => {
                 </select>
                 </div>
             </div>
-          <input type="submit" value="Next" onClick={Next}/>
+            <input type="submit" value="Anterior" onClick={Previous} className="btn-form" />
+            <input type="submit" value="Next" onClick={Next} className="btn-form" />
         </form>
       ) : page === 3 ? (
+        console.log(formData),
         <div>
           <h1>Confirmação de dados</h1>
           <div id="confirmation-data">
