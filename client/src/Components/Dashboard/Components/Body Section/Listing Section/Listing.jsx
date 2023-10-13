@@ -13,7 +13,7 @@ import computer from "../../../Assets/computer.png";
 
 const Listing = () => {
 
-  const [product, setProduct] = useState([])
+  const [patrimonio, setPatrimonio] = useState([])
   useEffect(()=>{
     Axios.get('http://localhost:3000/api/v1/listing').then((response)=>{
       setProduct(response.data)
@@ -29,13 +29,13 @@ const Listing = () => {
       </div>
 
       <div className="secContainer flex">
-        {product && product.map((product, index) => (
+        {patrimonio && patrimonio.map((patrimonio, index) => (
             <div className="singleItem" key={index}>
-            <h5>{product.host_name}</h5>
+            <h5>{patrimonio.host_name}</h5>
               <BiLink className="icon" />
               <img src={computer} alt="Image Name" />
-              <Link to={`/product/${product.patrimonio}`}>
-                <h3>{product.patrimonio}</h3>
+              <Link to={`/patrimonio/${patrimonio.patrimonio}`}>
+                <h3>{patrimonio.patrimonio}</h3>
               </Link>
               </div>
 

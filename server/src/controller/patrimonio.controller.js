@@ -1,8 +1,9 @@
 const Patrimonio = require('../models/Patrimonio.model')
 exports.getPatrimonioListing = async(req,  res )=>{
+    const category = req.body.category
     try{
         
-        await Patrimonio.find({category: "computador"}).sort({updateAt: -1})
+        await Patrimonio.find({category: category}).sort({updateAt: -1})
         .limit(6)
         .then((patrimonios)=>{
             return res.json(patrimonios)
@@ -14,6 +15,21 @@ exports.getPatrimonioListing = async(req,  res )=>{
 
     }
 };
+
+exports.allPatrimonio = async(req, res)=>{
+    try{
+        await Patrimonio.find().sort({patrimonio: -1}).then((patrimonios)=>{
+            return res.status(200).send(patrimonios)
+        })
+    }
+    catch (err) {
+        return res.status(401).send({
+            message: 'Erro do servidor',
+            err: err
+        })
+
+    }
+}
 
 exports.createPatrimonio = async(req,res)=> {
     try{

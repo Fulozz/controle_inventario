@@ -63,14 +63,12 @@ const Login = () => {
             navigate('/');
             console.log('Usuario nao encontrado');
             setLoginStatus('Usuário não encontrado');
-            window.location.reload();
             break;
-            case 500:
-              navigate('/');
-              console.log('Erro de servidor');
-              setLoginStatus('Erro de servidor');
-              window.location.reload();
-              break;
+          case 500:
+            navigate('/');
+            console.log('Erro de servidor');
+            setLoginStatus('Erro de servidor');
+            break;
         }
       })
       .catch((err) => {
