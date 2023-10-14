@@ -18,7 +18,7 @@ exports.getPatrimonioListing = async(req,  res )=>{
 
 exports.allPatrimonio = async(req, res)=>{
     try{
-        await Patrimonio.find().sort({patrimonio: -1}).then((patrimonios)=>{
+        await Patrimonio.find().sort({createAt: -1}).then((patrimonios)=>{
             return res.status(200).send(patrimonios)
         })
     }
