@@ -33,9 +33,9 @@ function App() {
       };
     const response = await fetch('http://localhost:3000/api/v1/validate', requestInit)
     if(response.status !== 200){
-      return setIsAuthenticated(false) && <Navigate to='/' />
+      return <Navigate to='/' />, localStorage.clear(), setIsAuthenticated(false)
     } else{
-      return setIsAuthenticated(true) && <Navigate to='/dashboard' />
+      return <Navigate to='/dashboard' />, setIsAuthenticated(true) 
     }
     
   } 

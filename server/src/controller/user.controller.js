@@ -64,7 +64,7 @@ exports.validateUser = async (req, res) => {
       if(decodedToken <= Date.now()){
         return res.status(401).send({
             message: 'Token expirado',
-          }) && localStorage.removeItem('jwt')
+          })
       }
       
     } catch (err) {

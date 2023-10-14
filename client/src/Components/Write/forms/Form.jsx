@@ -19,6 +19,7 @@ const Form = () => {
     cpu: "",
     gpu: "",
     memoriaRam: "",
+    memoriaRamDDR: "",
     hardDisk: "",
     local: "",
     departamento: "",
@@ -141,7 +142,7 @@ const Form = () => {
             <tbody>
               <tr>
                 <th>
-                  <label htmlFor="cpu">CPU</label>
+                  <label htmlFor="cpu">CPU:</label>
                 </th>
                 <th>
                   <input type="text" name="cpu" id="cpu" placeholder="CPU"
@@ -155,7 +156,7 @@ const Form = () => {
               </tr>
               <tr>
                 <th>
-                  <label htmlFor="gpu">GPU</label>
+                  <label htmlFor="gpu">GPU: </label>
                 </th>
                 <th>
                   <input type="text"  name="gpu"  id="gpu" placeholder="GPU"
@@ -169,16 +170,30 @@ const Form = () => {
               </tr>
               <tr>
                 <th>
-                  <label htmlFor="memoriaRam">Memory RAM DDR: </label>
+                  <label htmlFor="memoriaRam">Memory RAM: </label>
                 </th>
                 <th>
-                  <select name="memoriaRam"  id="memoriaRam" className="appearance-select"
+                <input type="text" name="memoriaRam" id="cpu" placeholder="CPU"
                     value={formData.memoriaRam}
                     onChange={(e)=>{
-                    setFormData({...formData, memoriaRam: e.target.value }),
+                    setFormData({...formData, memoriaRam: e.target.value}),
                     console.log(formData.memoriaRam)
                     }}
-                  >
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                <label htmlFor="memoriaRam">DDR: </label>
+                </th>
+                <th>
+                <select name="memoriaRamDDR"  id="memoriaRamDDR" className="appearance-select"
+                    value={formData.memoriaRamDDR}
+                    onChange={(e)=>{
+                    setFormData({...formData, memoriaRamDDR: e.target.value }),
+                    console.log(formData.memoriaRamDDR)
+                    }}
+                  > 
                     <option value=""></option>
                     <option value="DDR2">DDR2</option>
                     <option value="DDR3">DDR3</option>
