@@ -10,11 +10,13 @@ const patrimonioSchema = new Schema({
   patrimonio: { type: String, maxLenght: 50, required: true, unique: true},
   marca: { type: String, maxLenght: 50, required: true},
   modelo: { type: String, maxLenght: 50, required: true},
-  cpu: { type: String, maxLenght: 50, required: true},
-  gpu: { type: String, maxLenght: 50, required: true},
-  memoriaRam: { type: String, maxLenght: 50, required: true},
-  memoriaRam: { type: String, maxLenght: 50, required: true},
-  memoriaRam: { type: String, maxLenght: 50, required: true},
+  cpu: { type: String, maxLenght: 50},
+  gpu: { type: String, maxLenght: 50},
+  memoriaRam: { type: String, maxLenght: 50},
+  hardDisk: { type: String, maxLenght: 50},
+  local: { type: String, maxLenght: 50, required: true},
+  departamento: { type: String, maxLenght: 50, required: true},
+  state: { type: String, maxLenght: 50, required: true},
 },{
   timestamps: true,
   collection: 'Patrimonio'

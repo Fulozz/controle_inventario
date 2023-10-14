@@ -37,6 +37,7 @@
   overflow: auto;
 }
 .itemForm input {
+  color: #000;
   margin: 10px;
   padding: 0.8rem 1rem;
   border-radius: 10px;
@@ -59,15 +60,14 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  color: black;
+  color: black !important;
   place-items: center;
-  padding: 1rem 4rem 1rem 1rem;
-  width: 10rem;
-  height: 30px;
+  padding: 0.5em 2em 0.5em;
+  height: 40px;
   border: 1px solid #000;
-  color: black;
   border-radius: 0.25em;
   box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  font-size: 16px;
 }
 .itemForm #confirmation-data input-left, .itemForm form input-left {
   text-align: left;
@@ -89,5 +89,4 @@
 .itemForm #confirmation-data h1, .itemForm form h1 {
   text-align: left;
   margin-bottom: 2%;
-}
-/*# sourceMappingURL=write.css.map */
+}/*# sourceMappingURL=write.css.map */

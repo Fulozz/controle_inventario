@@ -4,6 +4,10 @@ import { useForm} from "react-hook-form";
 import Axios from "axios";
 
 const Form = () => {
+  const token = localStorage.getItem('jwt')
+  
+
+
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -21,7 +25,7 @@ const Form = () => {
     status: "",
   });
 
-  const { register, handleSubmit } = useForm({
+  const { handleSubmit } = useForm({
     initialValues: formData
   });
 
@@ -36,7 +40,7 @@ const Form = () => {
 
   const onSubmit = async (data) => {
     // Do something with the submitted data
-
+    Axios.post('http://localhost:3000/api/v1/create', data)
     console.log(data);
   };
 
@@ -68,11 +72,11 @@ const Form = () => {
                   <label htmlFor="patrimonio">Patrimonio: </label>
                 </th>
                 <th>
-                  <input type="text" name="patrimonio" id="patrimonio" placeholder="patrimonio"
-                    value={formData.serialNumber}
+                  <input type="number" name="patrimonio" id="patrimonio" placeholder="patrimonio"
+                    value={formData.patrimonio}
                     onChange={(e)=>{
-                      setFormData({...formData, serialNumber: e.target.value}),
-                      console.log(formData.serialNumber)
+                      setFormData({...formData, patrimonio: e.target.value}),
+                      console.log(formData.patrimonio)
                     }}
                   />
                 </th>
@@ -83,10 +87,10 @@ const Form = () => {
                 </th>
                 <th>
                   <input type="text" name="serialNumber" id="serialNumber" placeholder="Serial Number"
-                    value={formData.marca}
+                    value={formData.serialNumber}
                     onChange={(e)=>{
-                      setFormData({...formData, marca: e.target.value}),
-                      console.log(formData.marca)
+                      setFormData({...formData, serialNumber: e.target.value}),
+                      console.log(formData.serialNumber)
                     }}
                   />
                 </th>
@@ -97,10 +101,10 @@ const Form = () => {
                 </th>
                 <th>
                   <input type="text"   name="marca" id="marca" placeholder="Marca"
-                    value={formData.modelo}
+                    value={formData.marca}
                     onChange={(e)=>{
-                      setFormData({...formData, modelo: e.target.value}),
-                      console.log(formData.modelo)
+                      setFormData({...formData, marca: e.target.value}),
+                      console.log(formData.marca)
                     }}
                   />
                 </th>
@@ -111,7 +115,11 @@ const Form = () => {
                 </th>
                 <th>
                   <input type="text" name="modelo" id="modelo" placeholder="Modelo"
-                    {...register("modelo", { required: true, maxLength: 30 })}
+                    value={formData.modelo}
+                    onChange={(e)=>{
+                      setFormData({...formData, modelo: e.target.value}),
+                      console.log(formData.modelo)
+                    }}
                   />
                 </th>
               </tr>
@@ -167,11 +175,11 @@ const Form = () => {
                   <select name="memoriaRam"  id="memoriaRam" className="appearance-select"
                     value={formData.memoriaRam}
                     onChange={(e)=>{
-                    setFormData({...formData, memoriaRam }),
+                    setFormData({...formData, memoriaRam: e.target.value }),
                     console.log(formData.memoriaRam)
                     }}
                   >
-                    <option value="" selected></option>
+                    <option value=""></option>
                     <option value="DDR2">DDR2</option>
                     <option value="DDR3">DDR3</option>
                     <option value="DDR4">DDR4</option>
@@ -250,7 +258,7 @@ const Form = () => {
                      console.log(formData.status)
                      }}
                   >
-                    <option value="" selected></option>
+                    <option value=""></option>
                     <option value="Ativo"> Ativo</option>
                     <option value="Manutenção">Manutenção</option>
                     <option value="Reserva">Reserva</option>
