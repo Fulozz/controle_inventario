@@ -14,7 +14,7 @@ const Form = () => {
     modelo: "",
     cpu: "",
     gpu: "",
-    memoryRam: "",
+    memoriaRam: "",
     hardDisk: "",
     local: "",
     departamento: "",
@@ -34,16 +34,12 @@ const Form = () => {
   const Previous = () => setPage(page - 1);
   const Cancel = () => navigate("/dashboard");
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // Do something with the submitted data
+
     console.log(data);
   };
 
-
-  // const confirm = (formData)=>{
-  //   // const jsonString = JSON.stringify(formData)
-  //   Axios.post('http://localhost:3000/api/v1/create')
-  // }
 
   return (
     <>
@@ -58,11 +54,12 @@ const Form = () => {
                 </th>
                 <th>
                   <input
-                    type="text"
-                    name="hostName"
-                    id="hostName"
-                    placeholder="Host Name"
-                    {...register("hostName", { required: true, maxLength: 30 })}
+                    type="text" name="hostName"   id="hostName"  placeholder="Host Name"
+                    value={formData.hostName}
+                    onChange={(e)=>{
+                      setFormData({...formData, hostName: e.target.value}),
+                      console.log(formData.hostName)
+                    }}
                   />
                 </th>
               </tr>
@@ -71,12 +68,12 @@ const Form = () => {
                   <label htmlFor="patrimonio">Patrimonio: </label>
                 </th>
                 <th>
-                  <input
-                    type="text"
-                    name="patrimonio"
-                    id="patrimonio"
-                    placeholder="patrimonio"
-                    {...register("patrimonio", { required: true, maxLength: 30 })}
+                  <input type="text" name="patrimonio" id="patrimonio" placeholder="patrimonio"
+                    value={formData.serialNumber}
+                    onChange={(e)=>{
+                      setFormData({...formData, serialNumber: e.target.value}),
+                      console.log(formData.serialNumber)
+                    }}
                   />
                 </th>
               </tr>
@@ -85,15 +82,12 @@ const Form = () => {
                   <label htmlFor="serialNumber">Serial Number:</label>
                 </th>
                 <th>
-                  <input
-                    type="text"
-                    name="serialNumber"
-                    id="serialNumber"
-                    placeholder="Serial Number"
-                    {...register("serialNumber", {
-                      required: true,
-                      maxLength: 30,
-                    })}
+                  <input type="text" name="serialNumber" id="serialNumber" placeholder="Serial Number"
+                    value={formData.marca}
+                    onChange={(e)=>{
+                      setFormData({...formData, marca: e.target.value}),
+                      console.log(formData.marca)
+                    }}
                   />
                 </th>
               </tr>
@@ -102,12 +96,12 @@ const Form = () => {
                   <label htmlFor="marca">Marca: </label>
                 </th>
                 <th>
-                  <input
-                    type="text"
-                    name="marca"
-                    id="marca"
-                    placeholder="Marca"
-                    {...register("marca", { required: true, maxLength: 30 })}
+                  <input type="text"   name="marca" id="marca" placeholder="Marca"
+                    value={formData.modelo}
+                    onChange={(e)=>{
+                      setFormData({...formData, modelo: e.target.value}),
+                      console.log(formData.modelo)
+                    }}
                   />
                 </th>
               </tr>
@@ -116,11 +110,7 @@ const Form = () => {
                   <label htmlFor="modelo">Modelo:</label>
                 </th>
                 <th>
-                  <input
-                    type="text"
-                    name="modelo"
-                    id="modelo"
-                    placeholder="Modelo"
+                  <input type="text" name="modelo" id="modelo" placeholder="Modelo"
                     {...register("modelo", { required: true, maxLength: 30 })}
                   />
                 </th>
@@ -146,12 +136,12 @@ const Form = () => {
                   <label htmlFor="cpu">CPU</label>
                 </th>
                 <th>
-                  <input
-                    type="text"
-                    name="cpu"
-                    id="cpu"
-                    placeholder="CPU"
-                    {...register("cpu", { required: true, maxLength: 30 })}
+                  <input type="text" name="cpu" id="cpu" placeholder="CPU"
+                    value={formData.cpu}
+                    onChange={(e)=>{
+                    setFormData({...formData, cpu: e.target.value}),
+                    console.log(formData.cpu)
+                    }}
                   />
                 </th>
               </tr>
@@ -160,29 +150,28 @@ const Form = () => {
                   <label htmlFor="gpu">GPU</label>
                 </th>
                 <th>
-                  <input
-                    type="text"
-                    name="gpu"
-                    id="gpu"
-                    placeholder="GPU"
-                    {...register("gpu", { required: true, maxLength: 30 })}
+                  <input type="text"  name="gpu"  id="gpu" placeholder="GPU"
+                    value={formData.gpu}
+                    onChange={(e)=>{
+                    setFormData({...formData, gpu: e.target.value}),
+                    console.log(formData.gpu)
+                    }}
                   />
                 </th>
               </tr>
               <tr>
                 <th>
-                  <label htmlFor="memoryRam">Memory RAM</label>
+                  <label htmlFor="memoriaRam">Memory RAM DDR: </label>
                 </th>
                 <th>
-                  <select
-                    name="memoryRam"
-                    id="memoryRam"
-                    className="appearance-select"
-                    {...register("memoryRam", {
-                      required: true,
-                      maxLength: 30,
-                    })}
+                  <select name="memoriaRam"  id="memoriaRam" className="appearance-select"
+                    value={formData.memoriaRam}
+                    onChange={(e)=>{
+                    setFormData({...formData, memoriaRam }),
+                    console.log(formData.memoriaRam)
+                    }}
                   >
+                    <option value="" selected></option>
                     <option value="DDR2">DDR2</option>
                     <option value="DDR3">DDR3</option>
                     <option value="DDR4">DDR4</option>
@@ -194,30 +183,22 @@ const Form = () => {
                   <label htmlFor="hardDisk">Hard Disk</label>
                 </th>
                 <th>
-                  <input
-                    type="text"
-                    name="hardDisk"
-                    id="hardDisk"
-                    placeholder="Hard Disk"
-                    {...register("hardDisk", { required: true, maxLength: 30 })}
+                  <input type="text" name="hardDisk"   id="hardDisk" placeholder="Hard Disk"
+                  value={formData.hardDisk}
+                  onChange={(e)=>{
+                  setFormData({...formData, hardDisk: e.target.value}),
+                  console.log(formData.hardDisk)
+                  }}
                   />
                 </th>
               </tr>
               <tr>
                 <th>
-                  <input
-                    type="submit"
-                    value="Anterior"
-                    onClick={Previous}
-                    className="btn-form"
+                  <input type="submit" value="Anterior" onClick={Previous} className="btn-form"
                   />
                 </th>
                 <th>
-                  <input
-                    type="submit"
-                    value="submit"
-                    onClick={Next}
-                    className="btn-form"
+                  <input type="submit" value="submit"  onClick={Next} className="btn-form"
                   />
                 </th>
               </tr>
@@ -234,12 +215,12 @@ const Form = () => {
                   <label htmlFor="local">Local:</label>
                 </th>
                 <th>
-                  <input
-                    type="text"
-                    name="local"
-                    id="local"
-                    placeholder="local"
-                    {...register("local", { required: true, maxLength: 30 })}
+                  <input type="text" name="local" id="local" placeholder="local"
+                    value={formData.local}
+                    onChange={(e)=>{
+                    setFormData({...formData, local: e.target.value}),
+                    console.log(formData.local)
+                    }}
                   />
                 </th>
               </tr>
@@ -248,15 +229,12 @@ const Form = () => {
                   <label htmlFor="departamento">Departamento:</label>
                 </th>
                 <th>
-                  <input
-                    type="text"
-                    name="departamento"
-                    id="departamento"
-                    placeholder="Departamento"
-                    {...register("departamento", {
-                      required: true,
-                      maxLength: 30,
-                    })}
+                  <input type="text" name="departamento" id="departamento"placeholder="Departamento"
+                    value={formData.departamento}
+                    onChange={(e)=>{
+                    setFormData({...formData, departamento: e.target.value}),
+                    console.log(formData.departamento)
+                    }}
                   />
                 </th>
               </tr>
@@ -265,15 +243,15 @@ const Form = () => {
                   <label htmlFor="status">Status: </label>
                 </th>
                 <th>
-                  <select
-                    name="status"
-                    id="status"
-                    className="appearance-select"
-                    {...register("status", { required: true, maxLength: 30 })}
+                  <select name="status" id="status" className="appearance-select"
+                     value={formData.status}
+                     onChange={(e)=>{
+                     setFormData({...formData, status: e.target.value }),
+                     console.log(formData.status)
+                     }}
                   >
-                    <option value="Ativo" selected>
-                      Ativo
-                    </option>
+                    <option value="" selected></option>
+                    <option value="Ativo"> Ativo</option>
                     <option value="Manutenção">Manutenção</option>
                     <option value="Reserva">Reserva</option>
                   </select>
@@ -281,19 +259,11 @@ const Form = () => {
               </tr>
               <tr>
                 <th>
-                  <input
-                    type="submit"
-                    value="Anterior"
-                    onClick={Previous}
-                    className="btn-form"
+                  <input type="submit" value="Anterior" onClick={Previous} className="btn-form"
                   />
                 </th>
                 <th>
-                  <input
-                    type="submit"
-                    value="submit"
-                    onClick={Next}
-                    className="btn-form"
+                  <input type="submit" value="submit" onClick={Next} className="btn-form"
                   />
                 </th>
               </tr>
@@ -302,9 +272,10 @@ const Form = () => {
         </form>
       ) : page === 3 ? (
         console.log(formData),
-          
+          <div>
+            <h1>Confirmação de dados</h1>
             <div id="confirmation-data">
-              <h1>Confirmação de dados</h1>
+              
               <table>
                 <tbody>
                   <tr>
@@ -353,7 +324,7 @@ const Form = () => {
                     <th>
                       <strong>Memória RAM: </strong>
                     </th>
-                    <th>{formData.memoryRam}</th>
+                    <th>{formData.memoriaRam}</th>
                   </tr>
                   <tr>
                     <th>
@@ -400,7 +371,7 @@ const Form = () => {
                 </tbody>
               </table>
             </div>
-          
+          </div>
       ) : null}
     </>
   );

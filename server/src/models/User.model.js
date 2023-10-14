@@ -47,7 +47,7 @@ userSchema.statics.findByCredentials = async(name, password) =>{
     }
     const isPassowordMatch = await  bcrypt.compare(password, user.password);
     if(!isPassowordMatch){
-        throw new Error({ erro: 'Senha invalida'}), window.location.reload()
+        throw new Error({ erro: 'Senha invalida'})
     }
     return user;
 };

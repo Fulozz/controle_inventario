@@ -16,7 +16,7 @@ const Listing = () => {
   const [patrimonio, setPatrimonio] = useState([])
   useEffect(()=>{
     Axios.get('http://localhost:3000/api/v1/listing').then((response)=>{
-      setProduct(response.data)
+      setPatrimonio(response.data)
     })
   },[])
   return (

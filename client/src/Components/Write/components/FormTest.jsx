@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [page, setPage] = useState(0)
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     hostName: "",
     serialNumber: "",
-    brand: "",
-    model: "",
+    marca: "",
+    modelo: "",
     cpu: "",
     gpu: "",
     memoryRam: "",
     hardDisk: "",
-    location: "",
-    department: "",
-    status: "",
+    local: "",
+    departamento: "",
+    state: "",
   });
 
-  const { register, handleSubmit } = useForm({
-    defaultValues: formData,
+
+  const { handleSubmit } = useForm({
+    initialValues: formData,
   });
 
   useEffect(() => {
@@ -27,19 +29,25 @@ const Form = () => {
     setFormData(formData);
   }, [formData]);
 
-  const Next = () => setPage(page + 1);
+  const Next = () =>{ 
+    setPage(page + 1)
+  };
   const Previous = () => setPage(page - 1);
   const Cancel = () => navigate("/dashboard");
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // Do something with the submitted data
-    
-    console.log(data);
+    try{
+      const JsonData = JSON.stringify(data)
+      console.log(JsonData);
+    } catch(err){
+      console.log(err);
+    }
   };
 
   return (
 <>
-      {page === 0 ? (
+        { page === 0 ? (
         <form onSubmit={handleSubmit(onSubmit)} >
               <div>
             <h1>Informações de cadastro</h1>
@@ -49,7 +57,11 @@ const Form = () => {
               name="hostName"
               id="hostName"
               placeholder="Host Name"
-              {...register("hostName", { required: true, maxLength: 30 })}
+              value={formData.hostName}
+              onChange={(e)=>{
+                setFormData({...formData, hostName: e.target.value}),
+                console.log(formData.hostName)
+              }}
             />
           </div>
           <div>
@@ -58,32 +70,46 @@ const Form = () => {
               type="text"
               name="serialNumber"
               id="serialNumber"
-              placeholder="Serial Number"
-              {...register("serialNumber", { required: true, maxLength: 30 })}
+              value={formData.serialNumber}
+              onChange={(e)=>{
+                setFormData({...formData, serialNumber: e.target.value}),
+                console.log(formData.serialNumber)
+              }}
             />
           </div>
           <div>
-            <label htmlFor="brand">Brand</label>
+            <label htmlFor="marca">Marca:</label>
             <input
               type="text"
-              name="brand"
-              id="brand"
-              placeholder="Brand"
-              {...register("brand", { required: true, maxLength: 30 })}
+              name="marca"
+              id="marca"
+              placeholder="Marca"
+              value={formData.marca}
+              onChange={(e)=>{
+                setFormData({...formData, marca: e.target.value}),
+                console.log(formData.marca)
+              }}
             />
           </div>
           <div>
-            <label htmlFor="model">Model</label>
+            <label htmlFor="modelo">Modelo:</label>
             <input
               type="text"
-              name="model"
-              id="model"
-              placeholder="Model"
-              {...register("model", { required: true, maxLength: 30 })}
+              name="modelo"
+              id="modelo"
+              placeholder="modelo"
+              value={formData.modelo}
+              onChange={(e)=>{
+                setFormData({...formData, modelo: e.target.value}),
+                console.log(formData.modelo)
+              }}
             />
           </div>
-            <input type="submit" value="Cancelar" onClick={Cancel} className="btn-form" />
-            <input type="submit" value="Next" onClick={Next} className="btn-form" />
+          <button type="button" onClick={Previous}>
+              Anterior
+            </button>
+            <input type="submit" value="submit" onClick={Next} className="btn-form"
+                  />
         </form>
       ) : page === 1 ? (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -96,22 +122,37 @@ const Form = () => {
                   name="cpu"
                   id="cpu"
                   placeholder="CPU"
-                  {...register("cpu", { required: true, maxLength: 30 })}
+                  value={formData.cpu}
+                  onChange={(e)=>{
+                  setFormData({...formData, cpu: e.target.value}),
+                  console.log(formData.cpu)
+                  }}
                 />
               </div>
               <div>
-                <label htmlFor="gpu">GPU</label>
+                <label htmlFor="gpu">GPU: </label>
                 <input
                   type="text"
                   name="gpu"
                   id="gpu"
                   placeholder="GPU"
-                  {...register("gpu", { required: true, maxLength: 30 })}
+                  value={formData.gpu}
+                  onChange={(e)=>{
+                  setFormData({...formData, gpu: e.target.value}),
+                  console.log(formData.gpu)
+                  }}
                 />
               </div>
               <div>
-                <label htmlFor="memoryRam">Memory RAM</label>
-                <select name="memoryRam" id="memoryRam" {...register("memoryRam", { required: true, maxLength: 30 })}>
+                <label htmlFor="memoryRam">Memory RAM DDR: </label>
+                <select name="memoryRam" id="memoryRam" 
+                value={formData.memoryRam}
+                onChange={(e)=>{
+                setFormData({...formData, memoryRam: e.target.value }),
+                console.log(formData.memoryRam)
+                }}
+                >
+                  <option value="" selected></option>
                   <option value="DDR2">DDR2</option>
                   <option value="DDR3">DDR3</option>
                   <option value="DDR4">DDR4</option>
@@ -124,48 +165,73 @@ const Form = () => {
                   name="hardDisk"
                   id="hardDisk"
                   placeholder="Hard Disk"
-                  {...register("hardDisk", { required: true, maxLength: 30 })}
+                  value={formData.hardDisk}
+                    onChange={(e)=>{
+                    setFormData({...formData, hardDisk: e.target.value}),
+                    console.log(formData.hardDisk)
+                    }}
                 />
               </div>
             </div>
-            <input type="submit" value="Anterior" onClick={Previous} className="btn-form" />
-            <input type="submit" value="Next" onClick={Next} className="btn-form" />
+            <button type="button" onClick={Cancel}>
+             Anterior
+            </button>
+            <input type="submit" value="submit" onClick={Next} className="btn-form"
+                  />
         </form>
       ) : page === 2 ? (
         <form onSubmit={handleSubmit(onSubmit)}> 
           <div>
             <h1>Local</h1>
               <div>
-                <label htmlFor="location">Location</label>
+                <label htmlFor="local">local</label>
                 <input
                   type="text"
-                  name="location"
-                  id="location"
-                  placeholder="Location"
-                  {...register("location", { required: true, maxLength: 30 })}
+                  name="local"
+                  id="local"
+                  placeholder="local"
+                  value={formData.local}
+                    onChange={(e)=>{
+                    setFormData({...formData, local: e.target.value}),
+                    console.log(formData.local)
+                    }}
                 />
               </div>
               <div>
-                <label htmlFor="department">Department</label>
+                <label htmlFor="departamento">Departamento: </label>
                 <input
                   type="text"
-                  name="department"
-                  id="department"
-                  placeholder="Department"
-                  {...register("department", { required: true, maxLength: 30 })}
+                  name="departamento"
+                  id="departamento"
+                  placeholder="departamento"
+                  value={formData.departamento}
+                    onChange={(e)=>{
+                    setFormData({...formData, departamento: e.target.value}),
+                    console.log(formData.departamento)
+                    }}
                 />
               </div>
               <div>
-                <label htmlFor="status">Status</label>
-                <select name="status" id="status" {...register("status", { required: true, maxLength: 30 })}>
+                <label htmlFor="state">Estado: </label>
+                <select name="state" id="state" 
+                value={formData.state}
+                onChange={(e) => {
+                  setFormData({ ...formData, state: e.target.value });
+                  console.log(formData.state);
+                }}
+                >
+                  <option value="" selected></option>
                   <option value="Ativo">Ativo</option>
                   <option value="Manutenção">Manutenção</option>
                   <option value="Reserva">Reserva</option>
                 </select>
                 </div>
             </div>
-            <input type="submit" value="Anterior" onClick={Previous} className="btn-form" />
-            <input type="submit" value="Next" onClick={Next} className="btn-form" />
+            <button type="button" onClick={Previous}>
+             Anterior
+            </button>
+            <input type="submit" value="submit" onClick={Next} className="btn-form"
+                  />
         </form>
       ) : page === 3 ? (
         console.log(formData),
@@ -174,16 +240,19 @@ const Form = () => {
           <div id="confirmation-data">
             <p>Nome do host: {formData.hostName}</p>
             <p>Número de série: {formData.serialNumber}</p>
-            <p>Marca: {formData.brand}</p>
-            <p>Modelo: {formData.model}</p>
+            <p>Marca: {formData.marca}</p>
+            <p>Modelo: {formData.modelo}</p>
             <p>CPU: {formData.cpu}</p>
             <p>GPU: {formData.gpu}</p>
             <p>Memória RAM: {formData.memoryRam}</p>
             <p>Disco rígido: {formData.hardDisk}</p>
-            <p>Localização: {formData.location}</p>
-            <p>Departamento: {formData.department}</p>
-            <p>Status: {formData.status}</p>
+            <p>Localização: {formData.local}</p>
+            <p>Departamento: {formData.departamento}</p>
+            <p>Condição: {formData.state}</p>
           </div>
+          <button type="button" onClick={Previous}>
+             Anterior
+            </button>
           <button type="button" onClick={onSubmit}>
             Confirmar
           </button>

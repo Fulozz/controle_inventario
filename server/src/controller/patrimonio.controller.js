@@ -46,7 +46,7 @@ exports.createPatrimonio = async(req,res)=> {
             marca: req.body.marca,
             cpu: req.body.cpu,
             gpu: req.body.gpu,
-            memoryRam: req.body.memoryRam,
+            memoriaRam: req.body.memoriaRam,
             hardDisk: req.body.hardDisk,
             location: req.body.location,
             departamento: req.body.departamento,
