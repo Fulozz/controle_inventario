@@ -3,7 +3,7 @@ import { FormProvider } from "react-hook-form";
 import "./write.css";
 import Sidebar from "../Dashboard/Components/Sidebar Section/Sidebar";
 import Form from "./forms/Form"
-// import FormTest from "./components/FormTest";
+import FormTest from "./forms/FormTest";
 
 function Write() {
   return (
@@ -11,7 +11,8 @@ function Write() {
       <Sidebar />
       <div className="itemForm">
         <FormProvider>
-           <Form /> 
+           {/* <Form />  */}
+           <FormTest />
         </FormProvider>
       </div>
     </div>

@@ -1,4 +1,7 @@
 const Patrimonio = require('../models/Patrimonio.model')
+const jwt = require('jsonwebtoken')
+
+
 exports.getPatrimonioListing = async(req,  res )=>{
     const category = req.body.category
     try{
@@ -31,41 +34,26 @@ exports.allPatrimonio = async(req, res)=>{
     }
 }
 
-exports.createPatrimonio = async(req,res)=> {
-        const token = req.body.token
-        const decodedToken = await jwt.decode(token, 'secret');
-        const userName = decodedToken.user
+exports.createPatrimonio = async (req,res)=> {
+        
+
     try{
-        let findPatrimonio = await Patrimonio.find({ 
+        let isPatrimonio = await Patrimonio.find({ 
             patrimonio: req.body.patrimonio, serial_number: req.body.serial_number
         })
-        if(findPatrimonio.length >= 1){
-            return res.status(409).json({ message: 'Patrimonio já registrado' });
+
+        if(isPatrimonio.length >= 1){
+            return res.status(400).json({ message: 'Patrimonio já registrado' });
         }
-        const newPatrimonio = new Patrimonio({
-            name: userName,
-            patrimonio: req.body.patrimonio,
-            serial_number: req.body.serialNumber,
-            host_name: req.body.hostName,
-            marca: req.body.marca,
-            cpu: req.body.cpu,
-            gpu: req.body.gpu,
-            memoriaRam: req.body.memoriaRam,
-            memoriaRamDDR: req.body.memoriaRamDDR,
-            hardDisk: req.body.hardDisk,
-            location: req.body.location,
-            departamento: req.body.departamento,
-            status: req.body.status,
-            category: req.body.category,
-          });
+
+        const newPatrimonio = new Patrimonio(req.body);
           // Salvar o produto
-      const patrimonio = await newPatrimonio.save();
+        const patrimonio = await newPatrimonio.save();
     
-      // Enviar a resposta
-      return res.status(200).json({ message: 'Patrimonio registrado com sucesso', 
-      patrimonio })
+        return res.status(200).json({ message: 'Patrimonio registrado com sucesso', 
+        patrimonio })
     } catch (error) {
-        res.status(400).json({ error: error })
+        return res.status(500).send({ error: error })
     }
     
 };

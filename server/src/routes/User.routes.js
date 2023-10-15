@@ -17,10 +17,10 @@ router.post('/validate', userController.validateUser)
 // ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
 router.get('/dashboard', auth, userController.returnUserProfile)
 
-router.post('/create', auth,  productController.createPatrimonio)
+router.post('/create',  productController.createPatrimonio)
 
 router.get('/listing',  productController.getPatrimonioListing)
 
 // ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
-router.get('/profile', auth, userController.returnUserProfile)
+router.post('/user', userController.returnUserProfile)
 module.exports = router
