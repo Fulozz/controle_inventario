@@ -33,7 +33,7 @@ exports.allPatrimonio = async(req, res)=>{
 
 exports.createPatrimonio = async(req,res)=> {
         const token = req.body.token
-        const decodedToken = jwt.decode(token, 'secret');
+        const decodedToken = await jwt.decode(token, 'secret');
         const userName = decodedToken.user
     try{
         let findPatrimonio = await Patrimonio.find({ 
@@ -42,7 +42,7 @@ exports.createPatrimonio = async(req,res)=> {
         if(findPatrimonio.length >= 1){
             return res.status(409).json({ message: 'Patrimonio já registrado' });
         }
-        const patrimonio = new Patrimonio({
+        const newPatrimonio = new Patrimonio({
             name: userName,
             patrimonio: req.body.patrimonio,
             serial_number: req.body.serialNumber,
@@ -56,13 +56,14 @@ exports.createPatrimonio = async(req,res)=> {
             location: req.body.location,
             departamento: req.body.departamento,
             status: req.body.status,
-            category: category,
+            category: req.body.category,
           });
           // Salvar o produto
-      await patrimonio.save();
+      const patrimonio = await newPatrimonio.save();
     
       // Enviar a resposta
-      await res.send(patrimonio);
+      return res.status(200).json({ message: 'Patrimonio registrado com sucesso', 
+      patrimonio })
     } catch (error) {
         res.status(400).json({ error: error })
     }
