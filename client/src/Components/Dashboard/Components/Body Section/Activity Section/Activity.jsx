@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './activity.css'
 
 //imported icons ==>
@@ -9,6 +9,25 @@ import { BsArrowRightShort } from 'react-icons/bs'
 import img from '../../../Assets/1693004941361.jpeg'
 
 const Activity = () => {
+  const [user, setUser] = useState(null)
+  useEffect(() => {
+    const requestInit = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token: localStorage.getItem("jwt"),
+      }),
+    };
+    fetch("http://localhost:3000/api/v1/user", requestInit).then((response) => {
+      response.json().then((data) => {
+        setUser(data.name);
+      });
+    });
+  }, []);
+  
+
   return (
     <div className='activitySection'>
       <div className="heading flex">
@@ -22,7 +41,8 @@ const Activity = () => {
         <div className="singleCustomer flex">
           <img src={img} alt="User image" />
           <div className="customerDetails">
-            <span className="name">Thiago Silva Andrade  </span>
+            
+            <span className="name"> {user}  </span>
             <small> incluiu: Computador</small>
           </div>
           <div className="duration">
