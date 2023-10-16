@@ -3,10 +3,9 @@ const jwt = require('jsonwebtoken')
 
 
 exports.getPatrimonioListing = async(req,  res )=>{
-    const category = req.body.category
+    
     try{
-        
-        await Patrimonio.find({category: category}).sort({updateAt: -1})
+        await Patrimonio.find().sort({updateAt: -1})
         .limit(6)
         .then((patrimonios)=>{
             return res.json(patrimonios)
@@ -65,7 +64,7 @@ exports.searchPatrimonio = async(req, res)=> {
     patrimonio.name = req.body.name;
     patrimonio.serial_number = req.body.serial_number;
     patrimonio.host_name = req.body.host_name;
-    patrimonio.category = req.body.category;
+    patrimonio.categoria = req.body.categoria;
   
     // Salvar o produto
     await patrimonio.save();

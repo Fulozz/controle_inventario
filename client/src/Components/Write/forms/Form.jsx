@@ -1,69 +1,320 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Axios from "axios";
 
 const Form = () => {
-  const token = localStorage.getItem('jwt')
-  
-
-
+  const [user, setUser] = useState(null);
+  const navigateTo = useNavigate();
+  const Next = () => setPage(page + 1);
+  const Previous = () => setPage(page - 1);
+  const Cancel = () => navigate("/dashboard");
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    hostName: "",
-    serialNumber: "",
+    // Geral
+    host_name: "",
+    serial_number: "",
     patrimonio: "",
     marca: "",
     modelo: "",
+    // Impressora
+    tipo_impressora: "",
+    // Monitor
+    tamanho: "",
+    tipo_monitor: "",
+    formato: "",
+    categoria: "",
+    // hardware
     cpu: "",
     gpu: "",
     memoriaRam: "",
     memoriaRamDDR: "",
-    hardDisk: "",
+    hard_disk: "",
+    // Switch
+    portas: "",
+    poe: "",
+    gerenciavel: "",
+    // Servidor
+    hard_disk_2: "",
+    operational_system: "",
+    power_suply: "",
+    remote_acess: "",
+    //Geral
     local: "",
     departamento: "",
-    status: "",
+    estado: "",
+    confirmation: false,
   });
 
+  //Handle the formData
   const { handleSubmit } = useForm({
-    initialValues: formData
+    initialValues: formData,
   });
 
+  // Rerender the form on input change
   useEffect(() => {
-    // Rerender the form on input change
     setFormData(formData);
   }, [formData]);
 
-  const Next = () => setPage(page + 1);
-  const Previous = () => setPage(page - 1);
-  const Cancel = () => navigate("/dashboard");
+  // Request for the user data
+  useEffect(() => {
+    const requestInit = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token: localStorage.getItem("jwt"),
+      }),
+    };
+    fetch("http://localhost:3000/api/v1/user", requestInit).then((response) => {
+      response.json().then((data) => {
+        setUser(data.name);
+      });
+    });
+  }, []);
 
   const onSubmit = async (data) => {
     // Do something with the submitted data
-    Axios.post('http://localhost:3000/api/v1/create', data)
-    console.log(data);
+    if (data.confirmation === false) {
+      alert("Você deve confirmar todos os dados acima para continuar.");
+      return;
+    }
   };
+  //    Axios.post('http://localhost:3000/api/v1/create', data)
 
+  const Confirm = async () => {
+    switch (formData.categoria) {
+      case "computador":
+        Axios.post("http://localhost:3000/api/v1/create", {
+          name: user,
+          host_name: formData.host_name,
+          serial_number: formData.serial_number,
+          patrimonio: formData.patrimonio,
+          marca: formData.marca,
+          modelo: formData.modelo,
+          categoria: formData.categoria,
+          cpu: formData.cpu,
+          gpu: formData.gpu,
+          memoriaRam: formData.memoriaRam,
+          memoriaRamDDR: formData.memoriaRamDDR,
+          hard_disk: formData.hard_disk,
+          local: formData.local,
+          departamento: formData.departamento,
+          estado: formData.estado,
+        })
+          .then((response) => {
+            if (response.status === 200) {
+              navigateTo("/dashboard");
+              alert("Computador registrado com sucesso");
+            }
+          })
+          .catch((err) => {
+            alert(
+              "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
+            );
+            console.log(err);
+          });
+        break;
+      case "notebook":
+        Axios.post("http://localhost:3000/api/v1/create", {
+          name: user,
+          host_name: formData.host_name,
+          serial_number: formData.serial_number,
+          patrimonio: formData.patrimonio,
+          tamanho: formData.tamanho,
+          marca: formData.marca,
+          modelo: formData.modelo,
+          categoria: formData.categoria,
+          cpu: formData.cpu,
+          gpu: formData.gpu,
+          memoriaRam: formData.memoriaRam,
+          memoriaRamDDR: formData.memoriaRamDDR,
+          hard_disk: formData.hard_disk,
+          local: formData.local,
+          departamento: formData.departamento,
+          estado: formData.estado,
+        })
+          .then((response) => {
+            if (response.estado === 200) {
+              navigateTo("/dashboard");
+              alert("Notebook registrado com sucesso");
+            }
+          })
+          .catch((err) => {
+            alert(
+              "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
+            );
+            console.log(err);
+          });
+        break;
+      case "monitor":
+        Axios.post("http://localhost:3000/api/v1/create", {
+          name: user,
+          host_name: formData.host_name,
+          serial_number: formData.serial_number,
+          patrimonio: formData.patrimonio,
+          marca: formData.marca,
+          modelo: formData.modelo,
+          categoria: formData.categoria,
+          tipo_monitor: formData.tipo_monitor,
+          formato: formData.formato,
+          tamanho: formData.tamanho,
+          local: formData.local,
+          departamento: formData.departamento,
+          estado: formData.estado,
+        })
+          .then((response) => {
+            if (response.estado === 200) {
+              navigateTo("/dashboard");
+              alert("Patrimônio registrado com sucesso");
+            }
+          })
+          .catch((err) => {
+            alert(
+              "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
+            );
+            console.log(err);
+          });
+        break;
+      case "impressora":
+        Axios.post("http://localhost:3000/api/v1/create", {
+          name: user,
+          host_name: formData.host_name,
+          serial_number: formData.serial_number,
+          patrimonio: formData.patrimonio,
+          marca: formData.marca,
+          modelo: formData.modelo,
+          categoria: formData.categoria,
+          tipo_impressora: formData.tipo_impressora,
+          local: formData.local,
+          departamento: formData.departamento,
+          estado: formData.estado,
+        })
+          .then((response) => {
+            if (response.estado === 200) {
+              navigateTo("/dashboard");
+              alert("Impressora registrada com sucesso!");
+            }
+          })
+          .catch((err) => {
+            alert(
+              "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
+            );
+            console.log(err);
+          });
+        break;
+      case "telefone":
+        Axios.post("http://localhost:3000/api/v1/create", {
+          name: user,
+          host_name: formData.host_name,
+          serial_number: formData.serial_number,
+          patrimonio: formData.patrimonio,
+          marca: formData.marca,
+          modelo: formData.modelo,
+          categoria: formData.categoria,
+          local: formData.local,
+          departamento: formData.departamento,
+          estado: formData.estado,
+        })
+          .then((response) => {
+            if (response.estado === 200) {
+              navigateTo("/dashboard");
+              alert("Telefone registrado com sucesso!");
+            }
+          })
+          .catch((err) => {
+            alert(
+              "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
+            );
+            console.log(err);
+          });
+        break;
+      case "switch":
+        Axios.post("http://localhost:3000/api/v1/create", {
+          name: user,
+          host_name: formData.host_name,
+          serial_number: formData.serial_number,
+          patrimonio: formData.patrimonio,
+          marca: formData.marca,
+          modelo: formData.modelo,
+          portas: formData.portas,
+          poe: formData.poe,
+          gerenciavel: formData.gerenciavel,
+          categoria: formData.categoria,
+          local: formData.local,
+          departamento: formData.departamento,
+          estado: formData.estado,
+        })
+          .then((response) => {
+            if (response.estado === 200) {
+              navigateTo("/dashboard");
+              alert("Impressora registrada com sucesso!");
+            }
+          })
+          .catch((err) => {
+            alert(
+              "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
+            );
+            console.log(err);
+          });
+        break;
+      case "servidor":
+        Axios.post("http://localhost:3000/api/v1/create", {
+          name: user,
+          host_name: formData.host_name,
+          serial_number: formData.serial_number,
+          patrimonio: formData.patrimonio,
+          marca: formData.marca,
+          modelo: formData.modelo,
+          // Servidor
+          portas: formData.portas,
+          poe: formData.poe,
+          gerenciavel: formData.gerenciavel,
+          // Geral
+          categoria: formData.categoria,
+          local: formData.local,
+          departamento: formData.departamento,
+          estado: formData.estado,
+        })
+          .then((response) => {
+            if (response.estado === 200) {
+              navigateTo("/dashboard");
+              alert("Impressora registrada com sucesso!");
+            }
+          })
+          .catch((err) => {
+            alert(
+              "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
+            );
+            console.log(err);
+          });
+        break;
+     }
+  };
 
   return (
     <>
       {page === 0 ? (
-        <form onSubmit={handleSubmit(onSubmit)} >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Informações de cadastro</h1>
           <table>
             <tbody>
               <tr>
                 <th>
-                  <label htmlFor="hostName">Host Name: </label>
+                  <label htmlFor="host_name">Host Name: </label>
                 </th>
                 <th>
                   <input
-                    type="text" name="hostName"   id="hostName"  placeholder="Host Name"
-                    value={formData.hostName}
-                    onChange={(e)=>{
-                      setFormData({...formData, hostName: e.target.value}),
-                      console.log(formData.hostName)
+                    type="text"
+                    name="host_name"
+                    id="host_name"
+                    placeholder="Host Name"
+                    value={formData.host_name}
+                    onChange={(e) => {
+                      setFormData({ ...formData, host_name: e.target.value });
                     }}
                   />
                 </th>
@@ -73,25 +324,34 @@ const Form = () => {
                   <label htmlFor="patrimonio">Patrimonio: </label>
                 </th>
                 <th>
-                  <input type="number" name="patrimonio" id="patrimonio" placeholder="patrimonio"
+                  <input
+                    type="number"
+                    name="patrimonio"
+                    id="patrimonio"
+                    placeholder="patrimonio"
                     value={formData.patrimonio}
-                    onChange={(e)=>{
-                      setFormData({...formData, patrimonio: e.target.value}),
-                      console.log(formData.patrimonio)
+                    onChange={(e) => {
+                      setFormData({ ...formData, patrimonio: e.target.value });
                     }}
                   />
                 </th>
               </tr>
               <tr>
                 <th>
-                  <label htmlFor="serialNumber">Serial Number:</label>
+                  <label htmlFor="serial_number">Serial Number:</label>
                 </th>
                 <th>
-                  <input type="text" name="serialNumber" id="serialNumber" placeholder="Serial Number"
-                    value={formData.serialNumber}
-                    onChange={(e)=>{
-                      setFormData({...formData, serialNumber: e.target.value}),
-                      console.log(formData.serialNumber)
+                  <input
+                    type="text"
+                    name="serial_number"
+                    id="serial_number"
+                    placeholder="Serial Number"
+                    value={formData.serial_number}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formData,
+                        serial_number: e.target.value,
+                      });
                     }}
                   />
                 </th>
@@ -101,11 +361,14 @@ const Form = () => {
                   <label htmlFor="marca">Marca: </label>
                 </th>
                 <th>
-                  <input type="text"   name="marca" id="marca" placeholder="Marca"
+                  <input
+                    type="text"
+                    name="marca"
+                    id="marca"
+                    placeholder="Marca"
                     value={formData.marca}
-                    onChange={(e)=>{
-                      setFormData({...formData, marca: e.target.value}),
-                      console.log(formData.marca)
+                    onChange={(e) => {
+                      setFormData({ ...formData, marca: e.target.value });
                     }}
                   />
                 </th>
@@ -115,41 +378,134 @@ const Form = () => {
                   <label htmlFor="modelo">Modelo:</label>
                 </th>
                 <th>
-                  <input type="text" name="modelo" id="modelo" placeholder="Modelo"
+                  <input
+                    type="text"
+                    name="modelo"
+                    id="modelo"
+                    placeholder="Modelo"
                     value={formData.modelo}
-                    onChange={(e)=>{
-                      setFormData({...formData, modelo: e.target.value}),
-                      console.log(formData.modelo)
+                    onChange={(e) => {
+                      setFormData({ ...formData, modelo: e.target.value });
                     }}
                   />
                 </th>
               </tr>
               <tr>
                 <th>
-                  <input type="submit"  value="Cancel"   onClick={Cancel}  className="btn-form"  />
+                  <label htmlFor="ategoria">Categoria: </label>
                 </th>
                 <th>
-                  <input type="submit" value="submit" onClick={Next} className="btn-form" />
+                  <select
+                    name="categoria"
+                    id="categoria"
+                    className="appearance-select"
+                    value={formData.categoria}
+                    onChange={(e) => {
+                      setFormData({ ...formData, categoria: e.target.value });
+                    }}
+                  >
+                    <option value=""></option>
+                    <option value="computador"> Computador</option>
+                    <option value="notebook"> Notebook</option>
+                    <option value="monitor"> Monitor</option>
+                    <option value="impressora"> Impressora</option>
+                    <option value="telefone"> Telefone</option>
+                    <option value="switch"> Switch</option>
+                    <option value="servidor"> Servidor</option>
+                  </select>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <input
+                    type="submit"
+                    value="Cancel"
+                    onClick={Cancel}
+                    className="btn-form"
+                  />
+                </th>
+                <th>
+                  <input
+                    type="submit"
+                    value="submit"
+                    onClick={Next}
+                    className="btn-form"
+                  />
                 </th>
               </tr>
             </tbody>
           </table>
         </form>
-      ) : page === 1 ? (
+      ) : page === 1 && formData.categoria === "telefone" ? (
+        setPage(2)
+      ) : page === 1 && formData.categoria === "impressora" ? (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h1>Impressora</h1>
+          <table>
+            <tbody>
+              <tr>
+                <th>
+                  <label htmlFor="tipo_impressora">Tipo da Impressora: </label>
+                </th>
+                <th>
+                  <select
+                    name="tipo_impressora"
+                    id="tipo_impressora"
+                    className="appearance-select"
+                    value={formData.tipo_impressora}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formData,
+                        tipo_impressora: e.target.value,
+                      });
+                    }}
+                  >
+                    <option value=""></option>
+                    <option value="termica"> Térmica</option>
+                    <option value="laser"> Laser</option>
+                    <option value="termica"> Cartão Térmica</option>
+                  </select>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <input
+                    type="submit"
+                    value="Voltar"
+                    onClick={Previous}
+                    className="btn-form"
+                  />
+                </th>
+                <th>
+                  <input
+                    type="submit"
+                    value="submit"
+                    onClick={Next}
+                    className="btn-form"
+                  />
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      ) : page === 1 && formData.categoria === "computador" ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Hardware</h1>
-          <table >
+          <table>
             <tbody>
               <tr>
                 <th>
                   <label htmlFor="cpu">CPU:</label>
                 </th>
                 <th>
-                  <input type="text" name="cpu" id="cpu" placeholder="CPU"
+                  <input
+                    type="text"
+                    name="cpu"
+                    id="cpu"
+                    placeholder="CPU"
                     value={formData.cpu}
-                    onChange={(e)=>{
-                    setFormData({...formData, cpu: e.target.value}),
-                    console.log(formData.cpu)
+                    onChange={(e) => {
+                      setFormData({ ...formData, cpu: e.target.value });
                     }}
                   />
                 </th>
@@ -159,11 +515,14 @@ const Form = () => {
                   <label htmlFor="gpu">GPU: </label>
                 </th>
                 <th>
-                  <input type="text"  name="gpu"  id="gpu" placeholder="GPU"
+                  <input
+                    type="text"
+                    name="gpu"
+                    id="gpu"
+                    placeholder="GPU"
                     value={formData.gpu}
-                    onChange={(e)=>{
-                    setFormData({...formData, gpu: e.target.value}),
-                    console.log(formData.gpu)
+                    onChange={(e) => {
+                      setFormData({ ...formData, gpu: e.target.value });
                     }}
                   />
                 </th>
@@ -173,27 +532,35 @@ const Form = () => {
                   <label htmlFor="memoriaRam">Memory RAM: </label>
                 </th>
                 <th>
-                <input type="text" name="memoriaRam" id="cpu" placeholder="CPU"
+                  <input
+                    type="text"
+                    name="memoriaRam"
+                    id="memoriaRam"
+                    placeholder="Memoria Ram"
                     value={formData.memoriaRam}
-                    onChange={(e)=>{
-                    setFormData({...formData, memoriaRam: e.target.value}),
-                    console.log(formData.memoriaRam)
+                    onChange={(e) => {
+                      setFormData({ ...formData, memoriaRam: e.target.value });
                     }}
                   />
                 </th>
               </tr>
               <tr>
                 <th>
-                <label htmlFor="memoriaRam">DDR: </label>
+                  <label htmlFor="memoriaRam">DDR: </label>
                 </th>
                 <th>
-                <select name="memoriaRamDDR"  id="memoriaRamDDR" className="appearance-select"
+                  <select
+                    name="memoriaRamDDR"
+                    id="memoriaRamDDR"
+                    className="appearance-select"
                     value={formData.memoriaRamDDR}
-                    onChange={(e)=>{
-                    setFormData({...formData, memoriaRamDDR: e.target.value }),
-                    console.log(formData.memoriaRamDDR)
+                    onChange={(e) => {
+                      setFormData({
+                        ...formData,
+                        memoriaRamDDR: e.target.value,
+                      });
                     }}
-                  > 
+                  >
                     <option value=""></option>
                     <option value="DDR2">DDR2</option>
                     <option value="DDR3">DDR3</option>
@@ -203,25 +570,534 @@ const Form = () => {
               </tr>
               <tr>
                 <th>
-                  <label htmlFor="hardDisk">Hard Disk</label>
+                  <label htmlFor="hard_disk">Hard Disk</label>
                 </th>
                 <th>
-                  <input type="text" name="hardDisk"   id="hardDisk" placeholder="Hard Disk"
-                  value={formData.hardDisk}
-                  onChange={(e)=>{
-                  setFormData({...formData, hardDisk: e.target.value}),
-                  console.log(formData.hardDisk)
-                  }}
+                  <input
+                    type="text"
+                    name="hard_disk"
+                    id="hard_disk"
+                    placeholder="Hard Disk"
+                    value={formData.hard_disk}
+                    onChange={(e) => {
+                      setFormData({ ...formData, hard_disk: e.target.value });
+                    }}
                   />
                 </th>
               </tr>
               <tr>
                 <th>
-                  <input type="submit" value="Anterior" onClick={Previous} className="btn-form"
+                  <input
+                    type="submit"
+                    value="Anterior"
+                    onClick={Previous}
+                    className="btn-form"
                   />
                 </th>
                 <th>
-                  <input type="submit" value="submit"  onClick={Next} className="btn-form"
+                  <input
+                    type="submit"
+                    value="submit"
+                    onClick={Next}
+                    className="btn-form"
+                  />
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      ) : page === 1 && formData.categoria === "notebook" ? (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h1>Hardware</h1>
+          <table>
+            <tbody>
+              <tr>
+                <th>
+                  <label htmlFor="tamanho">Tamanho: </label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="tamanho"
+                    id="tamanho"
+                    placeholder="tamanho"
+                    value={formData.tamanho}
+                    onChange={(e) => {
+                      setFormData({ ...formData, tamanho: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="cpu">CPU:</label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="cpu"
+                    id="cpu"
+                    placeholder="CPU"
+                    value={formData.cpu}
+                    onChange={(e) => {
+                      setFormData({ ...formData, cpu: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="gpu">GPU: </label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="gpu"
+                    id="gpu"
+                    placeholder="GPU"
+                    value={formData.gpu}
+                    onChange={(e) => {
+                      setFormData({ ...formData, gpu: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="memoriaRam">Memory RAM: </label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="memoriaRam"
+                    id="memoriaRam"
+                    placeholder="Memoria Ram"
+                    value={formData.memoriaRam}
+                    onChange={(e) => {
+                      setFormData({ ...formData, memoriaRam: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="memoriaRam">DDR: </label>
+                </th>
+                <th>
+                  <select
+                    name="memoriaRamDDR"
+                    id="memoriaRamDDR"
+                    className="appearance-select"
+                    value={formData.memoriaRamDDR}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formData,
+                        memoriaRamDDR: e.target.value,
+                      });
+                    }}
+                  >
+                    <option value=""></option>
+                    <option value="DDR2">DDR2</option>
+                    <option value="DDR3">DDR3</option>
+                    <option value="DDR4">DDR4</option>
+                  </select>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="hard_disk">Hard Disk</label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="hard_disk"
+                    id="hard_disk"
+                    placeholder="Hard Disk"
+                    value={formData.hard_disk}
+                    onChange={(e) => {
+                      setFormData({ ...formData, hard_disk: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <input
+                    type="submit"
+                    value="Anterior"
+                    onClick={Previous}
+                    className="btn-form"
+                  />
+                </th>
+                <th>
+                  <input
+                    type="submit"
+                    value="submit"
+                    onClick={Next}
+                    className="btn-form"
+                  />
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      ) : page === 1 && formData.categoria === "monitor" ? (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h1>Informação sobre tamanho</h1>
+          <table>
+            <tbody>
+              <tr>
+                <th>
+                  <label htmlFor="tamanho">Tamanho: </label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="tamanho"
+                    id="tamanho"
+                    placeholder="Tamanho"
+                    value={formData.tamanho}
+                    onChange={(e) => {
+                      setFormData({ ...formData, tamanho: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="tipo_monitor">Tipo de monitor: </label>
+                </th>
+                <th>
+                  <select
+                    name="tipo_monitor"
+                    id="tipo_monitor"
+                    className="appearance-select"
+                    value={formData.tipo_monitor}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formData,
+                        tipo_monitor: e.target.value,
+                      });
+                    }}
+                  >
+                    <option value=""></option>
+                    <option value="smartTv"> SmartTv</option>
+                    <option value="monitor"> Monitor</option>
+                  </select>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="formato">Formato: </label>
+                </th>
+                <th>
+                  <select
+                    name="formato"
+                    id="formato"
+                    className="appearance-select"
+                    value={formData.formato}
+                    onChange={(e) => {
+                      setFormData({ ...formData, formato: e.target.value });
+                    }}
+                  >
+                    <option value=""></option>
+                    <option value="16:9"> 16:9</option>
+                    <option value="4:3"> 4:3</option>
+                  </select>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <input
+                    type="submit"
+                    value="Anterior"
+                    onClick={Previous}
+                    className="btn-form"
+                  />
+                </th>
+                <th>
+                  <input
+                    type="submit"
+                    value="submit"
+                    onClick={Next}
+                    className="btn-form"
+                  />
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      ) : page === 1 && formData.categoria === "switch" ? (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h1>Informação sobre Switch</h1>
+          <table>
+            <tbody>
+              <tr>
+                <th>
+                  <label htmlFor="portas">Portas: </label>
+                </th>
+                <th>
+                  <input
+                    type="number"
+                    name="portas"
+                    id="portas"
+                    placeholder="Portas"
+                    value={formData.portas}
+                    onChange={(e) => {
+                      setFormData({ ...formData, portas: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="poe">POE: </label>
+                </th>
+                <th>
+                  <select
+                    name="poe"
+                    id="poe"
+                    className="appearance-select"
+                    value={formData.poe}
+                    onChange={(e) => {
+                      setFormData({ ...formData, poe: e.target.value });
+                    }}
+                  >
+                    <option value=""></option>
+                    <option value="sim"> Sim</option>
+                    <option value="nao"> Não</option>
+                  </select>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="gerenciavel"> Gerenciavel: </label>
+                </th>
+                <th>
+                  <select
+                    name="gerenciavel"
+                    id="gerenciavel"
+                    className="appearance-select"
+                    value={formData.gerenciavel}
+                    onChange={(e) => {
+                      setFormData({ ...formData, gerenciavel: e.target.value });
+                    }}
+                  >
+                    <option value=""></option>
+                    <option value="sim"> Sim</option>
+                    <option value="nao"> Não</option>
+                  </select>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <input
+                    type="submit"
+                    value="Anterior"
+                    onClick={Previous}
+                    className="btn-form"
+                  />
+                </th>
+                <th>
+                  <input
+                    type="submit"
+                    value="submit"
+                    onClick={Next}
+                    className="btn-form"
+                  />
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      ) : page === 1 && formData.categoria === "servidor" ? (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h1>Informação sobre Servidor</h1>
+          <table>
+            <tbody>
+              <tr>
+                <th>
+                  <label htmlFor="cpu">CPU:</label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="cpu"
+                    id="cpu"
+                    placeholder="CPU"
+                    value={formData.cpu}
+                    onChange={(e) => {
+                      setFormData({ ...formData, cpu: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="gpu">GPU: </label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="gpu"
+                    id="gpu"
+                    placeholder="GPU"
+                    value={formData.gpu}
+                    onChange={(e) => {
+                      setFormData({ ...formData, gpu: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="memoriaRam">Memory RAM: </label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="memoriaRam"
+                    id="memoriaRam"
+                    placeholder="Memoria Ram"
+                    value={formData.memoriaRam}
+                    onChange={(e) => {
+                      setFormData({ ...formData, memoriaRam: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="memoriaRam">DDR: </label>
+                </th>
+                <th>
+                  <select
+                    name="memoriaRamDDR"
+                    id="memoriaRamDDR"
+                    className="appearance-select"
+                    value={formData.memoriaRamDDR}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formData,
+                        memoriaRamDDR: e.target.value,
+                      });
+                    }}
+                  >
+                    <option value=""></option>
+                    <option value="DDR2">DDR2</option>
+                    <option value="DDR3">DDR3</option>
+                    <option value="DDR4">DDR4</option>
+                  </select>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="hard_disk">Hard Disk I: </label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="hard_disk"
+                    id="hard_disk"
+                    placeholder="Hard Disk"
+                    value={formData.hard_disk}
+                    onChange={(e) => {
+                      setFormData({ ...formData, hard_disk: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="hard_disk">Hard Disk II: </label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="hard_disk_2"
+                    id="hard_disk_2"
+                    placeholder="Hard Disk II"
+                    value={formData.hard_disk_2}
+                    onChange={(e) => {
+                      setFormData({ ...formData, hard_disk_2: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="power_suply">Energia</label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="power_suply"
+                    id="power_suply"
+                    placeholder="Fonte de energia"
+                    value={formData.power_suply}
+                    onChange={(e) => {
+                      setFormData({ ...formData, power_suply: e.target.value });
+                    }}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <label htmlFor="operational_system">
+                    Sistema Operacional
+                  </label>
+                </th>
+                <th>
+                  <input
+                    type="text"
+                    name="operational_system"
+                    id="operational_system"
+                    placeholder="Sistema Operacional"
+                    value={formData.operational_system}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formData,
+                        operational_system: e.target.value,
+                      });
+                    }}
+                  />
+                </th>
+                <tr>
+                  <th>
+                    <label htmlFor="remote_acess">Acesso remoto</label>
+                  </th>
+                  <th>
+                    <input
+                      type="text"
+                      name="remote_acess"
+                      id="remote_acess"
+                      placeholder="Sistema Operacional"
+                      value={formData.remote_acess}
+                      onChange={(e) => {
+                        setFormData({
+                          ...formData,
+                          remote_acess: e.target.value,
+                        });
+                      }}
+                    />
+                  </th>
+                </tr>
+              </tr>
+              <tr>
+                <th>
+                  <input
+                    type="submit"
+                    value="Anterior"
+                    onClick={Previous}
+                    className="btn-form"
+                  />
+                </th>
+                <th>
+                  <input
+                    type="submit"
+                    value="submit"
+                    onClick={Next}
+                    className="btn-form"
                   />
                 </th>
               </tr>
@@ -241,8 +1117,7 @@ const Form = () => {
                   <input type="text" name="local" id="local" placeholder="local"
                     value={formData.local}
                     onChange={(e)=>{
-                    setFormData({...formData, local: e.target.value}),
-                    console.log(formData.local)
+                    setFormData({...formData, local: e.target.value})
                     }}
                   />
                 </th>
@@ -255,22 +1130,20 @@ const Form = () => {
                   <input type="text" name="departamento" id="departamento"placeholder="Departamento"
                     value={formData.departamento}
                     onChange={(e)=>{
-                    setFormData({...formData, departamento: e.target.value}),
-                    console.log(formData.departamento)
+                    setFormData({...formData, departamento: e.target.value})
                     }}
                   />
                 </th>
               </tr>
               <tr>
                 <th>
-                  <label htmlFor="status">Status: </label>
+                  <label htmlFor="estado">Estado: </label>
                 </th>
                 <th>
-                  <select name="status" id="status" className="appearance-select"
-                     value={formData.status}
+                  <select name="estado" id="estado" className="appearance-select"
+                     value={formData.estado}
                      onChange={(e)=>{
-                     setFormData({...formData, status: e.target.value }),
-                     console.log(formData.status)
+                     setFormData({...formData, estado: e.target.value })
                      }}
                   >
                     <option value=""></option>
@@ -294,107 +1167,170 @@ const Form = () => {
           </table>
         </form>
       ) : page === 3 ? (
-        console.log(formData),
-          <div>
-            <h1>Confirmação de dados</h1>
-            <div id="confirmation-data">
-              
-              <table>
-                <tbody>
-                  <tr>
-                    <th>
-                      <strong>Nome do host: </strong>
-                    </th>
-                    <th>{formData.hostName}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <strong>Número do Patrimonio: </strong>
-                    </th>
-                    <th>{formData.patrimonio}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <strong>Número de série: </strong>
-                    </th>
-                    <th>{formData.serialNumber}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <strong>Marca: </strong>
-                    </th>
-                    <th>{formData.marca}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <strong>Modelo: </strong>
-                    </th>
-                    <th>{formData.modelo}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <strong>CPU: </strong>
-                    </th>
-                    <th>{formData.cpu}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <strong>GPU: </strong>
-                    </th>
-                    <th>{formData.gpu}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <strong>Memória RAM: </strong>
-                    </th>
-                    <th>{formData.memoriaRam}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <strong>Disco rígido: </strong>
-                    </th>
-                    <th>{formData.hardDisk}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <strong>Localização: </strong>
-                    </th>
-                    <th>{formData.local}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <strong>Departamento: </strong>
-                    </th>
-                    <th>{formData.departamento}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <strong>Status: </strong>
-                    </th>
-                    <th>{formData.status}</th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <input
-                        type="submit"
-                        value="Anterior"
-                        onClick={Previous}
-                        className="btn-form"
-                      />
-                    </th>
-                    <th>
-                      <input
-                        type="submit"
-                        value="confirm"
-                        onClick={confirm}
-                        className="btn-form"
-                      />
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        <div>
+          <h1>Confirmação de dados</h1>
+          <div id="confirmation-data">
+            <table>
+              <tbody>
+                <tr>
+                  <th>
+                    <strong>Nome do host: </strong>
+                  </th>
+                  <th>{formData.host_name}</th>
+                </tr>
+                <tr>
+                  <th>
+                    <strong>Número do Patrimonio: </strong>
+                  </th>
+                  <th>{formData.patrimonio}</th>
+                </tr>
+                <tr>
+                  <th>
+                    <strong>Número de série: </strong>
+                  </th>
+                  <th>{formData.serial_number}</th>
+                </tr>
+
+                {   formData.categoria === "computador" ? (
+                  <>
+                    <tr>
+                      <th>
+                        <strong>CPU: </strong>
+                      </th>
+                      <th>{formData.cpu}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>GPU: </strong>
+                      </th>
+                      <th>{formData.gpu}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>Memória RAM: </strong>
+                      </th>
+                      <th>{formData.memoriaRam}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>Disco rígido: </strong>
+                      </th>
+                      <th>{formData.hard_disk}</th>
+                    </tr>
+                  </>
+                ) : formData.categoria === "impressora" ? (
+                  <>
+                    <tr>
+                      <th>
+                        <strong>Tipo da Impressora: </strong>
+                      </th>
+                      <th>{formData.tipo_impressora}</th>
+                    </tr>
+                  </>
+                ) : formData.categoria === "notebook"   ? (
+                  <>
+                    <tr>
+                      <th>
+                        <strong>Tamanho : </strong>
+                      </th>
+                      <th>{formData.tamanho}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>CPU: </strong>
+                      </th>
+                      <th>{formData.cpu}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>GPU: </strong>
+                      </th>
+                      <th>{formData.gpu}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>Memória RAM: </strong>
+                      </th>
+                      <th>{formData.memoriaRam}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>Disco rígido: </strong>
+                      </th>
+                      <th>{formData.hard_disk}</th>
+                    </tr>
+                  </>
+                ) : null}
+                <tr>
+                  <th>
+                    <strong>Marca: </strong>
+                  </th>
+                  <th>{formData.marca}</th>
+                </tr>
+                <tr>
+                  <th>
+                    <strong>Modelo: </strong>
+                  </th>
+                  <th>{formData.modelo}</th>
+                </tr>
+               
+                <tr>
+                  <th>
+                    <strong>Localização: </strong>
+                  </th>
+                  <th>{formData.local}</th>
+                </tr>
+                <tr>
+                  <th>
+                    <strong>Departamento: </strong>
+                  </th>
+                  <th>{formData.departamento}</th>
+                </tr>
+                <tr>
+                  <th>
+                    <strong>estado: </strong>
+                  </th>
+                  <th> {formData.estado}</th>
+                </tr>
+
+                <tr>
+                  <th>Confirma todos os dados acima? </th>
+                  <th>
+                    <input
+                      type="checkbox"
+                      name="confirmation"
+                      value={formData.confirmation}
+                      onChange={(e) => {
+                        setFormData({
+                          ...formData,
+                          confirmation: !formData.confirmation,
+                        });
+                      }}
+                    />
+                  </th>
+                </tr>
+                <tr>
+                  <th>
+                    <input
+                      type="submit"
+                      value="Anterior"
+                      onClick={Previous}
+                      className="btn-form"
+                    />
+                  </th>
+                  <th>
+                    <input
+                      type="submit"
+                      value="confirm"
+                      onClick={Confirm}
+                      className="btn-form"
+                    />
+                  </th>
+                </tr>
+              </tbody>
+            </table>
           </div>
+        </div>
       ) : null}
     </>
   );
