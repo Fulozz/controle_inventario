@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 exports.getPatrimonioListing = async(req,  res )=>{
     
     try{
-        await Patrimonio.find().sort({updateAt: -1})
+        await Patrimonio.find().sort({createdAt: -1})
         .limit(6)
         .then((patrimonios)=>{
             return res.json(patrimonios)
@@ -20,7 +20,7 @@ exports.getPatrimonioListing = async(req,  res )=>{
 
 exports.allPatrimonio = async(req, res)=>{
     try{
-        await Patrimonio.find().sort({createAt: -1}).then((patrimonios)=>{
+        await Patrimonio.find().sort({patrimonio: 1}).then((patrimonios)=>{
             return res.status(200).send(patrimonios)
         })
     }
@@ -59,7 +59,7 @@ exports.createPatrimonio = async (req,res)=> {
 
 exports.searchPatrimonio = async(req, res)=> {
     const patrimonio = await Patrimonio.findById(req.params.id);
-
+    
     // Atualizar o produto
     patrimonio.name = req.body.name;
     patrimonio.serial_number = req.body.serial_number;

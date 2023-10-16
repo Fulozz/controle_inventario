@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const patrimonioSchema = new Schema({
   name: { type: String, maxLenght: 50, required: true},
-  host_name: { type: String, maxLenght: 50, required: true},
+  host_name: { type: String, maxLenght: 50},
   serial_number: { type: String, maxLenght: 30, required: true, unique: true},
   categoria: { type: String, maxLenght: 50, required: true },
   patrimonio: { type: Number, maxLenght: 50, required: true, unique: true},
@@ -19,6 +19,7 @@ const patrimonioSchema = new Schema({
   gpu: { type: String, maxLenght: 50},
   memoriaRam: { type: String, maxLenght: 50},
   hard_disk: { type: String, maxLenght: 50},
+  sistema_operacional: { type: String, maxLenght: 50},
   local: { type: String, maxLenght: 50, required: true},
   departamento: { type: String, maxLenght: 50, required: true},
   estado: { type: String, maxLenght: 50, required: true}

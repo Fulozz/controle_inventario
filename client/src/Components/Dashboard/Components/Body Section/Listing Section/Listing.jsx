@@ -22,12 +22,12 @@ const Listing = () => {
   return (
     <div className="listingSection">
       <div className="heading flex">
-        <h1>Ultimas inclusões - Limitar em 6 para telas menores</h1>
-        <button className="btn flex">
+        <h1>Ultimas inclusões</h1>
+        <a className="btn flex" href="/todos">
           Ver todos <BsArrowRightShort className="icon" />
-        </button>
+        </a>
       </div>
-
+     
       <div className="secContainer flex">
         {patrimonio && patrimonio.map((patrimonio, index) => (
             <div className="singleItem" key={index}>
@@ -38,7 +38,6 @@ const Listing = () => {
                 <h3>{patrimonio.patrimonio}</h3>
               </Link>
               </div>
-
           ))}   
       </div>
     </div>

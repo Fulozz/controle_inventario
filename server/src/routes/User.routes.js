@@ -17,9 +17,12 @@ router.post('/validate', userController.validateUser)
 // ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
 router.get('/dashboard', auth, userController.returnUserProfile)
 
+// ==> Rota responsavel por criar os patrimonios: (GET) localhost:3000/api/v1/create
 router.post('/create',  productController.createPatrimonio)
 
+// ==> Rota responsavel por enviar para o frontend os patrimonios
 router.get('/listing',  productController.getPatrimonioListing)
+router.get('/all',  productController.allPatrimonio)
 
 // ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
 router.post('/user', userController.returnUserProfile)

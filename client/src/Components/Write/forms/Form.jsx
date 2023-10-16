@@ -38,9 +38,9 @@ const Form = () => {
     gerenciavel: "",
     // Servidor
     hard_disk_2: "",
-    operational_system: "",
+    sistema_operacional: "",
     power_suply: "",
-    remote_acess: "",
+    acesso_remoto: "",
     //Geral
     local: "",
     departamento: "",
@@ -86,6 +86,10 @@ const Form = () => {
   //    Axios.post('http://localhost:3000/api/v1/create', data)
 
   const Confirm = async () => {
+    if (formData.confirmation === false) {
+      alert("Você deve confirmar todos os dados acima para continuar.");
+      return;
+    }
     switch (formData.categoria) {
       case "computador":
         Axios.post("http://localhost:3000/api/v1/create", {
@@ -138,7 +142,7 @@ const Form = () => {
           estado: formData.estado,
         })
           .then((response) => {
-            if (response.estado === 200) {
+            if (response.status === 200) {
               navigateTo("/dashboard");
               alert("Notebook registrado com sucesso");
             }
@@ -167,7 +171,7 @@ const Form = () => {
           estado: formData.estado,
         })
           .then((response) => {
-            if (response.estado === 200) {
+            if (response.status === 200) {
               navigateTo("/dashboard");
               alert("Patrimônio registrado com sucesso");
             }
@@ -194,7 +198,7 @@ const Form = () => {
           estado: formData.estado,
         })
           .then((response) => {
-            if (response.estado === 200) {
+            if (response.status === 200) {
               navigateTo("/dashboard");
               alert("Impressora registrada com sucesso!");
             }
@@ -220,7 +224,7 @@ const Form = () => {
           estado: formData.estado,
         })
           .then((response) => {
-            if (response.estado === 200) {
+            if (response.status === 200) {
               navigateTo("/dashboard");
               alert("Telefone registrado com sucesso!");
             }
@@ -249,7 +253,7 @@ const Form = () => {
           estado: formData.estado,
         })
           .then((response) => {
-            if (response.estado === 200) {
+            if (response.status === 200) {
               navigateTo("/dashboard");
               alert("Impressora registrada com sucesso!");
             }
@@ -280,14 +284,13 @@ const Form = () => {
           estado: formData.estado,
         })
           .then((response) => {
-            if (response.estado === 200) {
+            if (response.status === 200) {
               navigateTo("/dashboard");
               alert("Impressora registrada com sucesso!");
             }
           })
           .catch((err) => {
-            alert(
-              "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
+            alert( "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
             );
             console.log(err);
           });
@@ -1043,40 +1046,40 @@ const Form = () => {
               </tr>
               <tr>
                 <th>
-                  <label htmlFor="operational_system">
+                  <label htmlFor="sistema_operacional">
                     Sistema Operacional
                   </label>
                 </th>
                 <th>
                   <input
                     type="text"
-                    name="operational_system"
-                    id="operational_system"
+                    name="sistema_operacional"
+                    id="sistema_operacional"
                     placeholder="Sistema Operacional"
-                    value={formData.operational_system}
+                    value={formData.sistema_operacional}
                     onChange={(e) => {
                       setFormData({
                         ...formData,
-                        operational_system: e.target.value,
+                        sistema_operacional: e.target.value,
                       });
                     }}
                   />
                 </th>
                 <tr>
                   <th>
-                    <label htmlFor="remote_acess">Acesso remoto</label>
+                    <label htmlFor="acesso_remoto">Acesso remoto</label>
                   </th>
                   <th>
                     <input
                       type="text"
-                      name="remote_acess"
-                      id="remote_acess"
+                      name="acesso_remoto"
+                      id="acesso_remoto"
                       placeholder="Sistema Operacional"
-                      value={formData.remote_acess}
+                      value={formData.acesso_remoto}
                       onChange={(e) => {
                         setFormData({
                           ...formData,
-                          remote_acess: e.target.value,
+                          acesso_remoto: e.target.value,
                         });
                       }}
                     />
@@ -1260,9 +1263,82 @@ const Form = () => {
                       <th>{formData.hard_disk}</th>
                     </tr>
                   </>
+                ) : formData.categoria === "monitor"    ? (
+                  <>
+                  <tr>
+                    <th>Tamanho: </th>
+                    <th>{formData.tamanho}</th>
+                  </tr>
+                  <tr>
+                    <th>Formato: </th>
+                    <th>{formData.formato}</th>
+                  </tr>
+                  <tr>
+                    <th>Tipo: </th>
+                    <th>{formData.tipo_monitor}</th>
+                  </tr>
+                  </>
+                ) : formData.categoria === "switch"     ? (
+                  <>
+                  <tr>
+                    <th>Portas: </th>
+                    <th>{formData.portas}</th>
+                  </tr>
+                  <tr>
+                    <th>POE: </th>
+                    <th>{formData.poe}</th>
+                  </tr>
+                  <tr>
+                    <th>Gerenciavel: </th>
+                    <th>{formData.gerenciavel}</th>
+                  </tr>
+                  </>
+                ) : formData.categoria === "servidor"   ? (
+                  <>
+                  <tr>
+                      <th>
+                        <strong>CPU: </strong>
+                      </th>
+                      <th>{formData.cpu}</th>
+                    </tr>
+                    <tr>
+                      <th><strong>GPU: </strong></th>
+                      <th>{formData.gpu}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>Memória RAM: </strong>
+                      </th>
+                      <th>{formData.memoriaRam}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>Disco rígido I: </strong>
+                      </th>
+                      <th>{formData.hard_disk}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>Disco rígido II: </strong>
+                      </th>
+                      <th>{formData.hard_disk_2}</th>
+                    </tr>
+                    <tr>
+                      <th><strong>Energia</strong></th>
+                      <th>{formData.power_suply}</th>
+                    </tr>
+                    <tr>
+                      <th>Sistema Operacional</th>
+                      <th>{formData.sistema_operacional}</th>
+                    </tr>
+                    <tr>
+                      <th>Acesso remoto</th>
+                      <th>{formData.acesso_remoto}</th>
+                    </tr>
+                  </>
                 ) : null}
-                <tr>
-                  <th>
+                <tr >
+                  <th >
                     <strong>Marca: </strong>
                   </th>
                   <th>{formData.marca}</th>
@@ -1288,7 +1364,7 @@ const Form = () => {
                 </tr>
                 <tr>
                   <th>
-                    <strong>estado: </strong>
+                    <strong>Estado: </strong>
                   </th>
                   <th> {formData.estado}</th>
                 </tr>

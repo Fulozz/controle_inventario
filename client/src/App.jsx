@@ -11,6 +11,8 @@ import UserProfile from './Components/UserProfile/UserProfile'
 import{ BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Write from './Components/Write/Write'
 
+import Todos from './Components/Geral/Todos'
+
   
 
 // router
@@ -55,7 +57,7 @@ function App() {
               <Route element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} path='/dashboard'exact/>
               <Route element={isAuthenticated ? <UserProfile /> : <Navigate to='/' />} path='/profile' exact/>
               <Route element={isAuthenticated ? <Write /> : <Navigate to='/' />} path='/write' exact/> 
-           
+              <Route element={isAuthenticated ? <Todos /> : <Navigate to='/' />} path='/todos' exact/> 
         </Routes>
       </Router>
     </div>

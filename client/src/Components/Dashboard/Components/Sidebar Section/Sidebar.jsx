@@ -50,7 +50,7 @@ const Sidebar = () => {
           </li>
 
           <li className="listItem">
-            <a href="" className='menuLink flex'>
+            <a href="/todos" className='menuLink flex'>
               <MdOutlineExplore className='icon' />
               <span className="smallText">
                 Todos
