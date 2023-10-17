@@ -11,7 +11,7 @@ const Form = () => {
   const Cancel = () => navigate("/dashboard");
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
-
+  const date = new Date();
   const [formData, setFormData] = useState({
     // Geral
     host_name: "",
@@ -1117,7 +1117,7 @@ const Form = () => {
                   <label htmlFor="local">Local:</label>
                 </th>
                 <th>
-                  <input type="text" name="local" id="local" placeholder="local"
+                  <input type="text" name="local" id="local" placeholder="Local"
                     value={formData.local}
                     onChange={(e)=>{
                     setFormData({...formData, local: e.target.value})

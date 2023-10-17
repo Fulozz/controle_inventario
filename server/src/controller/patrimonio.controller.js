@@ -57,6 +57,42 @@ exports.createPatrimonio = async (req,res)=> {
     
 };
 
+exports.searchItem = async (req, res) =>{
+    try{
+        await Patrimonio.find({patrimonio : req.body.patrimonio}).then((patrimonio)=>{
+            return res.status(200).send(patrimonio)
+        })
+    }
+    catch (err) {
+        return res.status(401).send({
+            message: 'Erro do servidor',
+            err: err
+        })
+
+    }
+}
+exports.updatePatrimonio = async (req,res) => {
+    const patrimonio = await Patrimonio.findOneAndUpdate({
+        patrimonio: req.body.patrimonio
+    },{
+        $set: {
+            host_name: req.body.host_name
+        }
+    });
+    if (patrimonio) {
+        // Salve as alterações
+        await patrimonio.save();
+    
+        // Retorne o documento atualizado
+        res.status(200).json(patrimonio);
+      } else {
+        // Retorne um erro
+        res.status(404).json({
+          error: "O patrimônio não foi encontrado",
+        });
+      }
+}
+
 exports.searchPatrimonio = async(req, res)=> {
     const patrimonio = await Patrimonio.findById(req.params.id);
     

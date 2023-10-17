@@ -20,6 +20,65 @@
   --smallestFontSize: .75rem;
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.modal-content button {
+  background: transparent;
+  border: none;
+}
+.modal-content button .icon {
+  color: var(--primaryColor);
+}
+.modal-content .modal-top, .modal-content .modal-bottom {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 2rem;
+}
+.modal-content .modal-top h1, .modal-content .modal-bottom h1 {
+  text-transform: uppercase;
+  font-size: 2.4rem;
+}
+.modal-content .modal-top .icon, .modal-content .modal-bottom .icon {
+  width: 30px;
+}
+.modal-content .modal-item {
+  width: 94%;
+  margin-left: 2rem;
+  margin-top: 10px;
+}
+.modal-content .modal-item h3 {
+  font-weight: 500;
+}
+.modal-content .modal-bottom {
+  position: absolute;
+  margin: 2rem;
+  right: 0;
+  bottom: 0;
+}
+
 .listingSection {
   flex-basis: 70%;
 }
@@ -69,6 +128,7 @@
 }
 .listingSection .secContainer .singleItem .link {
   border-bottom: 1px solid crimson;
+  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   padding: 2px 0px;
@@ -101,4 +161,5 @@
   font-size: var(--h3FontSize);
   color: var(--blackColor);
   padding: 1rem 0;
-}/*# sourceMappingURL=listing.css.map */
+}
+/*# sourceMappingURL=listing.css.map */

@@ -22,7 +22,14 @@ const patrimonioSchema = new Schema({
   sistema_operacional: { type: String, maxLenght: 50},
   local: { type: String, maxLenght: 50, required: true},
   departamento: { type: String, maxLenght: 50, required: true},
-  estado: { type: String, maxLenght: 50, required: true}
+  estado: { type: String, maxLenght: 50, required: true},
+  createdAtFormat: {
+    type: String,
+    default: ()=>{
+      const createdAt = new Date()
+      return createdAt.toLocaleDateString('pt-BR');
+    }
+  }
 },{
   timestamps: true,
   collection: 'Patrimonio'
