@@ -6,7 +6,7 @@ import Axios from "axios";
 const Form = () => {
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
-  
+
   const Next = () => setPage(page + 1);
   const Previous = () => setPage(page - 1);
   const Cancel = () => navigate("/dashboard");
@@ -365,7 +365,7 @@ const Form = () => {
                 <th>
                   <label htmlFor="marca">Marca: </label>
                 </th>
-                <th>
+                <td>
                   <input
                     type="text"
                     name="marca"
@@ -376,7 +376,7 @@ const Form = () => {
                       setFormData({ ...formData, marca: e.target.value });
                     }}
                   />
-                </th>
+                </td>
               </tr>
               <tr>
                 <th>
@@ -399,7 +399,7 @@ const Form = () => {
                 <th>
                   <label htmlFor="ategoria">Categoria: </label>
                 </th>
-                <th>
+                <td>
                   <select
                     name="categoria"
                     id="categoria"
@@ -418,7 +418,7 @@ const Form = () => {
                     <option value="switch"> Switch</option>
                     <option value="servidor"> Servidor</option>
                   </select>
-                </th>
+                </td>
               </tr>
               <tr>
                 <th>

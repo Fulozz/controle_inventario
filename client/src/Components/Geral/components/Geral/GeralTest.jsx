@@ -269,7 +269,7 @@ const onSubmit = (data) => {
                                 <th>
                                   <label htmlFor="host_name">Host Name: </label>
                                 </th>
-                                <th>
+                                <td>
                                   <input
                                     type="text"
                                     name="host_name"
@@ -280,13 +280,13 @@ const onSubmit = (data) => {
                                       setFormData({ ...formData, host_name: e.target.value });
                                     }}
                                   />
-                                </th>
+                                </td>
                               </tr>
                               <tr>
                                 <th>
                                   <label htmlFor="patrimonio">Patrimonio: </label>
                                 </th>
-                                <th>
+                                <td>
                                 
                                   <input
                                     type="number"
@@ -296,13 +296,13 @@ const onSubmit = (data) => {
                                     value={singlePatrimonio.patrimonio}
                                     readOnly
                                   /><FiAlertTriangle className='icon icon-attention'/>
-                                </th>
+                                </td>
                               </tr>
                               <tr>
                                 <th>
                                   <label htmlFor="serial_number">Serial Number:</label>
                                 </th>
-                                <th>    
+                                <td>    
                                   <input
                                     type="text"
                                     name="serial_number"
@@ -311,13 +311,13 @@ const onSubmit = (data) => {
                                     readOnly
                                   />
                                   <FiAlertTriangle className='icon icon-attention'/>
-                                </th>
+                                </td>
                               </tr>
                               <tr>
                                 <th>
                                   <label htmlFor="marca">Marca: </label>
                                 </th>
-                                <th>
+                                <td>
                                   <input
                                     type="text"
                                     name="marca"
@@ -328,13 +328,13 @@ const onSubmit = (data) => {
                                       setFormData({ ...formData, marca: e.target.value });
                                     }}
                                   />
-                                </th>
+                                </td>
                               </tr>
                               <tr>
                                 <th>
                                   <label htmlFor="modelo">Modelo:</label>
                                 </th>
-                                <th>
+                                <td>
                                   <input
                                     type="text"
                                     name="modelo"
@@ -345,13 +345,13 @@ const onSubmit = (data) => {
                                       setFormData({ ...formData, modelo: e.target.value });
                                     }}
                                   />
-                                </th>
+                                </td>
                               </tr>
                               <tr>
                                 <th>
                                   <label htmlFor="ategoria">Categoria: </label>
                                 </th>
-                                <th>
+                                <td>
                                   <input
                                     type="text"
                                     name="modelo"
@@ -360,7 +360,327 @@ const onSubmit = (data) => {
                                     value={singlePatrimonio.categoria}
                                     readOnly
                                   /> <FiAlertTriangle className='icon icon-attention'/>
+                                </td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+                        </form>
+                        ) : selector === "informação" && singlePatrimonio.categoria === "impressora" ? (
+                          <form onSubmit={handleSubmit(onSubmit)}>
+                          <h1>Informações de cadastro</h1>
+                          <table>
+                            <tbody>
+                              <tr>
+                                <th>
+                                  <label htmlFor="host_name">Host Name: </label>
                                 </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="host_name"
+                                    id="host_name"
+                                    placeholder={singlePatrimonio.host_name}
+                                    value={formData.host_name}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, host_name: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="patrimonio">Patrimonio: </label>
+                                </th>
+                                <td>
+                                
+                                  <input
+                                    type="number"
+                                    name="patrimonio"
+                                    id="patrimonio"
+                                    placeholder={singlePatrimonio.patrimonio}
+                                    value={singlePatrimonio.patrimonio}
+                                    readOnly
+                                  /><FiAlertTriangle className='icon icon-attention'/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="serial_number">Serial Number:</label>
+                                </th>
+                                <td>    
+                                  <input
+                                    type="text"
+                                    name="serial_number"
+                                    id="serial_number"
+                                    value={singlePatrimonio.serial_number}
+                                    readOnly
+                                  />
+                                  <FiAlertTriangle className='icon icon-attention'/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="marca">Marca: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="marca"
+                                    id="marca"
+                                    placeholder={singlePatrimonio.marca}
+                                    value={formData.marca}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, marca: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="modelo">Modelo:</label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="modelo"
+                                    id="modelo"
+                                    placeholder="Modelo"
+                                    value={formData.modelo}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, modelo: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              
+                              <tr>
+                                <th>
+                                  <label htmlFor="tipo">Tipo: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="tipo_impressora"
+                                    id="modelo"
+                                    placeholder={singlePatrimonio.tipo_impressora}
+                                    value={formData.tipo_impressora}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, tipo_impressora: e.target.value });
+                                    }}
+                                  /> 
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </form>
+                        ) : selector === "informação" && singlePatrimonio.categoria === "notebook"  ? (
+                          <form onSubmit={handleSubmit(onSubmit)}>
+                          <h1>Informações de cadastro</h1>
+                          <table>
+                            <tbody>
+                              <tr>
+                                <th>
+                                  <label htmlFor="host_name">Host Name: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="host_name"
+                                    id="host_name"
+                                    placeholder="Host Name"
+                                    value={formData.host_name}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, host_name: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="patrimonio">Patrimonio: </label>
+                                </th>
+                                <td>
+                                
+                                  <input
+                                    type="number"
+                                    name="patrimonio"
+                                    id="patrimonio"
+                                    placeholder={singlePatrimonio.patrimonio}
+                                    value={singlePatrimonio.patrimonio}
+                                    readOnly
+                                  /><FiAlertTriangle className='icon icon-attention'/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="serial_number">Serial Number:</label>
+                                </th>
+                                <td>    
+                                  <input
+                                    type="text"
+                                    name="serial_number"
+                                    id="serial_number"
+                                    value={singlePatrimonio.serial_number}
+                                    readOnly
+                                  />
+                                  <FiAlertTriangle className='icon icon-attention'/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="marca">Marca: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="marca"
+                                    id="marca"
+                                    placeholder={singlePatrimonio.marca}
+                                    value={formData.marca}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, marca: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="modelo">Modelo:</label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="modelo"
+                                    id="modelo"
+                                    placeholder="Modelo"
+                                    value={formData.modelo}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, modelo: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="ategoria">Categoria: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="modelo"
+                                    id="modelo"
+                                    placeholder="Modelo"
+                                    value={singlePatrimonio.categoria}
+                                    readOnly
+                                  /> <FiAlertTriangle className='icon icon-attention'/>
+                                </td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+                        </form>
+                        ) :selector === "informação" && singlePatrimonio.categoria === "telefone" ? (
+                          <form onSubmit={handleSubmit(onSubmit)}>
+                          <h1>Informações de cadastro</h1>
+                          <table>
+                            <tbody>
+                              <tr>
+                                <th>
+                                  <label htmlFor="host_name">Host Name: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="host_name"
+                                    id="host_name"
+                                    placeholder={singlePatrimonio.host_name}
+                                    value={formData.host_name}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, host_name: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="patrimonio">Patrimonio: </label>
+                                </th>
+                                <td>
+                                
+                                  <input
+                                    type="number"
+                                    name="patrimonio"
+                                    id="patrimonio"
+                                    placeholder={singlePatrimonio.patrimonio}
+                                    value={singlePatrimonio.patrimonio}
+                                    readOnly
+                                  /><FiAlertTriangle className='icon icon-attention'/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="serial_number">Serial Number:</label>
+                                </th>
+                                <td>    
+                                  <input
+                                    type="text"
+                                    name="serial_number"
+                                    id="serial_number"
+                                    value={singlePatrimonio.serial_number}
+                                    readOnly
+                                  />
+                                  <FiAlertTriangle className='icon icon-attention'/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="marca">Marca: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="marca"
+                                    id="marca"
+                                    placeholder={singlePatrimonio.marca}
+                                    value={formData.marca}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, marca: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="modelo">Modelo:</label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="modelo"
+                                    id="modelo"
+                                    placeholder={singlePatrimonio.modelo}
+                                    value={formData.modelo}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, modelo: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="ategoria">Categoria: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="modelo"
+                                    id="modelo"
+                                    placeholder="Modelo"
+                                    value={singlePatrimonio.categoria}
+                                    readOnly
+                                  /> <FiAlertTriangle className='icon icon-attention'/>
+                                </td>
                               </tr>
                               
                             </tbody>
@@ -372,11 +692,28 @@ const onSubmit = (data) => {
                           <h1>Hardware</h1>
                           <table>
                             <tbody>
+                              { singlePatrimonio.categoria === "notebook" ? (
+                                <tr>
+                                <th>
+                                  <label htmlFor="cpu">Tamanho:</label>
+                                </th>
+                                <td>
+                                <input
+                                    type="text"
+                                    name="tamanho"
+                                    id="tamanho"
+                                    placeholder="tamanho"
+                                    value={singlePatrimonio.tamanho}
+                                    readOnly
+                                  /> <FiAlertTriangle className='icon icon-attention'/>
+                                </td>
+                              </tr>
+                              ) : null}
                               <tr>
                                 <th>
                                   <label htmlFor="cpu">CPU:</label>
                                 </th>
-                                <th>
+                                <td>
                                 <input
                                     type="text"
                                     name="modelo"
@@ -387,13 +724,13 @@ const onSubmit = (data) => {
                                       setFormData({ ...formData, modelo: e.target.value });
                                     }}
                                   />
-                                </th>
+                                </td>
                               </tr>
                               <tr>
                                 <th>
                                   <label htmlFor="gpu">GPU: </label>
                                 </th>
-                                <th>
+                                <td>
                                   <input
                                     type="text"
                                     name="gpu"
@@ -404,13 +741,13 @@ const onSubmit = (data) => {
                                       setFormData({ ...formData, gpu: e.target.value });
                                     }}
                                   />
-                                </th>
+                                </td>
                               </tr>
                               <tr>
                                 <th>
                                   <label htmlFor="memoriaRam">Memory RAM: </label>
                                 </th>
-                                <th>
+                                <td>
                                   <input
                                     type="text"
                                     name="memoriaRam"
@@ -421,37 +758,29 @@ const onSubmit = (data) => {
                                       setFormData({ ...formData, memoriaRam: e.target.value });
                                     }}
                                   />
-                                </th>
+                                </td>
                               </tr>
                               <tr>
                                 <th>
-                                  <label htmlFor="memoriaRam">DDR: </label>
+                                  <label htmlFor="memoriaRamDDR">DDR: </label>
                                 </th>
-                                <th>
-                                  <select
+                                
+                                <td>
+                                  <input
+                                    type="text"
                                     name="memoriaRamDDR"
                                     id="memoriaRamDDR"
-                                    className="appearance-select"
-                                    value={formData.memoriaRamDDR}
-                                    onChange={(e) => {
-                                      setFormData({
-                                        ...formData,
-                                        memoriaRamDDR: e.target.value,
-                                      });
-                                    }}
-                                  >
-                                    <option value=""></option>
-                                    <option value="DDR2">DDR2</option>
-                                    <option value="DDR3">DDR3</option>
-                                    <option value="DDR4">DDR4</option>
-                                  </select>
-                                </th>
+                                    value={singlePatrimonio.memoriaRamDDR}
+                                    readOnly
+                                  /> <FiAlertTriangle className='icon icon-attention'/>
+                                </td>
+                                
                               </tr>
                               <tr>
                                 <th>
                                   <label htmlFor="hard_disk">Hard Disk</label>
                                 </th>
-                                <th>
+                                <td>
                                   <input
                                     type="text"
                                     name="hard_disk"
@@ -462,11 +791,64 @@ const onSubmit = (data) => {
                                       setFormData({ ...formData, hard_disk: e.target.value });
                                     }}
                                   />
-                                </th>
+                                </td>
                               </tr>
                             </tbody>
                           </table>
                         </form>
+                        ) : null}
+                        { selector === "local" ? (
+                          <form onSubmit={handleSubmit(onSubmit)}>
+                             <h1>Local</h1>
+                             <table>
+                               <tbody>
+                                 <tr>
+                                   <th>
+                                     <label htmlFor="local">Local:</label>
+                                   </th>
+                                   <td>
+                                     <input type="text" name="local" id="local" placeholder="Local"
+                                       value={formData.local}
+                                       onChange={(e)=>{
+                                       setFormData({...formData, local: e.target.value})
+                                       }}
+                                     />
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                   <th>
+                                     <label htmlFor="departamento">Departamento:</label>
+                                   </th>
+                                   <td>
+                                     <input type="text" name="departamento" id="departamento"placeholder="Departamento"
+                                       value={formData.departamento}
+                                       onChange={(e)=>{
+                                       setFormData({...formData, departamento: e.target.value})
+                                       }}
+                                     />
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                   <th>
+                                     <label htmlFor="estado">Estado: </label>
+                                   </th>
+                                   <th>
+                                     <select name="estado" id="estado" className="appearance-select"
+                                        value={formData.estado}
+                                        onChange={(e)=>{
+                                        setFormData({...formData, estado: e.target.value })
+                                        }}
+                                     >
+                                       <option value=""></option>
+                                       <option value="Ativo"> Ativo</option>
+                                       <option value="Manutenção">Manutenção</option>
+                                       <option value="Reserva">Reserva</option>
+                                     </select>
+                                   </th>
+                                 </tr>
+                               </tbody>
+                             </table>
+                           </form>
                         ) : null}
                         
                     </div>
