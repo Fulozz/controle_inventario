@@ -68,9 +68,14 @@
     .modal-item {
         width: 94%;
         margin-left: 2rem;
-        margin-top: 10px;
         h3{
+            position: relative;
             font-weight: 500;
+            margin-top: 10px;
+        }
+        h2{
+            position: relative;
+            margin-left: 10%;
         }
       }
       .modal-bottom{
@@ -78,11 +83,9 @@
         margin: 2rem;
         right: 0;
         bottom: 0;
-        
+        font-size: 12px;
     }
   }
-  
-
 
 .listingSection {
     flex-basis: 70%;

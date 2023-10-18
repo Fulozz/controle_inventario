@@ -14,7 +14,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    height: 500px;
+    height: 550px;
     background-color: white;
     border-radius: 20px;
     display: flex;
@@ -25,7 +25,9 @@
         background: transparent;
         border: none;
                 .icon{
-            color: var(--primaryColor);
+                    color: var(--primaryColor);
+                    width: 25px;
+                    height: 25px;
         }
     }
     .modal-top, .modal-bottom{
@@ -33,30 +35,92 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        margin: 2rem;
+        margin-top: 2rem;
+        margin-left: 2rem;
         h1{
             text-transform: uppercase;
             font-size: 2.4rem;
-        }
-        .icon{
-            width: 30px; 
-        }
-        
+        }       
     }
+    form{
+        input-left{
+            text-align: left;
+            width: 50px !important;
+          }
+          .input-right{
+            text-align: right;
+            width: 50px !important;
+          }
+        table {
+            width: auto;
+            padding-left: 10px;
+            border-spacing: 1rem 0rem !important;
+            tr{
+                        th {
+                        height: 30px;
+                        text-align: center;
+                        font-size: 18px;
+                    }
+                        .icon{
+                            position: relative;
+                            top: 10px;
+                            color: red;
+                            justify-content: center;
+                        }
+                    }
+          }
+        
+          
+          
+        h1{
+            text-align: left;
+            margin-bottom: 2%;
+        }
+        input{
+            color: #000;
+              margin: 10px;
+              padding: 0.5rem .5rem;
+              border-radius: 10px;
+          }
+    }
+
+    
+
     .modal-item {
         width: 94%;
         margin-left: 2rem;
-        margin-top: 10px;
         h3{
+            position: relative;
             font-weight: 500;
+            margin-top: 10px;
         }
-      }
+        h2{
+            margin-top: 10px;
+            position: relative;
+            margin-left: 10%;
+        }
+        .selector{
+            padding-left: .5rem;
+            padding-right: .5rem;
+            margin-top: 10px;
+            position: relative;
+            .active{
+                color: var(--primaryColor);
+            }                    
+        }
+    }
       .modal-bottom{
         position: absolute;
         margin: 2rem;
-        right: 0;
-        bottom: 0;
-        
+        font-size: 12px;
+        .right-button{
+            right: 0;
+            bottom: 0
+        }
+        .left-button{
+            left: 0;
+            bottom: 0
+        }
     }
   }
   

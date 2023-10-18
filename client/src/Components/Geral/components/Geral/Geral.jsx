@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 import './Geral.css'
 import computer from '../../../Dashboard/Assets/computer.png'
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineSave } from "react-icons/ai";
 import {FiEdit} from 'react-icons/fi'
 import { Link } from "react-router-dom";
 import Axios from 'axios'

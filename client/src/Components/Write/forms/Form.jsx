@@ -6,9 +6,11 @@ import Axios from "axios";
 const Form = () => {
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
+  
   const Next = () => setPage(page + 1);
   const Previous = () => setPage(page - 1);
   const Cancel = () => navigate("/dashboard");
+
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
   const date = new Date();
@@ -1216,6 +1218,12 @@ const Form = () => {
                     </tr>
                     <tr>
                       <th>
+                        <strong>DDR:  </strong>
+                      </th>
+                      <th>{formData.memoriaRamDDR}</th>
+                    </tr>
+                    <tr>
+                      <th>
                         <strong>Disco rígido: </strong>
                       </th>
                       <th>{formData.hard_disk}</th>
@@ -1255,6 +1263,12 @@ const Form = () => {
                         <strong>Memória RAM: </strong>
                       </th>
                       <th>{formData.memoriaRam}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>DDR:  </strong>
+                      </th>
+                      <th>{formData.memoriaRamDDR}</th>
                     </tr>
                     <tr>
                       <th>
@@ -1310,6 +1324,12 @@ const Form = () => {
                         <strong>Memória RAM: </strong>
                       </th>
                       <th>{formData.memoriaRam}</th>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>DDR:  </strong>
+                      </th>
+                      <th>{formData.memoriaRamDDR}</th>
                     </tr>
                     <tr>
                       <th>

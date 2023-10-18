@@ -14,7 +14,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
-  height: 500px;
+  height: 550px;
   background-color: white;
   border-radius: 20px;
   display: flex;
@@ -27,33 +27,89 @@
 }
 .modal-content button .icon {
   color: var(--primaryColor);
+  width: 25px;
+  height: 25px;
 }
 .modal-content .modal-top, .modal-content .modal-bottom {
   position: relative;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin: 2rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
 }
 .modal-content .modal-top h1, .modal-content .modal-bottom h1 {
   text-transform: uppercase;
   font-size: 2.4rem;
 }
-.modal-content .modal-top .icon, .modal-content .modal-bottom .icon {
-  width: 30px;
+.modal-content form input-left {
+  text-align: left;
+  width: 50px !important;
+}
+.modal-content form .input-right {
+  text-align: right;
+  width: 50px !important;
+}
+.modal-content form table {
+  width: auto;
+  padding-left: 10px;
+  border-spacing: 1rem 0rem !important;
+}
+.modal-content form table tr th {
+  height: 30px;
+  text-align: center;
+  font-size: 18px;
+}
+.modal-content form table tr .icon {
+  position: relative;
+  top: 10px;
+  color: red;
+  justify-content: center;
+}
+.modal-content form h1 {
+  text-align: left;
+  margin-bottom: 2%;
+}
+.modal-content form input {
+  color: #000;
+  margin: 10px;
+  padding: 0.5rem 0.5rem;
+  border-radius: 10px;
 }
 .modal-content .modal-item {
   width: 94%;
   margin-left: 2rem;
-  margin-top: 10px;
 }
 .modal-content .modal-item h3 {
+  position: relative;
   font-weight: 500;
+  margin-top: 10px;
+}
+.modal-content .modal-item h2 {
+  margin-top: 10px;
+  position: relative;
+  margin-left: 10%;
+}
+.modal-content .modal-item .selector {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-top: 10px;
+  position: relative;
+}
+.modal-content .modal-item .selector .active {
+  color: var(--primaryColor);
 }
 .modal-content .modal-bottom {
   position: absolute;
   margin: 2rem;
+  font-size: 12px;
+}
+.modal-content .modal-bottom .right-button {
   right: 0;
+  bottom: 0;
+}
+.modal-content .modal-bottom .left-button {
+  left: 0;
   bottom: 0;
 }
 

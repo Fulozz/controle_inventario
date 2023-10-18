@@ -71,12 +71,17 @@ const Listing = () => {
               </button>            
                 </div>
                 <div className="modal-item">
-                  <h3> <strong> Patrimonio: </strong>{singlePatrimonio.patrimonio}</h3>
-                  <h3> <strong> Categoria: </strong> {singlePatrimonio.categoria}</h3>
-                  <h3> <strong> Número de série:  </strong>{singlePatrimonio.serial_number}</h3>
-                  <h3> <strong> Marca:  </strong>{singlePatrimonio.marca}</h3>
-                  <h3> <strong> Modelo:  </strong>{singlePatrimonio.modelo}</h3>
-                </div>
+                    <h2>Informações</h2>
+                        <h3> <strong> Patrimonio: </strong>{singlePatrimonio.patrimonio}</h3>
+                        <h3> <strong> Categoria: </strong> {singlePatrimonio.categoria}</h3>
+                        <h3> <strong> Número de série:  </strong>{singlePatrimonio.serial_number}</h3>
+                        <h3> <strong> Marca:  </strong>{singlePatrimonio.marca}</h3>
+                        <h3> <strong> Modelo:  </strong>{singlePatrimonio.modelo}</h3>
+                    <h2><strong>Hardware</strong></h2>
+                        <h3><strong>CPU:</strong> {singlePatrimonio.cpu}</h3>
+                        <h3><strong>GPU:</strong> {singlePatrimonio.gpu}</h3>
+                        <h3><strong>Memoria:</strong> {singlePatrimonio.memoriaRam} {singlePatrimonio.memoriaRamDDR}</h3>
+                    </div>
 
                 <div className="modal-bottom">
                 

@@ -2,6 +2,7 @@ import React from 'react';
 import './body.css';
 import Top from '../../Dashboard/Components/Body Section/Top Section/Top'
 import Geral from './Geral/Geral';
+import GeralTest from './Geral/GeralTest';
 
 function Body() {
   return (
@@ -9,7 +10,8 @@ function Body() {
         <Top />
 
         <div className="bottom flex">
-          <Geral />
+          {/* <Geral /> */}
+          <GeralTest />
         </div>
        </div>
   )

@@ -67,16 +67,22 @@
 .modal-content .modal-item {
   width: 94%;
   margin-left: 2rem;
-  margin-top: 10px;
 }
 .modal-content .modal-item h3 {
+  position: relative;
   font-weight: 500;
+  margin-top: 10px;
+}
+.modal-content .modal-item h2 {
+  position: relative;
+  margin-left: 10%;
 }
 .modal-content .modal-bottom {
   position: absolute;
   margin: 2rem;
   right: 0;
   bottom: 0;
+  font-size: 12px;
 }
 
 .listingSection {

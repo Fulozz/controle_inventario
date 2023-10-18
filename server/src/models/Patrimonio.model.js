@@ -18,6 +18,7 @@ const patrimonioSchema = new Schema({
   cpu: { type: String, maxLenght: 50},
   gpu: { type: String, maxLenght: 50},
   memoriaRam: { type: String, maxLenght: 50},
+  memoriaRamDDR: { type: String, maxLenght: 50},
   hard_disk: { type: String, maxLenght: 50},
   sistema_operacional: { type: String, maxLenght: 50},
   local: { type: String, maxLenght: 50, required: true},
