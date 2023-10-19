@@ -34,7 +34,7 @@ const Top = () => {
   const [isActiveHardware, setIsActiveHardware] = useState(false);
   const [isActiveLocal, setIsActiveLocal] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isEditable, setIsEditable] = useState(true);
+  const [isEditable, setIsEditable] = useState(false);
 
 
   const fechar = () => {
@@ -68,6 +68,85 @@ const Top = () => {
     setIsActiveHardware(false);
     setIsActiveLocal(true);
   };
+  const Update = () => {
+    const host_name = formData.host_name || singlePatrimonio.host_name;
+    const modelo = formData.modelo || singlePatrimonio.modelo;
+    const marca = formData.marca || singlePatrimonio.marca;
+    const tipo_impressora = formData.tipo_impressora || singlePatrimonio.tipo_impressora;
+    const tipo_monitor = formData.tipo_monitor || singlePatrimonio.tipo_monitor;
+    const formato = formData.formato || singlePatrimonio.formato;
+    const tamanho = formData.tamanho || singlePatrimonio.tamanho;
+
+    switch (selector && singlePatrimonio.categoria) {
+      case "informação" && "computador":
+        Axios.post(
+          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            host_name: host_name,
+            modelo: modelo,
+            marca: marca,
+          },
+          window.location.reload()
+        );
+        break;
+      case "informação" && "notebook":
+        Axios.post(
+          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            host_name: host_name,
+            modelo: modelo,
+            marca: marca,
+          },
+          window.location.reload()
+        );
+        break;
+      case "informação" && "impressora":
+        Axios.post(
+          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            host_name: host_name,
+            modelo: modelo,
+            marca: marca,
+            tipo_impressora: tipo_impressora,
+          },
+          window.location.reload()
+        );
+        break;
+      case "informação" && "monitor":
+        Axios.post(
+          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            host_name: host_name,
+            modelo: modelo,
+            marca: marca,
+            tipo_monitor: tipo_monitor,
+            formato: formato,
+            tamanho: tamanho,
+          },
+          window.location.reload()
+        );
+        break;
+      case "informação" && "telefone":
+        Axios.post(
+          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            host_name: host_name,
+            modelo: modelo,
+            marca: marca,
+          },
+          window.location.reload()
+        );
+        break;
+
+      default:
+        break;
+    }
+  };
 
   const findData = async () =>{
     await Axios.post(`http://localhost:3000/api/v1/search/${searchData}`,{
@@ -76,6 +155,7 @@ const Top = () => {
       console.log(response);
       setSinglePatrimonio(response.data)
       setIsVisible(true)
+      setIsEditable(true);
   })
 
   }
@@ -1235,7 +1315,7 @@ const Top = () => {
                 ) : (
               <div className="modal-bottom">
                     <button className='left-button' onClick={()=>{
-                         setIsEditable(false)
+                         setIsEditable(true)
                         }} >
                         <AiOutlineClose className="icon" />
                     </button> 
