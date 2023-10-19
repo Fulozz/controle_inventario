@@ -1,8 +1,9 @@
 import React from 'react';
 import './body.css';
-import Top from './Top Section/Top';
+
 import Listing from './Listing Section/Listing';
 import Activity from './Activity Section/Activity';
+import Top from '../../../Top Section/Top';
 function Body() {
   return (
     <div className='mainContent'>

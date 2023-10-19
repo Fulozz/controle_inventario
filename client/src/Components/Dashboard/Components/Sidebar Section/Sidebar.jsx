@@ -1,6 +1,6 @@
 import React from 'react'
 
-import logo from '../../Assets//Perfil GS.png'
+import logo from '../../../Assets/Perfil GS.png'
 import './sidebar.css'
 import { IoMdSpeedometer } from 'react-icons/io'
 import {  MdOutlineExplore, MdOutlinePermContactCalendar } from 'react-icons/md'

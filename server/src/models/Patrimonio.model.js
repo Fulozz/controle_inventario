@@ -13,7 +13,7 @@ const patrimonioSchema = new Schema({
   modelo: { type: String, maxLenght: 50, required: true},
   tipo_impressora: { type: String, maxLenght: 50},
   formato: { type: String, maxLenght: 50},
-  tipo: { type: String, maxLenght: 50 },
+  tipo_monitor: { type: String, maxLenght: 50 },
   tamanho: { type: String, maxLenght: 50 },
   cpu: { type: String, maxLenght: 50},
   gpu: { type: String, maxLenght: 50},

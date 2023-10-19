@@ -8,7 +8,7 @@ exports.getPatrimonioListing = async(req,  res )=>{
         await Patrimonio.find().sort({createdAt: -1})
         .limit(6)
         .then((patrimonios)=>{
-            return res.json(patrimonios)
+            return res.send(patrimonios)
         })
     } catch (err) {
         return res.status(401).send({
@@ -42,14 +42,14 @@ exports.createPatrimonio = async (req,res)=> {
         })
 
         if(isPatrimonio.length >= 1){
-            return res.status(400).json({ message: 'Patrimonio já registrado' });
+            return res.status(400).send({ message: 'Patrimonio já registrado' });
         }
 
         const newPatrimonio = new Patrimonio(req.body);
           // Salvar o produto
         const patrimonio = await newPatrimonio.save();
     
-        return res.status(200).json({ message: 'Patrimonio registrado com sucesso', 
+        return res.status(200).send({ message: 'Patrimonio registrado com sucesso', 
         patrimonio })
     } catch (error) {
         return res.status(500).send({ error: error })
@@ -58,9 +58,12 @@ exports.createPatrimonio = async (req,res)=> {
 };
 
 exports.searchItem = async (req, res) =>{
+    
     try{
-        await Patrimonio.find({patrimonio : req.body.patrimonio}).then((patrimonio)=>{
-            return res.status(200).send(patrimonio)
+        await Patrimonio.findOne({patrimonio: req.body.patrimonio})
+        .then((patrimonio)=>{
+            res.status(200).json(patrimonio),
+            console.log(patrimonio);
         })
     }
     catch (err) {
@@ -75,19 +78,17 @@ exports.updatePatrimonio = async (req,res) => {
     const patrimonio = await Patrimonio.findOneAndUpdate({
         patrimonio: req.body.patrimonio
     },{
-        $set: {
-            host_name: req.body.host_name
-        }
+        $set: req.body   
     });
     if (patrimonio) {
         // Salve as alterações
         await patrimonio.save();
     
         // Retorne o documento atualizado
-        res.status(200).json(patrimonio);
+        res.status(200).send(patrimonio);
       } else {
         // Retorne um erro
-        res.status(404).json({
+        res.status(404).send({
           error: "O patrimônio não foi encontrado",
         });
       }

@@ -1,198 +1,129 @@
-import React, { useEffect, useState } from "react";
-import "./listing.css";;
+import React, { useEffect, useState } from 'react'
+import './top.css'
 import Axios from 'axios'
-// imported icons;
-import { BsArrowRightShort } from "react-icons/bs";
-import { AiOutlineClose, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineSave } from "react-icons/ai";
-import {FiAlertTriangle, FiEdit} from 'react-icons/fi'
+// Import de Icons 
+import { BiSearchAlt } from 'react-icons/bi'
+import { TbMessageCircle } from 'react-icons/tb'
+import { IoIosNotificationsOutline } from 'react-icons/io'
 
-import { Link } from "react-router-dom";
-//imported image
-import computer from "../../../../Assets/computer.png";
-import { useForm } from "react-hook-form";
+//Imported Images
+import img from '../Assets/Perfil GS.png'
+import img2 from '../Assets/gscN.jpg'
+import { useForm } from 'react-hook-form'
+import { AiOutlineClose, AiOutlineEyeInvisible, AiOutlineSave } from 'react-icons/ai'
+import { FiAlertTriangle, FiEdit } from 'react-icons/fi'
+
+const Top = () => {
+  const [formData, setFormData] = useState({
+    searchData: ""
+  });
+  const searchData = formData.searchData
+  const { handleSubmit } = useForm({
+    initialValues: formData,
+  });
+ const onSubmit = (data) => {
+  console.log(data);
+ }
+
+  const [singlePatrimonio, setSinglePatrimonio] = useState();
 
 
+  const [selector, setSelector] = useState("informação");
 
-
-const Listing = () => {
-
-  const [patrimonio, setPatrimonio] = useState([])
+  const [isActiveInfo, setIsActiveInfo] = useState(false);
+  const [isActiveHardware, setIsActiveHardware] = useState(false);
+  const [isActiveLocal, setIsActiveLocal] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isEditable, setIsEditable] = useState(false);
-  const [singlePatrimonio, setSinglePatrimonio] = useState()
+  const [isEditable, setIsEditable] = useState(true);
 
-   const [selector, setSelector] = useState("informação");
-  
-   const [isActiveInfo, setIsActiveInfo] = useState(false);
-   const [isActiveHardware, setIsActiveHardware] = useState(false);
-   const [isActiveLocal, setIsActiveLocal] = useState(false);
-  const Fechar = () => {
+
+  const fechar = () => {
     setIsVisible(false);
-    
+    setIsEditable(false);
     setSelector("informação");
     setIsActiveInfo(true);
     setIsActiveHardware(false);
     setIsActiveLocal(false);
+  };
+  const informação = () => {
+    setSelector("informação");
+
+    setIsActiveInfo(true);
+    setIsActiveHardware(false);
+    setIsActiveLocal(false);
+  };
+
+  const hardware = () => {
+    setSelector("hardware");
+
+    setIsActiveInfo(false);
+    setIsActiveHardware(true);
+    setIsActiveLocal(false);
+  };
+
+  const local = () => {
+    setSelector("local");
+
+    setIsActiveInfo(false);
+    setIsActiveHardware(false);
+    setIsActiveLocal(true);
+  };
+
+  const findData = async () =>{
+    await Axios.post(`http://localhost:3000/api/v1/search/${searchData}`,{
+      patrimonio: searchData
+    }).then((response)=>{
+      console.log(response);
+      setSinglePatrimonio(response.data)
+      setIsVisible(true)
+  })
+
   }
- const informação = () =>{
-  setSelector("informação");
-
-  setIsActiveInfo(true);
-  setIsActiveHardware(false);
-  setIsActiveLocal(false);
- }
-
- const hardware = () =>{
-  setSelector("hardware");
-
-  setIsActiveInfo(false);
-  setIsActiveHardware(true);
-  setIsActiveLocal(false);
- }
-
- const local = () =>{
-  setSelector("local");
-
-  setIsActiveInfo(false);
-  setIsActiveHardware(false);
-  setIsActiveLocal(true);
- }
-
-
- const [formData, setFormData] = useState({
-  // Geral
-  host_name: "",
-  marca: "",
-  modelo: "",
-  // Impressora
-  tipo_impressora: "",
-  // Monitor
-  tamanho: "",
-  tipo_monitor: "",
-  formato: "",
-  categoria: "",
-  // hardware
-  cpu: "",
-  gpu: "",
-  memoriaRam: "",
-  memoriaRamDDR: "",
-  hard_disk: "",
-  // Switch
-  portas: "",
-  poe: "",
-  gerenciavel: "",
-  // Servidor
-  hard_disk_2: "",
-  sistema_operacional: "",
-  power_suply: "",
-  acesso_remoto: "",
-  //Geral
-  local: "",
-  departamento: "",
-  estado: "",
-});
-
-//Handle the formData
-const { handleSubmit } = useForm({
-  initialValues: formData,
-});
-
-const onSubmit = (data) => {
-  console.log(data);
-}
-
-
-const Update = () =>{
-  const host_name = formData.host_name || singlePatrimonio.host_name;
-  const modelo = formData.modelo || singlePatrimonio.modelo;
-  const marca = formData.marca || singlePatrimonio.marca;
-  const tipo_impressora = formData.tipo_impressora || singlePatrimonio.tipo_impressora;
-  const tipo_monitor = formData.tipo_monitor || singlePatrimonio.tipo_monitor;
-
-  
-
-  switch (selector && singlePatrimonio.categoria) {
-    case "informação" && "computador":
-      Axios.post(`http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,{
-        patrimonio: singlePatrimonio.patrimonio,
-        host_name: host_name,
-        modelo: modelo,
-        marca: marca,
-      },
-      window.location.reload()
-    )
-      break;
-      case "informação" && "tipo_impressora":
-      Axios.post(`http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,{
-        patrimonio: singlePatrimonio.patrimonio,
-        host_name: host_name,
-        modelo: modelo,
-        marca: marca,
-        tipo_impressora: tipo_impressora
-      },
-      window.location.reload()
-    )
-      break;
-      case "informação" && "monitor":
-      Axios.post(`http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,{
-        patrimonio: singlePatrimonio.patrimonio,
-        host_name: host_name,
-        modelo: modelo,
-        marca: marca,
-      },
-      window.location.reload()
-    )
-      break;
-  
-    default:
-      break;
-  }
-}
-
-
-  useEffect(()=>{
-    Axios.get('http://localhost:3000/api/v1/patrimonio/:id').then((response)=>{
-      setPatrimonio(response.data)
-    })
-  },[])
-  useEffect(()=>{
-    Axios.get('http://localhost:3000/api/v1/listing').then((response)=>{
-      setPatrimonio(response.data)
-    })
-  },[])
-
 
   return (
-    <div className='listingSection'>
-    <div className="flex">
- 
-      <div className="secContainer flex">
-        {patrimonio && patrimonio.map((patrimonio, index) => (
-            <div className="singleItem" key={index}>
-            <h5>{patrimonio.host_name}</h5>
-            <button  onClick={()=>{
-              setIsVisible(true)
-              setIsEditable(true)
-              setSinglePatrimonio(patrimonio)
-            }} >
-              <AiOutlineEye className="icon" />
-              </button>
-              <img src={computer} alt="Image Name" />
-              <Link onClick={()=>{
-                setIsEditable(false)
-                setIsVisible(true)
-            }}>
-                <h3>{patrimonio.patrimonio}</h3>
-              </Link>
-              </div>
-          ))}   
+    <div className="topSection">
+      <div className="headerSection flex">
+        <div className="title">
+          <h1>Admin dashboard</h1>
+        </div>
+        <div className="searchBar flex">
+          <form onSubmit={handleSubmit(onSubmit)}>
+          <input type="text" placeholder='Search Dashboard'
+          value={formData.searchData}
+           onChange={(e)=>{
+            setFormData({...formData, searchData: e.target.value})
+          }} />
+          </form>
+          <BiSearchAlt className='icon' onClick={findData} type='submit' />
+        </div>
+
+        <div className="adminDiv flex">
+          <TbMessageCircle className='icon' />
+          <IoIosNotificationsOutline className='icon' />
+          <div className="adminImage">
+            <img src={img} alt="Admin Image" />
+             {/* incluir uma maneira de puxar essa imagem do usuario do banco de dados, 
+             e uma maneira de envia-la para lá pelo frontend*/}
+          </div>
+        </div>
       </div>
-      {isVisible && (
+
+      <div className="cardSection flex">
+        <div className="rightCard flex">
+          <h1>Esse é o inventario de Patrimonio GS/VMP</h1>
+          <p>Esses foram os ultimos computadores inclusos em sistema</p>
+          <div className="videoDiv">
+          <img src={img2} alt="Admin Image" className='topImage' />
+          </div>
+          </div>
+          </div>
+
+          {isVisible && (
         <div className="modal" style={{ zIndex: 100}}>
           <div className="modal-content">
             <div className="modal-top">
                 <h1>{singlePatrimonio.host_name}</h1>
-                  <button  onClick={Fechar} >
+                  <button  onClick={fechar} >
               <AiOutlineEyeInvisible className="icon" />
               </button>         
                 </div>
@@ -312,7 +243,8 @@ const Update = () =>{
                       </>
                     ) : null }    
                     </div>
-                    ) : ( <div className="modal-item">                     
+                ) : (
+                    <div className="modal-item">                     
                         {   selector === "informação" && singlePatrimonio.categoria === "computador" ? (
                           <form onSubmit={handleSubmit(onSubmit)}>
                           <h1>Informações de cadastro</h1>
@@ -1192,71 +1124,46 @@ const Update = () =>{
                               </tr>
                               <tr>
                                 <th>
-                                  <label htmlFor="tipo">Tipo: </label>
+                                  <label htmlFor="tipo_monitor">Tipo de monitor: </label>
+                                </th>
+                                <td>
+                                    <select
+                                      name="tipo_monitor"
+                                      id="tipo_monitor"
+                                      className="appearance-select"
+                                      value={formData.tipo_monitor}
+                                      onChange={(e) => {
+                                        setFormData({
+                                          ...formData,
+                                          tipo_monitor: e.target.value,
+                                        });
+                                      }}
+                                    >
+                                      <option value=""></option>
+                                      <option value="smartTv"> SmartTv</option>
+                                      <option value="monitor"> Monitor</option>
+                                    </select>
+                                </td>
+                                </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="formato">Formato: </label>
                                 </th>
                                 <td>
                                   <input
                                     type="text"
-                                    name="tipo"
-                                    id="tipo"
-                                    placeholder="tipo"
-                                    value={formData.tipo}
+                                    name="formato"
+                                    id="formato"
+                                    placeholder={singlePatrimonio.formato}
+                                    value={formData.formato}
                                     onChange={(e) => {
-                                      setFormData({ ...formData, tipo: e.target.value });
+                                      setFormData({ ...formData, formato: e.target.value });
                                     }}
                                   />
                                 </td>
                               </tr>
-                              <tr>
-                                <th>
-                                  <label htmlFor="memoriaRam">Memory RAM: </label>
-                                </th>
-                                <td>
-                                  <input
-                                    type="text"
-                                    name="memoriaRam"
-                                    id="memoriaRam"
-                                    placeholder="Memoria Ram"
-                                    value={formData.memoriaRam}
-                                    onChange={(e) => {
-                                      setFormData({ ...formData, memoriaRam: e.target.value });
-                                    }}
-                                  />
-                                </td>
-                              </tr>
-                              <tr>
-                                <th>
-                                  <label htmlFor="memoriaRamDDR">DDR: </label>
-                                </th>
-                                
-                                <td>
-                                  <input
-                                    type="text"
-                                    name="memoriaRamDDR"
-                                    id="memoriaRamDDR"
-                                    value={singlePatrimonio.memoriaRamDDR}
-                                    readOnly
-                                  /> <FiAlertTriangle className='icon icon-attention'/>
-                                </td>
-                                
-                              </tr>
-                              <tr>
-                                <th>
-                                  <label htmlFor="hard_disk">Hard Disk</label>
-                                </th>
-                                <td>
-                                  <input
-                                    type="text"
-                                    name="hard_disk"
-                                    id="hard_disk"
-                                    placeholder="Hard Disk"
-                                    value={formData.hard_disk}
-                                    onChange={(e) => {
-                                      setFormData({ ...formData, hard_disk: e.target.value });
-                                    }}
-                                  />
-                                </td>
-                              </tr>
+                          
+                          
                             </tbody>
                           </table>
                         </form>
@@ -1328,7 +1235,7 @@ const Update = () =>{
                 ) : (
               <div className="modal-bottom">
                     <button className='left-button' onClick={()=>{
-                         setIsEditable(true)
+                         setIsEditable(false)
                         }} >
                         <AiOutlineClose className="icon" />
                     </button> 
@@ -1343,10 +1250,8 @@ const Update = () =>{
           </div>
         </div>
       )}
-    
-      </div>
-    </div>
-  );
-};
+        </div>
+  )
+}
 
-export default Listing;
+export default Top

@@ -6,7 +6,7 @@ import { BsArrowRightShort } from 'react-icons/bs'
 
 
 //import images
-import img from '../../../Assets/1693004941361.jpeg'
+import img from '../../../../Assets/1693004941361.jpeg'
 
 const Activity = () => {
   const [user, setUser] = useState(null)
