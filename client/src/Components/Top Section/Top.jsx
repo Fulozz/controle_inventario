@@ -1,29 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import './top.css'
-import API from '../API/API'
-// Import de Icons 
-import { BiSearchAlt } from 'react-icons/bi'
-import { TbMessageCircle } from 'react-icons/tb'
-import { IoIosNotificationsOutline } from 'react-icons/io'
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import './top.css';
+import API from '../API/API';
 
+
+// Import de Icons 
+import { BiSearchAlt } from 'react-icons/bi';
+import { IoIosNotificationsOutline } from 'react-icons/io';
+import { AiOutlineClose, AiOutlineEyeInvisible, AiOutlinePaperClip, AiOutlinePushpin, AiOutlineSave } from 'react-icons/ai';
+import { FiAlertTriangle, FiEdit } from 'react-icons/fi';
 //Imported Images
-import img from '../Assets/Perfil GS.png'
-import img2 from '../Assets/gscN.jpg'
-import { useForm } from 'react-hook-form'
-import { AiOutlineClose, AiOutlineEyeInvisible, AiOutlineSave } from 'react-icons/ai'
-import { FiAlertTriangle, FiEdit } from 'react-icons/fi'
+
+import img from '../Assets/Perfil GS.png';
+import img2 from '../Assets/gscN.jpg';
+
+
+import Taskbar from './components/taskbar';
 
 const Top = () => {
   const [formData, setFormData] = useState({
     searchData: ""
   });
-  const searchData = formData.searchData
+  const [openTask , setOpenTask] = useState(true);
+  const searchData = formData.searchData;
   const { handleSubmit } = useForm({
     initialValues: formData,
   });
  const onSubmit = (data) => {
   console.log(data);
- }
+ };
 
   const [singlePatrimonio, setSinglePatrimonio] = useState();
 
@@ -37,13 +42,20 @@ const Top = () => {
   const [isEditable, setIsEditable] = useState(false);
 
 
-  const fechar = () => {
+  const Close = () => {
     setIsVisible(false);
     setIsEditable(false);
     setSelector("informação");
     setIsActiveInfo(true);
     setIsActiveHardware(false);
     setIsActiveLocal(false);
+  };
+  const switchTask = () =>{
+    if(!openTask){
+      setOpenTask(true)
+    } else {
+      setOpenTask(false)
+    }
   };
   const informação = () => {
     setSelector("informação");
@@ -156,15 +168,24 @@ const Top = () => {
       setSinglePatrimonio(response.data)
       setIsVisible(true)
       setIsEditable(true);
-  })
+  });
 
-  }
+  };
+
+  var lastScrollTop = 0;
+
+  window.addEventListener('scroll', function (e) {
+   // mesma posição
+      if (e.scrollY === lastScrollTop) return;
+      this.scrollY < lastScrollTop ? "Cima" :  setOpenTask(true) 
+      lastScrollTop = this.scrollY;
+    }, true)
 
   return (
     <div className="topSection">
       <div className="headerSection flex">
         <div className="title">
-          <h1>Admin dashboard</h1>
+          <h1>Patrimonio dashboard</h1>
         </div>
         <div className="searchBar flex">
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -178,7 +199,7 @@ const Top = () => {
         </div>
 
         <div className="adminDiv flex">
-          <TbMessageCircle className='icon' />
+          <AiOutlinePushpin className='icon' onClick={switchTask}/>
           <IoIosNotificationsOutline className='icon' />
           <div className="adminImage">
             <img src={img} alt="Admin Image" />
@@ -187,7 +208,7 @@ const Top = () => {
           </div>
         </div>
       </div>
-
+      { !openTask  ? <Taskbar /> : null}
       <div className="cardSection flex">
         <div className="rightCard flex">
           <h1>Esse é o inventario de Patrimonio GS/VMP</h1>
@@ -203,7 +224,7 @@ const Top = () => {
           <div className="modal-content">
             <div className="modal-top">
                 <h1>{singlePatrimonio.host_name}</h1>
-                  <button  onClick={fechar} >
+                  <button  onClick={Close} >
               <AiOutlineEyeInvisible className="icon" />
               </button>         
                 </div>

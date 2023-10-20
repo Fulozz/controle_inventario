@@ -1152,9 +1152,9 @@ const Form = () => {
                      }}
                   >
                     <option value=""></option>
-                    <option value="Ativo"> Ativo</option>
-                    <option value="Manutenção">Manutenção</option>
-                    <option value="Reserva">Reserva</option>
+                    <option value="ativo"> Ativo</option>
+                    <option value="manutenção">Manutenção</option>
+                    <option value="reserva">Reserva</option>
                   </select>
                 </th>
               </tr>

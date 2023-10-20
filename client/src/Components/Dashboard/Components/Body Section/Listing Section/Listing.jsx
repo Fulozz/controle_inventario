@@ -16,7 +16,14 @@ import { useForm } from "react-hook-form";
 
 const Listing = () => {
 
-  const [patrimonio, setPatrimonio] = useState([])
+    const [patrimonio, setPatrimonio] = useState([])
+    useEffect(()=>{
+      API().get('/listing').then((response)=>{
+        setPatrimonio(response.data)
+      })
+    },[])
+
+
   const [isVisible, setIsVisible] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [singlePatrimonio, setSinglePatrimonio] = useState()
@@ -26,7 +33,7 @@ const Listing = () => {
    const [isActiveInfo, setIsActiveInfo] = useState(false);
    const [isActiveHardware, setIsActiveHardware] = useState(false);
    const [isActiveLocal, setIsActiveLocal] = useState(false);
-  const Fechar = () => {
+  const Close = () => {
     setIsVisible(false);
     
     setSelector("informação");
@@ -102,64 +109,222 @@ const onSubmit = (data) => {
 }
 
 
-const Update = () =>{
+const Update = () => {
+  // Geral
   const host_name = formData.host_name || singlePatrimonio.host_name;
   const modelo = formData.modelo || singlePatrimonio.modelo;
   const marca = formData.marca || singlePatrimonio.marca;
+  // Impressora
   const tipo_impressora = formData.tipo_impressora || singlePatrimonio.tipo_impressora;
+  // Monitor e Notebook
   const tipo_monitor = formData.tipo_monitor || singlePatrimonio.tipo_monitor;
+  const formato = formData.formato || singlePatrimonio.formato;
+  const tamanho = formData.tamanho || singlePatrimonio.tamanho;
+  // Hardware
+  const cpu = formData.cpu || singlePatrimonio.cpu;
+  const gpu = formData.gpu || singlePatrimonio.gpu;
+  const memoriaRam = formData.memoriaRam || singlePatrimonio.memoriaRam;
+  const memoriaRamDDR = formData.memoriaRamDDR || singlePatrimonio.memoriaRamDDR;
+  const hard_disk = formData.hard_disk || singlePatrimonio.hard_disk;
+  // Servidor
+  const hard_disk_2 = formData.hard_disk_2 || singlePatrimonio.hard_disk_2;
+  const power_suply = formData.power_suply || singlePatrimonio.power_suply;
+  const acesso_remoto = formData.acesso_remoto || singlePatrimonio.acesso_remoto;
+  const sistema_operacional = formData.sistema_operacional || singlePatrimonio.sistema_operacional;
+  //switch
+  const portas = formData.portas || singlePatrimonio.portas;
+  const poe = formData.poe || singlePatrimonio.poe;
+  const gerenciavel = formData.gerenciavel || singlePatrimonio.gerenciavel;
+  //Local
+  const local = formData.local || singlePatrimonio.local;
+  const departamento = formData.departamento || singlePatrimonio.departamento;
+  const estado = formData.estado || singlePatrimonio.estado;
 
-  
-
+  // Informação
   switch (selector && singlePatrimonio.categoria) {
-    case "informação" && "computador":
-      API().post(`/update/${singlePatrimonio.patrimonio}`,{
-        patrimonio: singlePatrimonio.patrimonio,
-        host_name: host_name,
-        modelo: modelo,
-        marca: marca,
-      },
-      window.location.reload()
-    )
+      case "informação" && "computador":
+      API().post(
+        `/update/${singlePatrimonio.patrimonio}`,
+        {
+          patrimonio: singlePatrimonio.patrimonio,
+          host_name: host_name,
+          modelo: modelo,
+          marca: marca,
+        },
+        window.location.reload()
+      );
       break;
-      case "informação" && "tipo_impressora":
-      API().post(`/update/${singlePatrimonio.patrimonio}`,{
-        patrimonio: singlePatrimonio.patrimonio,
-        host_name: host_name,
-        modelo: modelo,
-        marca: marca,
-        tipo_impressora: tipo_impressora
-      },
-      window.location.reload()
-    )
+      case "informação" && "notebook":
+      API().post(
+        `/update/${singlePatrimonio.patrimonio}`,
+        {
+          patrimonio: singlePatrimonio.patrimonio,
+          host_name: host_name,
+          modelo: modelo,
+          marca: marca,
+        },
+        window.location.reload()
+      );
+      break;
+      case "informação" && "impressora":
+      API().post(
+        `/update/${singlePatrimonio.patrimonio}`,
+        {
+          patrimonio: singlePatrimonio.patrimonio,
+          host_name: host_name,
+          modelo: modelo,
+          marca: marca,
+          tipo_impressora: tipo_impressora,
+        },
+        window.location.reload()
+      );
       break;
       case "informação" && "monitor":
-      API().post(`/update/${singlePatrimonio.patrimonio}`,{
-        patrimonio: singlePatrimonio.patrimonio,
-        host_name: host_name,
-        modelo: modelo,
-        marca: marca,
-      },
-      window.location.reload()
-    )
+      API().post(
+        `/update/${singlePatrimonio.patrimonio}`,
+        {
+          patrimonio: singlePatrimonio.patrimonio,
+          host_name: host_name,
+          modelo: modelo,
+          marca: marca,
+          tipo_monitor: tipo_monitor,
+          formato: formato,
+          tamanho: tamanho,
+        },
+        window.location.reload()
+      );
       break;
-  
-    default:
+      case "informação" && "telefone":
+      API().post(
+        `/update/${singlePatrimonio.patrimonio}`,
+        {
+          patrimonio: singlePatrimonio.patrimonio,
+          host_name: host_name,
+          modelo: modelo,
+          marca: marca,
+        },
+        window.location.reload()
+      );
+      break;
+      case "informação" && "switch":
+      API().post(
+        `/update/${singlePatrimonio.patrimonio}`,
+        {
+          patrimonio: singlePatrimonio.patrimonio,
+          host_name: host_name,
+          modelo: modelo,
+          marca: marca,
+        },
+        window.location.reload()
+      );
+      break;
+      case "informação" && "servidor":
+      API().post(
+        `/update/${singlePatrimonio.patrimonio}`,
+        {
+          patrimonio: singlePatrimonio.patrimonio,
+          host_name: host_name,
+          modelo: modelo,
+          marca: marca,
+        },
+        window.location.reload()
+      );
+      break;
+      
+          break;
+  }
+  // Hardware
+  switch(selector && singlePatrimonio.categoria) {
+      case "hardware" && "computador":
+      API().post(
+        `/update/${singlePatrimonio.patrimonio}`,
+        {
+          patrimonio: singlePatrimonio.patrimonio,
+          cpu: cpu,
+          gpu: gpu,
+          memoriaRam: memoriaRam,
+          memoriaRamDDR:  memoriaRamDDR,
+          hard_disk: hard_disk
+        },
+        window.location.reload()
+      );
+      break;
+      case "hardware" && "notebook":
+      API().post(
+        `/update/${singlePatrimonio.patrimonio}`,
+        {
+          patrimonio: singlePatrimonio.patrimonio,
+          tamanho: tamanho,
+          cpu: cpu,
+          gpu: gpu,
+          memoriaRam: memoriaRam,
+          memoriaRamDDR:  memoriaRamDDR,
+          hard_disk: hard_disk
+        },
+        window.location.reload()
+      );
+      break;
+      case "hardware" && "monitor":
+      API().post(
+        `/update/${singlePatrimonio.patrimonio}`,
+        {
+          patrimonio: singlePatrimonio.patrimonio,
+          tamanho: tamanho,
+          tipo_monitor: tipo_monitor,
+          formato: formato
+        },
+        window.location.reload()
+      );
+      break;
+      case "hardware" && "servidor":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            cpu: cpu,
+            gpu: gpu,
+            memoriaRam: memoriaRam,
+            memoriaRamDDR:  memoriaRamDDR,
+            hard_disk: hard_disk,
+            hard_disk_2: hard_disk_2,
+            power_suply: power_suply,
+            sistema_operacional: sistema_operacional,
+            acesso_remoto: acesso_remoto
+          },
+          window.location.reload()
+        );
+        break;
+      case "hardware" && "switch":
+        API().post(`/update/${singlePatrimonio.patrimonio}`,
+            {
+              patrimonio: singlePatrimonio.patrimonio,
+              poe: poe,
+              portas: portas,
+              gerenciavel: gerenciavel
+            },
+            window.location.reload()
+          );
+          break;
+  }
+  // Local
+  switch (selector) {
+    case "local":
+      API().post(
+        `/update/${singlePatrimonio.patrimonio}`,
+        {
+          patrimonio: singlePatrimonio.patrimonio,
+          local: local,
+          estado: estado,
+          departamento: departamento
+        },
+        window.location.reload()
+      );
+
       break;
   }
-}
+};
 
 
-  useEffect(()=>{
-    API().get('/patrimonio/:id').then((response)=>{
-      setPatrimonio(response.data)
-    })
-  },[])
-  useEffect(()=>{
-    API().get('/listing').then((response)=>{
-      setPatrimonio(response.data)
-    })
-  },[])
 
 
   return (
@@ -192,7 +357,7 @@ const Update = () =>{
           <div className="modal-content">
             <div className="modal-top">
                 <h1>{singlePatrimonio.host_name}</h1>
-                  <button  onClick={Fechar} >
+                  <button  onClick={Close} >
               <AiOutlineEyeInvisible className="icon" />
               </button>         
                 </div>
@@ -1123,7 +1288,7 @@ const Update = () =>{
                                     type="text"
                                     name="memoriaRam"
                                     id="memoriaRam"
-                                    placeholder="Memoria Ram"
+                                    placeholder={singlePatrimonio.memoriaRam}
                                     value={formData.memoriaRam}
                                     onChange={(e) => {
                                       setFormData({ ...formData, memoriaRam: e.target.value });
@@ -1132,21 +1297,24 @@ const Update = () =>{
                                 </td>
                               </tr>
                               <tr>
-                                <th>
-                                  <label htmlFor="memoriaRamDDR">DDR: </label>
-                                </th>
-                                
-                                <td>
-                                  <input
-                                    type="text"
-                                    name="memoriaRamDDR"
-                                    id="memoriaRamDDR"
-                                    value={singlePatrimonio.memoriaRamDDR}
-                                    readOnly
-                                  /> <FiAlertTriangle className='icon icon-attention'/>
-                                </td>
-                                
-                              </tr>
+                                   <th>
+                                     <label htmlFor="DDR">DDR: </label>
+                                   </th>
+                                   <td>
+                                     <select name="DDR" id="DDR" className="appearance-select"
+                                        
+                                        value={formData.memoriaRamDDR}
+                                        onChange={(e)=>{
+                                        setFormData({...formData, memoriaRamDDR: e.target.value })
+                                        }}
+                                     >
+                                       <option value=""></option>
+                                       <option value="DDR2"> DDR2</option>
+                                       <option value="DDR3">DDR3</option>
+                                       <option value="DDR4">DDR4</option>
+                                     </select>
+                                   </td>
+                                 </tr>
                               <tr>
                                 <th>
                                   <label htmlFor="hard_disk">Hard Disk</label>
@@ -1160,6 +1328,169 @@ const Update = () =>{
                                     value={formData.hard_disk}
                                     onChange={(e) => {
                                       setFormData({ ...formData, hard_disk: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </form>
+                        ) : selector === "hardware" && singlePatrimonio.categoria === "servidor" ? (
+                          <form onSubmit={handleSubmit(onSubmit)}>
+                          <h1>Hardware</h1>
+                          <table>
+                            <tbody>
+                              <tr>
+                                <th>
+                                  <label htmlFor="cpu">CPU:</label>
+                                </th>
+                                <td>
+                                <input
+                                    type="text"
+                                    name="cpu"
+                                    id="cpu"
+                                    placeholder={singlePatrimonio.cpu}
+                                    value={formData.cpu}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, cpu: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="gpu">GPU: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="gpu"
+                                    id="gpu"
+                                    placeholder={singlePatrimonio.gpu}
+                                    value={formData.gpu}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, gpu: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="memoriaRam">Memory RAM: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="memoriaRam"
+                                    id="memoriaRam"
+                                    placeholder={singlePatrimonio.memoriaRam}
+                                    value={formData.memoriaRam}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, memoriaRam: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                   <th>
+                                     <label htmlFor="DDR">DDR: </label>
+                                   </th>
+                                   <td>
+                                     <select name="DDR" id="DDR" className="appearance-select"
+                                        
+                                        value={formData.memoriaRamDDR}
+                                        onChange={(e)=>{
+                                        setFormData({...formData, memoriaRamDDR: e.target.value })
+                                        }}
+                                     >
+                                       <option value=""></option>
+                                       <option value="DDR2"> DDR2</option>
+                                       <option value="DDR3">DDR3</option>
+                                       <option value="DDR4">DDR4</option>
+                                     </select>
+                                   </td>
+                                 </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="hard_disk">Hard Disk</label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="hard_disk"
+                                    id="hard_disk"
+                                    placeholder={singlePatrimonio.hard_disk}
+                                    value={formData.hard_disk}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, hard_disk: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="hard_disk_2">Hard Disk 2</label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="hard_disk_2"
+                                    id="hard_disk_2"
+                                    placeholder={singlePatrimonio.hard_disk_2}
+                                    value={formData.hard_disk_2}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, hard_disk_2: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="power_suply">Energia: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="power_suply"
+                                    id="power_suply"
+                                    placeholder={singlePatrimonio.power_suply}
+                                    value={formData.power_suply}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, power_suply: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="sistema operaciona">Sistema Operacional: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="sistema_operacional"
+                                    id="sistema_operacional"
+                                    placeholder={singlePatrimonio.sistema_operacional}
+                                    value={formData.sistema_operacional}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, sistema_operacional: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="Acesso remoto">Acesso remoto: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="acesso_remoto"
+                                    id="acesso_remoto"
+                                    placeholder={singlePatrimonio.acesso_remoto}
+                                    value={formData.acesso_remoto}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, acesso_remoto: e.target.value });
                                     }}
                                   />
                                 </td>
@@ -1208,55 +1539,85 @@ const Update = () =>{
                                 </td>
                               </tr>
                               <tr>
+                                   <th>
+                                     <label htmlFor="estado">Formato: </label>
+                                   </th>
+                                   <td>
+                                     <select name="estado" id="estado" className="appearance-select"
+                                        
+                                        value={formData.estado}
+                                        onChange={(e)=>{
+                                        setFormData({...formData, estado: e.target.value })
+                                        }}
+                                     >
+                                       <option value=""></option>
+                                       <option value="16:9"> 16:9</option>
+                                       <option value="4:3"> 4:3</option>
+                                     </select>
+                                   </td>
+                                 </tr>
+                              
+                            </tbody>
+                          </table>
+                        </form>
+                        ) : selector === "hardware" && singlePatrimonio.categoria === "switch" ? (
+                          <form onSubmit={handleSubmit(onSubmit)}>
+                          <h1>Hardware</h1>
+                          <table>
+                            <tbody>
+                              
+                              <tr>
                                 <th>
-                                  <label htmlFor="memoriaRam">Memory RAM: </label>
+                                  <label htmlFor="poe">POE:</label>
                                 </th>
                                 <td>
-                                  <input
+                                <input
                                     type="text"
-                                    name="memoriaRam"
-                                    id="memoriaRam"
-                                    placeholder="Memoria Ram"
-                                    value={formData.memoriaRam}
+                                    name="poe"
+                                    id="poe"
+                                    placeholder={singlePatrimonio.poe}
+                                    value={formData.poe}
                                     onChange={(e) => {
-                                      setFormData({ ...formData, memoriaRam: e.target.value });
+                                      setFormData({ ...formData, poe: e.target.value });
                                     }}
                                   />
                                 </td>
                               </tr>
                               <tr>
                                 <th>
-                                  <label htmlFor="memoriaRamDDR">DDR: </label>
-                                </th>
-                                
-                                <td>
-                                  <input
-                                    type="text"
-                                    name="memoriaRamDDR"
-                                    id="memoriaRamDDR"
-                                    value={singlePatrimonio.memoriaRamDDR}
-                                    readOnly
-                                  /> <FiAlertTriangle className='icon icon-attention'/>
-                                </td>
-                                
-                              </tr>
-                              <tr>
-                                <th>
-                                  <label htmlFor="hard_disk">Hard Disk</label>
+                                  <label htmlFor="portas">Portas: </label>
                                 </th>
                                 <td>
                                   <input
                                     type="text"
-                                    name="hard_disk"
-                                    id="hard_disk"
-                                    placeholder="Hard Disk"
-                                    value={formData.hard_disk}
+                                    name="portas"
+                                    id="portas"
+                                    placeholder="portas"
+                                    value={formData.portas}
                                     onChange={(e) => {
-                                      setFormData({ ...formData, hard_disk: e.target.value });
+                                      setFormData({ ...formData, portas: e.target.value });
                                     }}
                                   />
                                 </td>
                               </tr>
+                              <tr>
+                                <th>
+                                  <label htmlFor="gerenciavel">Gerenciavel: </label>
+                                </th>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="gerenciavel"
+                                    id="gerenciavel"
+                                    placeholder={singlePatrimonio.gerenciavel}
+                                    value={formData.gerenciavel}
+                                    onChange={(e) => {
+                                      setFormData({ ...formData, gerenciavel: e.target.value });
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                              
                             </tbody>
                           </table>
                         </form>
@@ -1271,7 +1632,8 @@ const Update = () =>{
                                      <label htmlFor="local">Local:</label>
                                    </th>
                                    <td>
-                                     <input type="text" name="local" id="local" placeholder="Local"
+                                     <input type="text" name="local" id="local" 
+                                      placeholder={singlePatrimonio.local}
                                        value={formData.local}
                                        onChange={(e)=>{
                                        setFormData({...formData, local: e.target.value})
@@ -1284,7 +1646,8 @@ const Update = () =>{
                                      <label htmlFor="departamento">Departamento:</label>
                                    </th>
                                    <td>
-                                     <input type="text" name="departamento" id="departamento"placeholder="Departamento"
+                                     <input type="text" name="departamento" id="departamento"
+                                       placeholder={singlePatrimonio.departamento}
                                        value={formData.departamento}
                                        onChange={(e)=>{
                                        setFormData({...formData, departamento: e.target.value})
@@ -1296,8 +1659,9 @@ const Update = () =>{
                                    <th>
                                      <label htmlFor="estado">Estado: </label>
                                    </th>
-                                   <th>
+                                   <td>
                                      <select name="estado" id="estado" className="appearance-select"
+                                        
                                         value={formData.estado}
                                         onChange={(e)=>{
                                         setFormData({...formData, estado: e.target.value })
@@ -1305,10 +1669,10 @@ const Update = () =>{
                                      >
                                        <option value=""></option>
                                        <option value="Ativo"> Ativo</option>
-                                       <option value="Manutenção">Manutenção</option>
+                                       <option value="manutenção">Manutenção</option>
                                        <option value="Reserva">Reserva</option>
                                      </select>
-                                   </th>
+                                   </td>
                                  </tr>
                                </tbody>
                              </table>

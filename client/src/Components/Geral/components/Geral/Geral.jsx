@@ -115,16 +115,39 @@ const Geral = () => {
     console.log(data);
   };
   const Update = () => {
+    // Geral
     const host_name = formData.host_name || singlePatrimonio.host_name;
     const modelo = formData.modelo || singlePatrimonio.modelo;
     const marca = formData.marca || singlePatrimonio.marca;
+    // Impressora
     const tipo_impressora = formData.tipo_impressora || singlePatrimonio.tipo_impressora;
+    // Monitor e Notebook
     const tipo_monitor = formData.tipo_monitor || singlePatrimonio.tipo_monitor;
     const formato = formData.formato || singlePatrimonio.formato;
     const tamanho = formData.tamanho || singlePatrimonio.tamanho;
+    // Hardware
+    const cpu = formData.cpu || singlePatrimonio.cpu;
+    const gpu = formData.gpu || singlePatrimonio.gpu;
+    const memoriaRam = formData.memoriaRam || singlePatrimonio.memoriaRam;
+    const memoriaRamDDR = formData.memoriaRamDDR || singlePatrimonio.memoriaRamDDR;
+    const hard_disk = formData.hard_disk || singlePatrimonio.hard_disk;
+    // Servidor
+    const hard_disk_2 = formData.hard_disk_2 || singlePatrimonio.hard_disk_2;
+    const power_suply = formData.power_suply || singlePatrimonio.power_suply;
+    const acesso_remoto = formData.acesso_remoto || singlePatrimonio.acesso_remoto;
+    const sistema_operacional = formData.sistema_operacional || singlePatrimonio.sistema_operacional;
+    //switch
+    const portas = formData.portas || singlePatrimonio.portas;
+    const poe = formData.poe || singlePatrimonio.poe;
+    const gerenciavel = formData.gerenciavel || singlePatrimonio.gerenciavel;
+    //Local
+    const local = formData.local || singlePatrimonio.local;
+    const departamento = formData.departamento || singlePatrimonio.departamento;
+    const estado = formData.estado || singlePatrimonio.estado;
 
+    // Informação
     switch (selector && singlePatrimonio.categoria) {
-      case "informação" && "computador":
+        case "informação" && "computador":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -136,7 +159,7 @@ const Geral = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "notebook":
+        case "informação" && "notebook":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -148,7 +171,7 @@ const Geral = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "impressora":
+        case "informação" && "impressora":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -161,7 +184,7 @@ const Geral = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "monitor":
+        case "informação" && "monitor":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -176,7 +199,7 @@ const Geral = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "telefone":
+        case "informação" && "telefone":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -188,9 +211,123 @@ const Geral = () => {
           window.location.reload()
         );
         break;
-
-      default:
+        case "informação" && "switch":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            host_name: host_name,
+            modelo: modelo,
+            marca: marca,
+          },
+          window.location.reload()
+        );
         break;
+        case "informação" && "servidor":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            host_name: host_name,
+            modelo: modelo,
+            marca: marca,
+          },
+          window.location.reload()
+        );
+        break;
+        
+            break;
+    }
+    // Hardware
+    switch(selector && singlePatrimonio.categoria) {
+        case "hardware" && "computador":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            cpu: cpu,
+            gpu: gpu,
+            memoriaRam: memoriaRam,
+            memoriaRamDDR:  memoriaRamDDR,
+            hard_disk: hard_disk
+          },
+          window.location.reload()
+        );
+        break;
+        case "hardware" && "notebook":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            tamanho: tamanho,
+            cpu: cpu,
+            gpu: gpu,
+            memoriaRam: memoriaRam,
+            memoriaRamDDR:  memoriaRamDDR,
+            hard_disk: hard_disk
+          },
+          window.location.reload()
+        );
+        break;
+        case "hardware" && "monitor":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            tamanho: tamanho,
+            tipo_monitor: tipo_monitor,
+            formato: formato
+          },
+          window.location.reload()
+        );
+        break;
+        case "hardware" && "servidor":
+          API().post(
+            `/update/${singlePatrimonio.patrimonio}`,
+            {
+              patrimonio: singlePatrimonio.patrimonio,
+              cpu: cpu,
+              gpu: gpu,
+              memoriaRam: memoriaRam,
+              memoriaRamDDR:  memoriaRamDDR,
+              hard_disk: hard_disk,
+              hard_disk_2: hard_disk_2,
+              power_suply: power_suply,
+              sistema_operacional: sistema_operacional,
+              acesso_remoto: acesso_remoto
+            },
+            window.location.reload()
+          );
+          break;
+        case "hardware" && "switch":
+          API().post(`/update/${singlePatrimonio.patrimonio}`,
+              {
+                patrimonio: singlePatrimonio.patrimonio,
+                poe: poe,
+                portas: portas,
+                gerenciavel: gerenciavel
+              },
+              window.location.reload()
+            );
+            break;
+    }
+    // Local
+    switch (selector) {
+      case "local":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            local: local,
+            estado: estado,
+            departamento: departamento
+          },
+          window.location.reload()
+        );
+
+        break;
+    
+
     }
   };
 
@@ -250,7 +387,7 @@ const Geral = () => {
                           </button>
                         </th>
                         {singlePatrimonio.categoria !== "telefone" &&
-                        "impressora" ? (
+                        singlePatrimonio.categoria !== "impressora" ? (
                           <>
                         
                             <th>
@@ -1673,9 +1810,9 @@ const Geral = () => {
                                 }}
                               >
                                 <option value=""></option>
-                                <option value="Ativo"> Ativo</option>
-                                <option value="Manutenção">Manutenção</option>
-                                <option value="Reserva">Reserva</option>
+                                <option value="ativo"> Ativo</option>
+                                <option value="manutenção">Manutenção</option>
+                                <option value="reserva">Reserva</option>
                               </select>
                             </th>
                           </tr>
