@@ -24,7 +24,7 @@ router.post('/update/:patrimonio',  productController.updatePatrimonio)
 router.get('/listing',  productController.getPatrimonioListing)
 router.get('/all',  productController.allPatrimonio)
 router.get('/patrimonio/:patrimonio', productController.searchItem)
-
+router.get('/manutencao', productController.getManutencao)
 
 // ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
 router.get('/dashboard', auth, userController.returnUserProfile)

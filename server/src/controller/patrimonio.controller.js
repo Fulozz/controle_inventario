@@ -18,6 +18,20 @@ exports.getPatrimonioListing = async(req,  res )=>{
     }
 };
 
+exports.getManutencao = async (req, res) =>{
+    try{
+        await Patrimonio.find({estado: "Manutenção"}).then((patrimonios)=>{
+            res.status(200).send(patrimonios)
+        })
+    }catch (err) {
+        return res.status(401).send({
+            message: 'Erro do servidor',
+            err: err
+        })
+
+    }
+}
+
 exports.allPatrimonio = async(req, res)=>{
     try{
         await Patrimonio.find().sort({patrimonio: 1}).then((patrimonios)=>{
