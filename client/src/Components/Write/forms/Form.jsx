@@ -71,7 +71,7 @@ const Form = () => {
         token: localStorage.getItem("jwt"),
       }),
     };
-    API().fetch("/user", requestInit).then((response) => {
+    fetch("http://localhost:3000/api/v1/user", requestInit).then((response) => {
       response.json().then((data) => {
         setUser(data.name);
       });
