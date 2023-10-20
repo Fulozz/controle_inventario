@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./listing.css";;
-import Axios from 'axios'
+import API from '../../../../API/API'
 // imported icons;
 import { BsArrowRightShort } from "react-icons/bs";
 import { AiOutlineClose, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineSave } from "react-icons/ai";
@@ -113,7 +113,7 @@ const Update = () =>{
 
   switch (selector && singlePatrimonio.categoria) {
     case "informação" && "computador":
-      Axios.post(`http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,{
+      API().post(`/update/${singlePatrimonio.patrimonio}`,{
         patrimonio: singlePatrimonio.patrimonio,
         host_name: host_name,
         modelo: modelo,
@@ -123,7 +123,7 @@ const Update = () =>{
     )
       break;
       case "informação" && "tipo_impressora":
-      Axios.post(`http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,{
+      API().post(`/update/${singlePatrimonio.patrimonio}`,{
         patrimonio: singlePatrimonio.patrimonio,
         host_name: host_name,
         modelo: modelo,
@@ -134,7 +134,7 @@ const Update = () =>{
     )
       break;
       case "informação" && "monitor":
-      Axios.post(`http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,{
+      API().post(`/update/${singlePatrimonio.patrimonio}`,{
         patrimonio: singlePatrimonio.patrimonio,
         host_name: host_name,
         modelo: modelo,
@@ -151,12 +151,12 @@ const Update = () =>{
 
 
   useEffect(()=>{
-    Axios.get('http://localhost:3000/api/v1/patrimonio/:id').then((response)=>{
+    API().get('/patrimonio/:id').then((response)=>{
       setPatrimonio(response.data)
     })
   },[])
   useEffect(()=>{
-    Axios.get('http://localhost:3000/api/v1/listing').then((response)=>{
+    API().get('/listing').then((response)=>{
       setPatrimonio(response.data)
     })
   },[])

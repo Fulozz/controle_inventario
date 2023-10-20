@@ -6,7 +6,7 @@ import { logout } from '../AuthProvider/AuthTS/utils';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import Axios from 'axios';
+import API from '../API/API'
 export const UserProfile = () => {
 
   const navigateTo = useNavigate();
@@ -19,7 +19,7 @@ export const UserProfile = () => {
   const token = userData?.token;
 
   // Fazer a requisição POST
-  Axios.get(`http://localhost:3000/api/v1/profile`, {
+  API().get(`/profile`, {
     token: token,
     email: email
   })

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import API from '../API/API'
 // CSS
 
 import '../../App.scss';
@@ -34,7 +34,7 @@ const Login = () => {
     };
 
 
-    Axios.post('http://localhost:3000/api/v1/login', {
+    API().post('/login', {
       name: name,
       password: password,
     }, {

@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
 import '../../App.css';
-import { Link, useNavigate } from 'react-router-dom';
-import Axios from 'axios';
+import {  useNavigate } from 'react-router-dom';
+import API from '../API/API'
 // //import video
-import video from '../Login/LoginAssets/video.mp4';
+
 import logo from '../Login/LoginAssets/Perfil GS.png';
 
 import { FaUserShield } from 'react-icons/fa';
@@ -29,8 +29,8 @@ const Register = () => {
       console.log('Por favor, preencha todos os campos.');
       return;
     };
-    //Require axios to create an API to connect with the server
-    Axios.post('http://localhost:3000/api/v1/register', {
+    //Require API to create an API to connect with the server
+    API().post('/register', {
       email: email,
       name: username,
       password: password

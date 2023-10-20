@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import "./Geral.css";
 import computer from "../../../Assets/computer.png";
-
+import API from '../../../API/API'
 import {
   AiOutlineClose,
   AiOutlineEye,
@@ -13,7 +13,7 @@ import {
 import { FiAlertTriangle, FiEdit } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-import Axios from "axios";
+
 import { useForm } from "react-hook-form";
 
 const Geral = () => {
@@ -29,7 +29,7 @@ const Geral = () => {
   const [isActiveLocal, setIsActiveLocal] = useState(false);
 
   useEffect(() => {
-    Axios.get("http://localhost:3000/api/v1/patrimonio/:id").then(
+    API().get("/patrimonio/:id").then(
       (response) => {
         setPatrimonio(response.data);
       }
@@ -37,7 +37,7 @@ const Geral = () => {
   }, []);
 
   useEffect(() => {
-    Axios.get("http://localhost:3000/api/v1/all").then((response) => {
+    API().get("/all").then((response) => {
       setPatrimonio(response.data);
     });
   }, []);
@@ -125,8 +125,8 @@ const Geral = () => {
 
     switch (selector && singlePatrimonio.categoria) {
       case "informação" && "computador":
-        Axios.post(
-          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
             host_name: host_name,
@@ -137,8 +137,8 @@ const Geral = () => {
         );
         break;
       case "informação" && "notebook":
-        Axios.post(
-          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
             host_name: host_name,
@@ -149,8 +149,8 @@ const Geral = () => {
         );
         break;
       case "informação" && "impressora":
-        Axios.post(
-          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
             host_name: host_name,
@@ -162,8 +162,8 @@ const Geral = () => {
         );
         break;
       case "informação" && "monitor":
-        Axios.post(
-          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
             host_name: host_name,
@@ -177,8 +177,8 @@ const Geral = () => {
         );
         break;
       case "informação" && "telefone":
-        Axios.post(
-          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
             host_name: host_name,

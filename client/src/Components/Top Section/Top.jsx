@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './top.css'
-import Axios from 'axios'
+import API from '../API/API'
 // Import de Icons 
 import { BiSearchAlt } from 'react-icons/bi'
 import { TbMessageCircle } from 'react-icons/tb'
@@ -79,8 +79,8 @@ const Top = () => {
 
     switch (selector && singlePatrimonio.categoria) {
       case "informação" && "computador":
-        Axios.post(
-          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
             host_name: host_name,
@@ -91,8 +91,8 @@ const Top = () => {
         );
         break;
       case "informação" && "notebook":
-        Axios.post(
-          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
             host_name: host_name,
@@ -103,8 +103,8 @@ const Top = () => {
         );
         break;
       case "informação" && "impressora":
-        Axios.post(
-          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
             host_name: host_name,
@@ -116,8 +116,8 @@ const Top = () => {
         );
         break;
       case "informação" && "monitor":
-        Axios.post(
-          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
             host_name: host_name,
@@ -131,8 +131,8 @@ const Top = () => {
         );
         break;
       case "informação" && "telefone":
-        Axios.post(
-          `http://localhost:3000/api/v1/update/${singlePatrimonio.patrimonio}`,
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
             host_name: host_name,
@@ -149,7 +149,7 @@ const Top = () => {
   };
 
   const findData = async () =>{
-    await Axios.post(`http://localhost:3000/api/v1/search/${searchData}`,{
+    await API().post(`/search/${searchData}`,{
       patrimonio: searchData
     }).then((response)=>{
       console.log(response);

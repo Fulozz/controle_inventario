@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import Axios from "axios";
+import API from '../../API/API'
 
 const Form = () => {
   const [user, setUser] = useState(null);
@@ -71,7 +71,7 @@ const Form = () => {
         token: localStorage.getItem("jwt"),
       }),
     };
-    fetch("http://localhost:3000/api/v1/user", requestInit).then((response) => {
+    API().fetch("/user", requestInit).then((response) => {
       response.json().then((data) => {
         setUser(data.name);
       });
@@ -85,7 +85,7 @@ const Form = () => {
       return;
     }
   };
-  //    Axios.post('http://localhost:3000/api/v1/create', data)
+  //    Axios.post('/create', data)
 
   const Confirm = async () => {
     if (formData.confirmation === false) {
@@ -94,7 +94,7 @@ const Form = () => {
     }
     switch (formData.categoria) {
       case "computador":
-        Axios.post("http://localhost:3000/api/v1/create", {
+        API().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -125,7 +125,7 @@ const Form = () => {
           });
         break;
       case "notebook":
-        Axios.post("http://localhost:3000/api/v1/create", {
+        API().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -157,7 +157,7 @@ const Form = () => {
           });
         break;
       case "monitor":
-        Axios.post("http://localhost:3000/api/v1/create", {
+        API().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -186,7 +186,7 @@ const Form = () => {
           });
         break;
       case "impressora":
-        Axios.post("http://localhost:3000/api/v1/create", {
+        API().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -213,7 +213,7 @@ const Form = () => {
           });
         break;
       case "telefone":
-        Axios.post("http://localhost:3000/api/v1/create", {
+        API().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -239,7 +239,7 @@ const Form = () => {
           });
         break;
       case "switch":
-        Axios.post("http://localhost:3000/api/v1/create", {
+        API().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -268,7 +268,7 @@ const Form = () => {
           });
         break;
       case "servidor":
-        Axios.post("http://localhost:3000/api/v1/create", {
+        API().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,

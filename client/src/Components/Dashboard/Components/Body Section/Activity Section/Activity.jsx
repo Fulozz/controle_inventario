@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './activity.css'
-import Axios from 'axios'
+import API from '../../../../API/API'
 //imported icons ==>
 import { BsArrowRightShort } from 'react-icons/bs'
 
@@ -30,7 +30,7 @@ const Activity = () => {
   }, []);
   
   useEffect(()=>{
-    Axios.get('http://localhost:3000/api/v1/listing').then((response)=>{
+    API().get('/listing').then((response)=>{
       setPatrimonio(response.data)
     })
   },[]);

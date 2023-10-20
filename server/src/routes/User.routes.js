@@ -13,22 +13,32 @@ router.post('/login', userController.loginUser)
 // ==> Rota responsavel por fazer a validação de usuario logado ou não logado
 router.post('/validate', userController.validateUser)
 
+
+
 // ==> Rota responsavel por criar os patrimonios: (GET) localhost:3000/api/v1/create
 router.post('/create',  productController.createPatrimonio)
-
-router.post('/search/:patrimonio', productController.searchItem)
-// ==> Rota responsavel por atualizar os patrimonios: (GET) localhost:3000/api/v1/update/:id
-router.post('/update/:patrimonio',  productController.updatePatrimonio)
 
 // ==> Rota responsavel por enviar para o frontend os patrimonios  e informações
 router.get('/listing',  productController.getPatrimonioListing)
 router.get('/all',  productController.allPatrimonio)
-router.get('/patrimonio/:patrimonio', productController.searchItem)
-router.get('/manutencao', productController.getManutencao)
+router.get('/patrimonio/:id', productController.searchItem)
 
-// ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
+// ==> Rota responsavel por atualizar os patrimonios: (GET) localhost:3000/api/v1/update/:id
+router.post('/update/:id',  productController.updatePatrimonio)
+
+// ==> Rota responsavel por atualizar os patrimonios: (GET) localhost:3000/api/v1/update/:id
+router.post('/delete/:id',  productController.deletePatrimonio)
+
+// ==> Rota responsavel por procurar os patrimonios: (GET) localhost:3000/api/v1/search/:id
+router.post('/search/:id', productController.searchItem)
+
+
+
+
+
+// ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/dashboard
 router.get('/dashboard', auth, userController.returnUserProfile)
 
-// ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/userProfile
+// ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/user
 router.post('/user', userController.returnUserProfile)
 module.exports = router
