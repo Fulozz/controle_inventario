@@ -20,6 +20,11 @@
   --smallestFontSize: .75rem;
 }
 
+@media screen and (max-width: 927px) {
+  .activitySection {
+    display: none;
+  }
+}
 .activitySection {
   flex-basis: 50%;
 }
@@ -73,4 +78,5 @@
   color: var(--greyText);
   font-weight: 500;
   font-size: var(--smallestFontSize);
-}/*# sourceMappingURL=activity.css.map */
+}
+/*# sourceMappingURL=activity.css.map */

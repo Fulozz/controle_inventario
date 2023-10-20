@@ -21,7 +21,11 @@
   }
   
   
-
+@media screen and (max-width: 927px) {
+    .activitySection{
+        display: none;
+    }
+}
   .activitySection{
     flex-basis: 50%;
     .heading{

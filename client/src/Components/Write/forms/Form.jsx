@@ -484,7 +484,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -602,7 +602,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -737,7 +737,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -823,7 +823,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -906,7 +906,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -1100,7 +1100,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -1164,7 +1164,7 @@ const Form = () => {
                   />
                 </th>
                 <th>
-                  <input type="submit" value="submit" onClick={Next} className="btn-form"
+                  <input type="submit" value="Proximo" onClick={Next} className="btn-form"
                   />
                 </th>
               </tr>
@@ -1417,7 +1417,7 @@ const Form = () => {
                   <th>
                     <input
                       type="submit"
-                      value="confirm"
+                      value="confirmar"
                       onClick={Confirm}
                       className="btn-form"
                     />
