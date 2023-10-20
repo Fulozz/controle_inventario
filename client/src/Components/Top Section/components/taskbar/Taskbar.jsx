@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './taskbar.css'
-import API from '../../API/API'
+import API from '../../../API/API'
 const Taskbar = () => {
   const [patrimonios, setPatrimonios] = useState([]);
 
@@ -16,10 +16,8 @@ const Taskbar = () => {
   return (
     
     <div className="taskbar">
-      <div className="main-task">
         <div className="task-content">
-          <div className="task-item">
-          <div>
+          <div className="task-item">          
             <h4>Lista de Manutenções</h4>
             <ul>
               {listaDePatrimonios.map((patrimonio) => (
@@ -27,11 +25,8 @@ const Taskbar = () => {
                   {patrimonio.categoria} - Nº {patrimonio.patrimonio}
                 </li>
               ))}
-              </ul>
-            
-            </div>
-          </div>
-        </div>
+              </ul>            
+          </div>    
       </div>
     </div>
   )

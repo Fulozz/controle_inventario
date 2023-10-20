@@ -79,8 +79,7 @@ const Geral = () => {
   const { handleSubmit } = useForm({
     initialValues: formData,
   });
-
-  const fechar = () => {
+  const Close = () => {
     setIsVisible(false);
     setIsEditable(false);
     setSelector("informação");
@@ -95,7 +94,6 @@ const Geral = () => {
     setIsActiveHardware(false);
     setIsActiveLocal(false);
   };
-
   const hardware = () => {
     setSelector("hardware");
 
@@ -365,7 +363,7 @@ const Geral = () => {
             <div className="modal-content">
               <div className="modal-top">
                 <h1>{singlePatrimonio.host_name}</h1>
-                <button onClick={fechar}>
+                <button onClick={Close}>
                   <AiOutlineEyeInvisible className="icon" />
                 </button>
               </div>
@@ -378,9 +376,7 @@ const Geral = () => {
                           <button
                             className="selector"
                             id="informacao"
-                            onClick={informação}
-                          >
-                            
+                            onClick={informação} >
                             <h3 className={isActiveInfo ? "active" : ""}>
                               <strong>Informações |</strong>
                             </h3>
@@ -389,13 +385,9 @@ const Geral = () => {
                         {singlePatrimonio.categoria !== "telefone" &&
                         singlePatrimonio.categoria !== "impressora" ? (
                           <>
-                        
                             <th>
                               <button className="selector" onClick={hardware}>
-                           
-                                <h3
-                                  className={isActiveHardware ? "active" : ""}
-                                >
+                                <h3 className={isActiveHardware ? "active" : ""} >
                                   <strong>Hardware |</strong>
                                 </h3>
                               </button>
