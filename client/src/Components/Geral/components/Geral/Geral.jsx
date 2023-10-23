@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const Geral = () => {
-  const [patrimonio, setPatrimonio] = useState([]);
+  const [patrimonios, setPatrimonio] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [singlePatrimonio, setSinglePatrimonio] = useState();
@@ -27,6 +27,16 @@ const Geral = () => {
   const [isActiveInfo, setIsActiveInfo] = useState(false);
   const [isActiveHardware, setIsActiveHardware] = useState(false);
   const [isActiveLocal, setIsActiveLocal] = useState(false);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
+
+  // Função para filtrar os dados de patrimônio com base na categoria selecionada
+  const filterPatrimonios = (patrimonios) => {
+    // Se a categoria selecionada for "Todos", retorna todos os patrimônios
+    if (categoriaSelecionada === "Todos") return patrimonios;
+    // Caso contrário, retorna apenas os patrimônios da categoria selecionada
+    return patrimonios.filter((patrimonio) => patrimonio.categoria === categoriaSelecionada);
+  };
+
 
   useEffect(() => {
     API().get("/patrimonio/:id").then(
@@ -74,7 +84,6 @@ const Geral = () => {
     departamento: "",
     estado: "",
   });
-
   //Handle the formData
   const { handleSubmit } = useForm({
     initialValues: formData,
@@ -331,32 +340,42 @@ const Geral = () => {
 
   return (
     <div className="listingSection">
+      {/* Filtro de opções de categorias */}
+        <select onChange={(event) => setCategoriaSelecionada(event.target.value)}>
+          <option value="Todos">Todos</option>
+          <option value="monitor">Monitores</option>
+          <option value="computador">Computadores</option>
+          <option value="servidor">Servidores</option>
+          <option value="switch">Switches</option>
+          <option value="telefone">Telefones</option>
+          <option value="impressora">Impressoras</option>
+        </select>
       <div className="flex">
-        <div className="secContainer flex">
-          {patrimonio &&
-            patrimonio.map((patrimonio, index) => (
-              <div className="singleItem" key={index}>
-                <h5>{patrimonio.host_name}</h5>
-                <button
-                  onClick={() => {
-                    setIsVisible(true);
-                    setIsEditable(true);
-                    setSinglePatrimonio(patrimonio);
-                  }}
-                >
-                  <AiOutlineEye className="icon" />
-                </button>
-                <img src={computer} alt="Image Name" />
-                <Link
-                  onClick={() => {
-                    setIsEditable(false);
-                    setIsVisible(true);
-                  }}
-                >
-                  <h3>{patrimonio.patrimonio}</h3>
-                </Link>
-              </div>
-            ))}
+        <div className="secContainer flex">  
+        {patrimonios &&
+        filterPatrimonios(patrimonios).map((patrimonio, index) => (
+          <div className="singleItem" key={index}>
+            <h5>{patrimonio.host_name}</h5>
+            <button
+              onClick={() => {
+                setIsVisible(true);
+                setIsEditable(true);
+                setSinglePatrimonio(patrimonio);
+              }}
+            >
+              <AiOutlineEye className="icon" />
+            </button>
+            <img src={computer} alt="Image Name" />
+            <Link
+              onClick={() => {
+                setIsEditable(false);
+                setIsVisible(true);
+              }}
+            >
+              <h3>{patrimonio.patrimonio}</h3>
+            </Link>
+          </div>
+        ))}
         </div>
         {isVisible && (
           <div className="modal" style={{ zIndex: 100 }}>
