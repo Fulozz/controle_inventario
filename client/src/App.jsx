@@ -33,7 +33,7 @@ function App() {
           token: localStorage.getItem('jwt')
         }),
       };
-    const response = await fetch('http://localhost:3000/api/v1/validate', requestInit)
+    const response = await fetch('http://10.0.50.39:3001/api/v1/validate', requestInit)
     if(response.status !== 200){
       return <Navigate to='/' />, localStorage.clear(), setIsAuthenticated(false)
     } else{
