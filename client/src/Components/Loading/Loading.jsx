@@ -10,15 +10,10 @@ const Loading = () => {
     setTimeout (()=>{
         if(visible) return hideLoading();
     }, 2000)
-  return (
-    
-        
+  return (        
             <div className="loading">
-                Carregando...
-            </div>
-        
-        
-    
+                <div>Carregando...</div>
+            </div>    
   )
 }
 
