@@ -25,10 +25,10 @@ export const AdminDashboard = () => {
     <>
     
         <div className='container'>
-          <Loading visible={visible}>
+          <Loading visible={visible} />
             <Sidebar />
             <Body />
-          </Loading>
+          
         </div>
       
     </>
