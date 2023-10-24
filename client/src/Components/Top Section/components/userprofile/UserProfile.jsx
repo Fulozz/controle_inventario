@@ -5,6 +5,8 @@ const UserProfile = () => {
 
 
   useEffect(() => {
+    const URLocal = "http://localhost:3001/api/v1"
+    const URL = "http://10.0.50.39:3001/api/v1"
     const requestInit = {
       method: "POST",
       headers: {
@@ -14,7 +16,7 @@ const UserProfile = () => {
         token: localStorage.getItem("jwt"),
       }),
     };
-    fetch("http://10.0.50.39:3001/api/v1/user", requestInit).then((response) => {
+    fetch(`${URL}/user`, requestInit).then((response) => {
       response.json().then((data) => {
         setUser(data.name);
       });

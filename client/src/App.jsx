@@ -23,7 +23,7 @@ function App() {
 
   
   const statusValidate = async()=>{
-    
+    const URL = "http://localhost/api/v1"
     const requestInit = {
         method: 'POST',
         headers: {
@@ -33,12 +33,11 @@ function App() {
           token: localStorage.getItem('jwt')
         }),
       };
-    const response = await fetch('http://10.0.50.39:3001/api/v1/validate', requestInit)
-    if(response.status !== 200){
-      return <Navigate to='/' />, localStorage.clear(), setIsAuthenticated(false)
-    } else{
-      return <Navigate to='/dashboard' />, setIsAuthenticated(true) 
-    }
+    const response = await fetch(`${URL}/validate`/validate, requestInit)
+    if(response.status !== 200) return <Navigate to='/' />, localStorage.clear(), setIsAuthenticated(false);
+
+     return setIsAuthenticated(true) 
+    
     
   } 
  

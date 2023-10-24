@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import API from '../../API/API'
 
 const Form = () => {
+  const URLocal = "http://localhost:3001/api/v1"
+  const URL = "http://10.0.50.39:3001/api/v1"
+
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
 
@@ -71,7 +74,7 @@ const Form = () => {
         token: localStorage.getItem("jwt"),
       }),
     };
-    fetch("http://10.0.50.39:3001/api/v1/user", requestInit).then((response) => {
+    fetch(`${URL}/user`, requestInit).then((response) => {
       response.json().then((data) => {
         setUser(data.name);
       });
