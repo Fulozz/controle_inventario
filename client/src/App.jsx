@@ -35,9 +35,9 @@ function App() {
         }),
       };
     await fetch(`${URL}/validate`, requestInit).then((response)=>{
-      console.log(response.data.status);
+      if(response.status === 200) return setIsAuthenticated(true), <Navigate to ="/dashboard" />;
     })
-    return setIsAuthenticated(true)  
+    return setIsAuthenticated(false)  
   } 
  
   useEffect(() => {
