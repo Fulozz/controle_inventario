@@ -9,12 +9,12 @@ import Loading from '../Loading/Loading'
 export const AdminDashboard = () => {
   return (
     <>
-      <Loading />
+    <Loading>
         <div className='container'>
           <Sidebar />
           <Body />
         </div>
-      
+      </Loading>
     </>
   )
 }
