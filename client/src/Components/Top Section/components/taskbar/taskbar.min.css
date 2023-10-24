@@ -1,0 +1,2 @@
+.task-content{position:absolute;top:18rem;right:2%;padding:.768rem;transform:translate(-50%, -50%);width:200px;height:350px;background-color:#fff;border-radius:20px;display:flex;flex-direction:column;flex-wrap:wrap;box-shadow:0 2px 10px #424242;z-index:100}.task-content .task-item{border-bottom:1px solid gray}.task-content .task-item ul,.task-content .task-item li{list-style:none}
+/*# sourceMappingURL=taskbar.min.css.map */

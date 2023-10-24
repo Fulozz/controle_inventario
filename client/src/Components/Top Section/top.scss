@@ -26,7 +26,7 @@
 .topSection {
     .headerSection {
         justify-content: space-between;
-
+        
         .title {
             h1 {
                 font-size: var(--h1FontSize);
@@ -81,6 +81,7 @@
                 width: 2.5rem;
                 overflow: hidden;
                 box-shadow: 0 2px 4px var(--inputColor);
+                cursor: pointer;
             }
         }
     }

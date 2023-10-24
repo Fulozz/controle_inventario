@@ -1,29 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import './top.css'
-import API from '../API/API'
-// Import de Icons 
-import { BiSearchAlt } from 'react-icons/bi'
-import { TbMessageCircle } from 'react-icons/tb'
-import { IoIosNotificationsOutline } from 'react-icons/io'
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import './top.css';
+import API from '../API/API';
 
+
+// Import de Icons 
+import { BiSearchAlt } from 'react-icons/bi';
+import { IoIosNotificationsOutline } from 'react-icons/io';
+import { AiOutlineClose, AiOutlineEyeInvisible, AiOutlinePaperClip, AiOutlinePushpin, AiOutlineSave } from 'react-icons/ai';
+import { FiAlertTriangle, FiEdit } from 'react-icons/fi';
 //Imported Images
-import img from '../Assets/Perfil GS.png'
-import img2 from '../Assets/gscN.jpg'
-import { useForm } from 'react-hook-form'
-import { AiOutlineClose, AiOutlineEyeInvisible, AiOutlineSave } from 'react-icons/ai'
-import { FiAlertTriangle, FiEdit } from 'react-icons/fi'
+
+import img from '../Assets/Perfil GS.png';
+import img2 from '../Assets/gscN.jpg';
+
+
+import Taskbar from './components/taskbar/Taskbar';
+import UserProfile from './components/userprofile/UserProfile';
 
 const Top = () => {
   const [formData, setFormData] = useState({
     searchData: ""
   });
-  const searchData = formData.searchData
+  const [openTask , setOpenTask] = useState(false);
+  const [openUser , setOpenUser] = useState(false);
+  const searchData = formData.searchData;
   const { handleSubmit } = useForm({
     initialValues: formData,
   });
  const onSubmit = (data) => {
   console.log(data);
- }
+ };
 
   const [singlePatrimonio, setSinglePatrimonio] = useState();
 
@@ -37,13 +44,31 @@ const Top = () => {
   const [isEditable, setIsEditable] = useState(false);
 
 
-  const fechar = () => {
+  const Close = () => {
     setIsVisible(false);
     setIsEditable(false);
     setSelector("informação");
     setIsActiveInfo(true);
     setIsActiveHardware(false);
     setIsActiveLocal(false);
+  };
+  const switchTask = () =>{
+    setOpenUser(false)
+    if(!openTask){
+      setOpenTask(true)
+      
+    } else {
+      setOpenTask(false)
+    }
+  };
+  const switchUser = () =>{
+    console.log('clicou');
+    setOpenTask(false)
+    if(!openUser){ 
+      setOpenUser(true)
+    } else {
+      setOpenUser(false)
+    }
   };
   const informação = () => {
     setSelector("informação");
@@ -69,16 +94,39 @@ const Top = () => {
     setIsActiveLocal(true);
   };
   const Update = () => {
+    // Geral
     const host_name = formData.host_name || singlePatrimonio.host_name;
     const modelo = formData.modelo || singlePatrimonio.modelo;
     const marca = formData.marca || singlePatrimonio.marca;
+    // Impressora
     const tipo_impressora = formData.tipo_impressora || singlePatrimonio.tipo_impressora;
+    // Monitor e Notebook
     const tipo_monitor = formData.tipo_monitor || singlePatrimonio.tipo_monitor;
     const formato = formData.formato || singlePatrimonio.formato;
     const tamanho = formData.tamanho || singlePatrimonio.tamanho;
+    // Hardware
+    const cpu = formData.cpu || singlePatrimonio.cpu;
+    const gpu = formData.gpu || singlePatrimonio.gpu;
+    const memoriaRam = formData.memoriaRam || singlePatrimonio.memoriaRam;
+    const memoriaRamDDR = formData.memoriaRamDDR || singlePatrimonio.memoriaRamDDR;
+    const hard_disk = formData.hard_disk || singlePatrimonio.hard_disk;
+    // Servidor
+    const hard_disk_2 = formData.hard_disk_2 || singlePatrimonio.hard_disk_2;
+    const power_suply = formData.power_suply || singlePatrimonio.power_suply;
+    const acesso_remoto = formData.acesso_remoto || singlePatrimonio.acesso_remoto;
+    const sistema_operacional = formData.sistema_operacional || singlePatrimonio.sistema_operacional;
+    //switch
+    const portas = formData.portas || singlePatrimonio.portas;
+    const poe = formData.poe || singlePatrimonio.poe;
+    const gerenciavel = formData.gerenciavel || singlePatrimonio.gerenciavel;
+    //Local
+    const local = formData.local || singlePatrimonio.local;
+    const departamento = formData.departamento || singlePatrimonio.departamento;
+    const estado = formData.estado || singlePatrimonio.estado;
 
+    // Informação
     switch (selector && singlePatrimonio.categoria) {
-      case "informação" && "computador":
+        case "informação" && "computador":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -90,7 +138,7 @@ const Top = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "notebook":
+        case "informação" && "notebook":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -102,7 +150,7 @@ const Top = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "impressora":
+        case "informação" && "impressora":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -115,7 +163,7 @@ const Top = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "monitor":
+        case "informação" && "monitor":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -130,7 +178,7 @@ const Top = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "telefone":
+        case "informação" && "telefone":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -142,9 +190,123 @@ const Top = () => {
           window.location.reload()
         );
         break;
-
-      default:
+        case "informação" && "switch":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            host_name: host_name,
+            modelo: modelo,
+            marca: marca,
+          },
+          window.location.reload()
+        );
         break;
+        case "informação" && "servidor":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            host_name: host_name,
+            modelo: modelo,
+            marca: marca,
+          },
+          window.location.reload()
+        );
+        break;
+        
+            break;
+    }
+    // Hardware
+    switch(selector && singlePatrimonio.categoria) {
+        case "hardware" && "computador":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            cpu: cpu,
+            gpu: gpu,
+            memoriaRam: memoriaRam,
+            memoriaRamDDR:  memoriaRamDDR,
+            hard_disk: hard_disk
+          },
+          window.location.reload()
+        );
+        break;
+        case "hardware" && "notebook":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            tamanho: tamanho,
+            cpu: cpu,
+            gpu: gpu,
+            memoriaRam: memoriaRam,
+            memoriaRamDDR:  memoriaRamDDR,
+            hard_disk: hard_disk
+          },
+          window.location.reload()
+        );
+        break;
+        case "hardware" && "monitor":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            tamanho: tamanho,
+            tipo_monitor: tipo_monitor,
+            formato: formato
+          },
+          window.location.reload()
+        );
+        break;
+        case "hardware" && "servidor":
+          API().post(
+            `/update/${singlePatrimonio.patrimonio}`,
+            {
+              patrimonio: singlePatrimonio.patrimonio,
+              cpu: cpu,
+              gpu: gpu,
+              memoriaRam: memoriaRam,
+              memoriaRamDDR:  memoriaRamDDR,
+              hard_disk: hard_disk,
+              hard_disk_2: hard_disk_2,
+              power_suply: power_suply,
+              sistema_operacional: sistema_operacional,
+              acesso_remoto: acesso_remoto
+            },
+            window.location.reload()
+          );
+          break;
+        case "hardware" && "switch":
+          API().post(`/update/${singlePatrimonio.patrimonio}`,
+              {
+                patrimonio: singlePatrimonio.patrimonio,
+                poe: poe,
+                portas: portas,
+                gerenciavel: gerenciavel
+              },
+              window.location.reload()
+            );
+            break;
+    }
+    // Local
+    switch (selector) {
+      case "local":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            local: local,
+            estado: estado,
+            departamento: departamento
+          },
+          window.location.reload()
+        );
+
+        break;
+    
+
     }
   };
 
@@ -156,15 +318,24 @@ const Top = () => {
       setSinglePatrimonio(response.data)
       setIsVisible(true)
       setIsEditable(true);
-  })
+  });
 
-  }
+  };
+
+  var lastScrollTop = 0;
+
+  window.addEventListener('scroll', function (e) {
+   // mesma posição
+      if (e.scrollY === lastScrollTop) return;
+      this.scrollY < lastScrollTop ? "Cima" :  setOpenTask(false) 
+      lastScrollTop = this.scrollY;
+    }, true)
 
   return (
     <div className="topSection">
       <div className="headerSection flex">
         <div className="title">
-          <h1>Admin dashboard</h1>
+          <h1>Patrimonio dashboard</h1>
         </div>
         <div className="searchBar flex">
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -178,16 +349,17 @@ const Top = () => {
         </div>
 
         <div className="adminDiv flex">
-          <TbMessageCircle className='icon' />
-          <IoIosNotificationsOutline className='icon' />
-          <div className="adminImage">
-            <img src={img} alt="Admin Image" />
+          <AiOutlinePushpin className='icon' onClick={switchTask}/>
+          <IoIosNotificationsOutline className='icon'/>
+          <div className="adminImage" >
+            <img src={img} alt="Admin Image" className='userImage' onClick={switchUser} />
              {/* incluir uma maneira de puxar essa imagem do usuario do banco de dados, 
              e uma maneira de envia-la para lá pelo frontend*/}
           </div>
         </div>
       </div>
-
+      { openTask  ? <Taskbar /> : null}
+      { openUser  ? <UserProfile /> : null}
       <div className="cardSection flex">
         <div className="rightCard flex">
           <h1>Esse é o inventario de Patrimonio GS/VMP</h1>
@@ -203,7 +375,7 @@ const Top = () => {
           <div className="modal-content">
             <div className="modal-top">
                 <h1>{singlePatrimonio.host_name}</h1>
-                  <button  onClick={fechar} >
+                  <button  onClick={Close} >
               <AiOutlineEyeInvisible className="icon" />
               </button>         
                 </div>

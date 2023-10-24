@@ -121,7 +121,11 @@
   
   .listingSection {
     flex-basis: 100%;
-
+    select{
+        margin: 1rem;
+        padding: .5rem;
+        border-radius: 10px;
+    }
     .heading {
         width: 100%;
         justify-content: space-between;

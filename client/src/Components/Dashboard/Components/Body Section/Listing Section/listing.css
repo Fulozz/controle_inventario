@@ -77,6 +77,11 @@
   position: relative;
   margin-left: 10%;
 }
+.modal-content .modal-item select {
+  width: 150px;
+  height: 30px;
+  margin-left: 10px;
+}
 .modal-content .modal-bottom {
   position: absolute;
   margin: 2rem;

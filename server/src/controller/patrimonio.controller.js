@@ -78,8 +78,7 @@ exports.searchItem = async (req, res) =>{
     try{
         await Patrimonio.findOne({patrimonio: req.body.patrimonio})
         .then((patrimonio)=>{
-            res.status(200).json(patrimonio),
-            console.log(patrimonio);
+            res.status(200).json(patrimonio)
         })
     }
     catch (err) {

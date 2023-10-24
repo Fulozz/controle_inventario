@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const Geral = () => {
-  const [patrimonio, setPatrimonio] = useState([]);
+  const [patrimonios, setPatrimonio] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [singlePatrimonio, setSinglePatrimonio] = useState();
@@ -27,6 +27,16 @@ const Geral = () => {
   const [isActiveInfo, setIsActiveInfo] = useState(false);
   const [isActiveHardware, setIsActiveHardware] = useState(false);
   const [isActiveLocal, setIsActiveLocal] = useState(false);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
+
+  // Função para filtrar os dados de patrimônio com base na categoria selecionada
+  const filterPatrimonios = (patrimonios) => {
+    // Se a categoria selecionada for "Todos", retorna todos os patrimônios
+    if (categoriaSelecionada === "Todos") return patrimonios;
+    // Caso contrário, retorna apenas os patrimônios da categoria selecionada
+    return patrimonios.filter((patrimonio) => patrimonio.categoria === categoriaSelecionada);
+  };
+
 
   useEffect(() => {
     API().get("/patrimonio/:id").then(
@@ -74,13 +84,11 @@ const Geral = () => {
     departamento: "",
     estado: "",
   });
-
   //Handle the formData
   const { handleSubmit } = useForm({
     initialValues: formData,
   });
-
-  const fechar = () => {
+  const Close = () => {
     setIsVisible(false);
     setIsEditable(false);
     setSelector("informação");
@@ -95,7 +103,6 @@ const Geral = () => {
     setIsActiveHardware(false);
     setIsActiveLocal(false);
   };
-
   const hardware = () => {
     setSelector("hardware");
 
@@ -115,16 +122,39 @@ const Geral = () => {
     console.log(data);
   };
   const Update = () => {
+    // Geral
     const host_name = formData.host_name || singlePatrimonio.host_name;
     const modelo = formData.modelo || singlePatrimonio.modelo;
     const marca = formData.marca || singlePatrimonio.marca;
+    // Impressora
     const tipo_impressora = formData.tipo_impressora || singlePatrimonio.tipo_impressora;
+    // Monitor e Notebook
     const tipo_monitor = formData.tipo_monitor || singlePatrimonio.tipo_monitor;
     const formato = formData.formato || singlePatrimonio.formato;
     const tamanho = formData.tamanho || singlePatrimonio.tamanho;
+    // Hardware
+    const cpu = formData.cpu || singlePatrimonio.cpu;
+    const gpu = formData.gpu || singlePatrimonio.gpu;
+    const memoriaRam = formData.memoriaRam || singlePatrimonio.memoriaRam;
+    const memoriaRamDDR = formData.memoriaRamDDR || singlePatrimonio.memoriaRamDDR;
+    const hard_disk = formData.hard_disk || singlePatrimonio.hard_disk;
+    // Servidor
+    const hard_disk_2 = formData.hard_disk_2 || singlePatrimonio.hard_disk_2;
+    const power_suply = formData.power_suply || singlePatrimonio.power_suply;
+    const acesso_remoto = formData.acesso_remoto || singlePatrimonio.acesso_remoto;
+    const sistema_operacional = formData.sistema_operacional || singlePatrimonio.sistema_operacional;
+    //switch
+    const portas = formData.portas || singlePatrimonio.portas;
+    const poe = formData.poe || singlePatrimonio.poe;
+    const gerenciavel = formData.gerenciavel || singlePatrimonio.gerenciavel;
+    //Local
+    const local = formData.local || singlePatrimonio.local;
+    const departamento = formData.departamento || singlePatrimonio.departamento;
+    const estado = formData.estado || singlePatrimonio.estado;
 
+    // Informação
     switch (selector && singlePatrimonio.categoria) {
-      case "informação" && "computador":
+        case "informação" && "computador":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -136,7 +166,7 @@ const Geral = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "notebook":
+        case "informação" && "notebook":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -148,7 +178,7 @@ const Geral = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "impressora":
+        case "informação" && "impressora":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -161,7 +191,7 @@ const Geral = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "monitor":
+        case "informação" && "monitor":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -176,7 +206,7 @@ const Geral = () => {
           window.location.reload()
         );
         break;
-      case "informação" && "telefone":
+        case "informação" && "telefone":
         API().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
@@ -188,47 +218,171 @@ const Geral = () => {
           window.location.reload()
         );
         break;
-
-      default:
+        case "informação" && "switch":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            host_name: host_name,
+            modelo: modelo,
+            marca: marca,
+          },
+          window.location.reload()
+        );
         break;
+        case "informação" && "servidor":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            host_name: host_name,
+            modelo: modelo,
+            marca: marca,
+          },
+          window.location.reload()
+        );
+        break;
+        
+            break;
+    }
+    // Hardware
+    switch(selector && singlePatrimonio.categoria) {
+        case "hardware" && "computador":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            cpu: cpu,
+            gpu: gpu,
+            memoriaRam: memoriaRam,
+            memoriaRamDDR:  memoriaRamDDR,
+            hard_disk: hard_disk
+          },
+          window.location.reload()
+        );
+        break;
+        case "hardware" && "notebook":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            tamanho: tamanho,
+            cpu: cpu,
+            gpu: gpu,
+            memoriaRam: memoriaRam,
+            memoriaRamDDR:  memoriaRamDDR,
+            hard_disk: hard_disk
+          },
+          window.location.reload()
+        );
+        break;
+        case "hardware" && "monitor":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            tamanho: tamanho,
+            tipo_monitor: tipo_monitor,
+            formato: formato
+          },
+          window.location.reload()
+        );
+        break;
+        case "hardware" && "servidor":
+          API().post(
+            `/update/${singlePatrimonio.patrimonio}`,
+            {
+              patrimonio: singlePatrimonio.patrimonio,
+              cpu: cpu,
+              gpu: gpu,
+              memoriaRam: memoriaRam,
+              memoriaRamDDR:  memoriaRamDDR,
+              hard_disk: hard_disk,
+              hard_disk_2: hard_disk_2,
+              power_suply: power_suply,
+              sistema_operacional: sistema_operacional,
+              acesso_remoto: acesso_remoto
+            },
+            window.location.reload()
+          );
+          break;
+        case "hardware" && "switch":
+          API().post(`/update/${singlePatrimonio.patrimonio}`,
+              {
+                patrimonio: singlePatrimonio.patrimonio,
+                poe: poe,
+                portas: portas,
+                gerenciavel: gerenciavel
+              },
+              window.location.reload()
+            );
+            break;
+    }
+    // Local
+    switch (selector) {
+      case "local":
+        API().post(
+          `/update/${singlePatrimonio.patrimonio}`,
+          {
+            patrimonio: singlePatrimonio.patrimonio,
+            local: local,
+            estado: estado,
+            departamento: departamento
+          },
+          window.location.reload()
+        );
+
+        break;
+    
+
     }
   };
 
   return (
     <div className="listingSection">
+      {/* Filtro de opções de categorias */}
+        <select onChange={(event) => setCategoriaSelecionada(event.target.value)}>
+          <option value="Todos">Todos</option>
+          <option value="monitor">Monitores</option>
+          <option value="computador">Computadores</option>
+          <option value="servidor">Servidores</option>
+          <option value="switch">Switches</option>
+          <option value="telefone">Telefones</option>
+          <option value="impressora">Impressoras</option>
+        </select>
       <div className="flex">
-        <div className="secContainer flex">
-          {patrimonio &&
-            patrimonio.map((patrimonio, index) => (
-              <div className="singleItem" key={index}>
-                <h5>{patrimonio.host_name}</h5>
-                <button
-                  onClick={() => {
-                    setIsVisible(true);
-                    setIsEditable(true);
-                    setSinglePatrimonio(patrimonio);
-                  }}
-                >
-                  <AiOutlineEye className="icon" />
-                </button>
-                <img src={computer} alt="Image Name" />
-                <Link
-                  onClick={() => {
-                    setIsEditable(false);
-                    setIsVisible(true);
-                  }}
-                >
-                  <h3>{patrimonio.patrimonio}</h3>
-                </Link>
-              </div>
-            ))}
+        <div className="secContainer flex">  
+        {patrimonios &&
+        filterPatrimonios(patrimonios).map((patrimonio, index) => (
+          <div className="singleItem" key={index}>
+            <h5>{patrimonio.host_name}</h5>
+            <button
+              onClick={() => {
+                setIsVisible(true);
+                setIsEditable(true);
+                setSinglePatrimonio(patrimonio);
+              }}
+            >
+              <AiOutlineEye className="icon" />
+            </button>
+            <img src={computer} alt="Image Name" />
+            <Link
+              onClick={() => {
+                setIsEditable(false);
+                setIsVisible(true);
+              }}
+            >
+              <h3>{patrimonio.patrimonio}</h3>
+            </Link>
+          </div>
+        ))}
         </div>
         {isVisible && (
           <div className="modal" style={{ zIndex: 100 }}>
             <div className="modal-content">
               <div className="modal-top">
                 <h1>{singlePatrimonio.host_name}</h1>
-                <button onClick={fechar}>
+                <button onClick={Close}>
                   <AiOutlineEyeInvisible className="icon" />
                 </button>
               </div>
@@ -241,24 +395,18 @@ const Geral = () => {
                           <button
                             className="selector"
                             id="informacao"
-                            onClick={informação}
-                          >
-                            
+                            onClick={informação} >
                             <h3 className={isActiveInfo ? "active" : ""}>
                               <strong>Informações |</strong>
                             </h3>
                           </button>
                         </th>
                         {singlePatrimonio.categoria !== "telefone" &&
-                        "impressora" ? (
+                        singlePatrimonio.categoria !== "impressora" ? (
                           <>
-                        
                             <th>
                               <button className="selector" onClick={hardware}>
-                           
-                                <h3
-                                  className={isActiveHardware ? "active" : ""}
-                                >
+                                <h3 className={isActiveHardware ? "active" : ""} >
                                   <strong>Hardware |</strong>
                                 </h3>
                               </button>
@@ -1673,9 +1821,9 @@ const Geral = () => {
                                 }}
                               >
                                 <option value=""></option>
-                                <option value="Ativo"> Ativo</option>
-                                <option value="Manutenção">Manutenção</option>
-                                <option value="Reserva">Reserva</option>
+                                <option value="ativo"> Ativo</option>
+                                <option value="manutenção">Manutenção</option>
+                                <option value="reserva">Reserva</option>
                               </select>
                             </th>
                           </tr>

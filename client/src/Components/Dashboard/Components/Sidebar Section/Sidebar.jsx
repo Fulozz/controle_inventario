@@ -80,7 +80,7 @@ const Sidebar = () => {
             <a href="" className='menuLink flex'>
               <MdOutlinePermContactCalendar className='icon' />
               <span className="smallText">
-                Incluões
+                Inclusões
               </span>
             </a>
           </li>

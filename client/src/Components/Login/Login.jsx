@@ -25,15 +25,11 @@ const Login = () => {
   const [loginStatus, setLoginStatus] = useState('');
   const [statusHolder, setStatusHolder] = useState('message');
 
-
-
   const LoginUser = () => {
     if (name === '' || password === '') {
       setLoginStatus('Preencha todos os campos');
       return;
     };
-
-
     API().post('/login', {
       name: name,
       password: password,

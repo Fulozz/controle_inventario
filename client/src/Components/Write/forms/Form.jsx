@@ -71,7 +71,7 @@ const Form = () => {
         token: localStorage.getItem("jwt"),
       }),
     };
-    fetch("http://localhost:3000/api/v1/user", requestInit).then((response) => {
+    fetch("http://10.0.50.39:3001/api/v1/user", requestInit).then((response) => {
       response.json().then((data) => {
         setUser(data.name);
       });
@@ -484,7 +484,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -602,7 +602,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -737,7 +737,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -823,7 +823,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -906,7 +906,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -1100,7 +1100,7 @@ const Form = () => {
                 <th>
                   <input
                     type="submit"
-                    value="submit"
+                    value="Proximo"
                     onClick={Next}
                     className="btn-form"
                   />
@@ -1152,9 +1152,9 @@ const Form = () => {
                      }}
                   >
                     <option value=""></option>
-                    <option value="Ativo"> Ativo</option>
-                    <option value="Manutenção">Manutenção</option>
-                    <option value="Reserva">Reserva</option>
+                    <option value="ativo"> Ativo</option>
+                    <option value="manutenção">Manutenção</option>
+                    <option value="reserva">Reserva</option>
                   </select>
                 </th>
               </tr>
@@ -1164,7 +1164,7 @@ const Form = () => {
                   />
                 </th>
                 <th>
-                  <input type="submit" value="submit" onClick={Next} className="btn-form"
+                  <input type="submit" value="Proximo" onClick={Next} className="btn-form"
                   />
                 </th>
               </tr>
@@ -1417,7 +1417,7 @@ const Form = () => {
                   <th>
                     <input
                       type="submit"
-                      value="confirm"
+                      value="confirmar"
                       onClick={Confirm}
                       className="btn-form"
                     />
