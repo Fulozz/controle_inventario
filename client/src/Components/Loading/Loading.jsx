@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Loading.css'
 const Loading = () => {
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
 
     const hideLoading = () =>{
         setVisible(false)
