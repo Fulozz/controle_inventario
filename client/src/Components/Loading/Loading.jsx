@@ -6,7 +6,7 @@ const Loading = () => {
     const hideLoading = () =>{
         setVisible(false)
     }
-    const interval = setInterval (()=>{
+    setInterval (()=>{
         if(visible) return hideLoading();
     }, 2000)
   return (
