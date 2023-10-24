@@ -23,8 +23,8 @@ function App() {
 
   
   const statusValidate = async()=>{
-    const URL = "http://10.0.50.39:3001/api/v1"
-    const URLocal = "http://localhost:3001/api/v1"
+    const URL = "http://10.0.50.39:3001/api/v1";
+    const URLocal = "http://localhost:3001/api/v1";
     const requestInit = {
         method: 'POST',
         headers: {
@@ -34,7 +34,7 @@ function App() {
           token: localStorage.getItem('jwt')
         }),
       };
-    const response = await fetch(`${URLocal}/validate`, requestInit)
+    const response = await fetch(`${URL}/validate`, requestInit)
     if(response.status !== 200) {
       return <Navigate to= "/" />, localStorage.clear(), setIsAuthenticated(true);
     }return setIsAuthenticated(false)  
