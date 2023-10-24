@@ -12,12 +12,12 @@ const Loading = () => {
     }, 2000)
   return (
     <>
-        {visible && (
+        
             <div className="loading">
                 Carregando...
             </div>
-        )
-        }
+        
+        
     </>
   )
 }
