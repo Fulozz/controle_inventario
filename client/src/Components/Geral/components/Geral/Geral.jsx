@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import "./Geral.css";
-import computer from "../../../Assets/computer.png";
+import computer from "../../../Assets/categorias/computer.png";
+import notebook from "../../../Assets/categorias/notebook png.png";
+import impressora from "../../../Assets/categorias/impressora png.png";
+import monitor from "../../../Assets/categorias/monitor png.png";
+import telefone from "../../../Assets/categorias/telefone png.png";
+import switchI from "../../../Assets/categorias/switch png.png";
+import server from "../../../Assets/categorias/server png.png";
+
 import API from '../../../API/API'
 import {
   AiOutlineClose,
@@ -365,7 +372,37 @@ const Geral = () => {
             >
               <AiOutlineEye className="icon" />
             </button>
-            <img src={computer} alt="Image Name" />
+            <> 
+              {
+                patrimonio.categoria === "computador" ? (
+                  <img src={computer} alt="Image Name" />
+                ) :patrimonio.categoria === "notebook" ? (
+                  <> 
+                  <img src={notebook} alt="Image Name" />
+                  </>
+                ) : patrimonio.categoria === "impressora" ? (
+                  <> 
+                  <img src={impressora} alt="Image Name" />
+                  </>
+                ) : patrimonio.categoria === "monitor" ? (
+                  <> 
+                  <img src={monitor} alt="Image Name" />
+                  </>
+                ) : patrimonio.categoria === "telefone" ? (
+                  <> 
+                  <img src={telefone} alt="Image Name" />
+                  </>
+                ) : patrimonio.categoria === "switch" ? (
+                  <> 
+                  <img src={switchI} alt="Image Name" />
+                  </>
+                ) : patrimonio.categoria === "server" ? (
+                  <> 
+                  <img src={server} alt="Image Name" />
+                  </>
+                ) :null
+              }
+            </>
             <Link
               onClick={() => {
                 setIsEditable(false);

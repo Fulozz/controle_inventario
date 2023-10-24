@@ -74,7 +74,7 @@ const Form = () => {
         token: localStorage.getItem("jwt"),
       }),
     };
-    fetch(`${URL}/user`, requestInit).then((response) => {
+    fetch(`${URLocal}/user`, requestInit).then((response) => {
       response.json().then((data) => {
         setUser(data.name);
       });

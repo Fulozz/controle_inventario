@@ -20,8 +20,8 @@ const Taskbar = () => {
           <div className="task-item">          
             <h4>Lista de Manutenções</h4>
             <ul>
-              {listaDePatrimonios.map((patrimonio) => (
-                <li key={patrimonio.id}>
+              {listaDePatrimonios.map((patrimonio, index) => (
+                <li key={index} >
                   {patrimonio.categoria} - Nº {patrimonio.patrimonio}
                 </li>
               ))}

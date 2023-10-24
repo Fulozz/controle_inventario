@@ -46,7 +46,7 @@ const Login = () => {
         switch (response.status) {
           case 200:
             console.log('Logado com sucesso');
-            navigate('/dashboard');
+            window.location.reload()
             setUserLocalStorage(payload);
             break;
           case 401:

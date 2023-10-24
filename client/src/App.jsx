@@ -23,7 +23,8 @@ function App() {
 
   
   const statusValidate = async()=>{
-    const URL = "http://localhost/api/v1"
+    const URL = "http://10.0.50.39:3001/api/v1"
+    const URLocal = "http://localhost:3001/api/v1"
     const requestInit = {
         method: 'POST',
         headers: {
@@ -33,12 +34,10 @@ function App() {
           token: localStorage.getItem('jwt')
         }),
       };
-    const response = await fetch(`${URL}/validate`/validate, requestInit)
-    if(response.status !== 200) return <Navigate to='/' />, localStorage.clear(), setIsAuthenticated(false);
-
-     return setIsAuthenticated(true) 
-    
-    
+    const response = await fetch(`${URLocal}/validate`, requestInit)
+    if(response.status !== 200) {
+      return <Navigate to= "/" />, localStorage.clear(), setIsAuthenticated(true);
+    }return setIsAuthenticated(false)  
   } 
  
   useEffect(() => {
@@ -51,12 +50,19 @@ function App() {
     <div>
       <Router>
         <Routes>
+
+          { !isAuthenticated ? (
+            <> 
+            <Route element={<Dashboard />}   path='/' exact/>
+            <Route element={<Register />}    path='/register' exact/>
+           
+            <Route element={<UserProfile />} path='/profile' exact/>
+            <Route element={<Todos />}       path='/todos' />
+            <Route element={<Write />}       path='/write' exact/>
+            </>
+          ) : 
           <Route element={<Login />} path='/' exact/>
-              <Route element={isAuthenticated ? <Register /> : <Navigate to="/" />} path='/register'exact/>
-              <Route element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} path='/dashboard'exact/>
-              <Route element={isAuthenticated ? <UserProfile /> : <Navigate to='/' />} path='/profile' exact/>
-              <Route element={isAuthenticated ? <Write /> : <Navigate to='/' />} path='/write' exact/> 
-              <Route element={isAuthenticated ? <Todos /> : <Navigate to='/' />} path='/todos' exact/> 
+          }
         </Routes>
       </Router>
     </div>
