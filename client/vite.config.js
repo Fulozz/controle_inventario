@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   
   server: {
-    //host: "10.0.50.39",
+    host: "10.0.50.39",
 	  port: "3000"
   }
   //Necessario ser um aspas duplas para utilizar o host name
