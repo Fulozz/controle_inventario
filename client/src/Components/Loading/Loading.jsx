@@ -11,10 +11,12 @@ const Loading = () => {
     }, 2000)
   return (
     <>
-        {visible &&
+        {visible ? (
+            
             <div className="loading">
                 Carregando...
             </div>
+        ) : null
         }
     </>
   )
