@@ -11,10 +11,10 @@ export const AdminDashboard = () => {
     <>
     
         <div className='container'>
-          <Loading>
+          <Loading />
             <Sidebar />
             <Body />
-          </Loading>
+         
         </div>
       
     </>
