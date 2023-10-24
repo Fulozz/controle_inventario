@@ -10,11 +10,13 @@ const Loading = () => {
         if(visible) return hideLoading();
     }, 2000)
   return (
-    <div>
-        <div className="loading">
-            Carregando...
-        </div>
-    </div>
+    <>
+        {visible &&
+            <div className="loading">
+                Carregando...
+            </div>
+        }
+    </>
   )
 }
 
