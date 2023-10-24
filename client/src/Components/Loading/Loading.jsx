@@ -5,6 +5,7 @@ const Loading = () => {
 
     const hideLoading = () =>{
         setVisible(false)
+        document.querySelector(".loading").style.display = "none";
     }
     setTimeout (()=>{
         if(visible) return hideLoading();
