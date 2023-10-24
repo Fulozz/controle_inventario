@@ -16,7 +16,7 @@ const UserProfile = () => {
         token: localStorage.getItem("jwt"),
       }),
     };
-    fetch(`${URLocal}/user`, requestInit).then((response) => {
+    fetch(`${URL}/user`, requestInit).then((response) => {
       response.json().then((data) => {
         setUser(data.name);
       });
