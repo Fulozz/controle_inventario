@@ -96,7 +96,7 @@
   left: 0;
 }
 .topSection .cardSection .rightCard .videoDiv .topImage {
-  height: 100%;
+  height: 130%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
