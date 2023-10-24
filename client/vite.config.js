@@ -9,5 +9,5 @@ export default defineConfig({
     host: "10.0.50.39",
 	  port: "3000"
   }
-  
+  //Necessario ser um aspas duplas para utilizar o host name
 })
