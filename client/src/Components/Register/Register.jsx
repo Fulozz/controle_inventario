@@ -10,6 +10,7 @@ import { FaUserShield } from 'react-icons/fa';
 import { BsFillShieldLockFill } from 'react-icons/bs';
 import { AiOutlineSwapRight } from 'react-icons/ai';
 import { MdAttachEmail } from 'react-icons/md';
+import Loading from '../Loading/Loading';
 
 
 
@@ -53,7 +54,7 @@ const Register = () => {
   return (
     <div className="registerPage flex">
       <div className="container flex">
-
+        <Loading />
 
         <div className="formDiv flex">
           <div className="headerDiv">

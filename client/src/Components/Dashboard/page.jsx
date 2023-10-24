@@ -8,24 +8,12 @@ import './dashboard.css'
 import Loading from '../Loading/Loading'
 
 export const AdminDashboard = () => {
-  const [visible, setVisible] = useState(true);
-
-  const hideLoading = () => {
-    setVisible(false);
-    document.querySelector(".loading").remove();
-  };
-
-  const interval = setInterval(() => {
-    if (visible) {
-      hideLoading();
-    }
-  }, 2000);
-
+  
   return (
     <>
     
         <div className='container'>
-          <Loading visible={visible} />
+          <Loading />
             <Sidebar />
             <Body />
           

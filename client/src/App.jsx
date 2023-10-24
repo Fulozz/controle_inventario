@@ -53,7 +53,7 @@ function App() {
         <Routes>
 
         <Route element={<Login />} path='/' exact/>
-
+      
           <Route element={isAuthenticated ? <Register /> : <Navigate to="/" />} path='/register'exact/>
           <Route element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} path='/dashboard'exact/>
           <Route element={isAuthenticated ? <UserProfile /> : <Navigate to='/' />} path='/profile' exact/>
