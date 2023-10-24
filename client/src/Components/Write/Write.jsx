@@ -9,7 +9,6 @@ import Loading from "../Loading/Loading";
 function Write() {
   return (
     <div className="container flex">
-      <Loading />
       <Sidebar />
       <div className="itemForm">
         <FormProvider>

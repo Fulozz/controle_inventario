@@ -12,6 +12,7 @@ import{ BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-do
 import Write from './Components/Write/Write'
 
 import Todos from './Components/Geral/Todos'
+import Loading from './Components/Loading/Loading'
 
   
 
@@ -20,7 +21,7 @@ import Todos from './Components/Geral/Todos'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true)
-
+  const [isLoading, setIsLoading] = useState(false);
   
   const statusValidate = async()=>{
     const URL = "http://10.0.50.39:3001/api/v1";
@@ -40,20 +41,15 @@ function App() {
     })
     
   } 
- 
   useEffect(() => {
     statusValidate()
   }, [])
-  
-
-
   return (
     <div>
+      <Loading />
       <Router>
         <Routes>
-
-        <Route element={<Login />} path='/' exact/>
-      
+        <Route element={<Login />} path='/' exact/>  
           <Route element={isAuthenticated ? <Register /> : <Navigate to="/" />} path='/register'exact/>
           <Route element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} path='/dashboard'exact/>
           <Route element={isAuthenticated ? <UserProfile /> : <Navigate to='/' />} path='/profile' exact/>

@@ -71,9 +71,7 @@ const Login = () => {
         console.error(err);
         setLoginStatus('Erro ao fazer login');
       });
-
   };
-
   useEffect(() => {
     if (loginStatus !== '') {
       setStatusHolder('showMessage');
@@ -83,18 +81,15 @@ const Login = () => {
     }
   }, [loginStatus],
   );
-
   const onSubmit = (e) => {
     e.preventDefault();
     setName('');
     setPassword('');
-
   };
 
   return (
     <div className="loginPage flex">
       <div className="container flex">
-
         <div className="formDiv flex">
           <div className="headerDiv">
             <img src={logo} alt="logo image" className='logo' />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Loading.css'
 const Loading = () => {
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
 
     const hideLoading = () =>{
         setVisible(false)
@@ -9,9 +9,9 @@ const Loading = () => {
     }
     setTimeout (()=>{
         if(visible) return hideLoading();
-    }, 1000)
+    }, 500)
   return (        
-            <div className="loading">
+            <div className="loading container">
                 <div className='loading-text'>Carregando...</div>
             </div>    
   )

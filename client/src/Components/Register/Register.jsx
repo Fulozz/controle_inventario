@@ -54,8 +54,6 @@ const Register = () => {
   return (
     <div className="registerPage flex">
       <div className="container flex">
-        <Loading />
-
         <div className="formDiv flex">
           <div className="headerDiv">
             <a href="/dashboard"><img src={logo} alt="logo image" className='logo' /></a>
@@ -69,7 +67,6 @@ const Register = () => {
                 <input type="email" id='email' placeholder=' Enter e-mail' onChange={(event) => {
                   sentEmail(event.target.value)
                 }} />
-
               </div>
             </div>
             <div className="inputDiv">
@@ -79,7 +76,6 @@ const Register = () => {
                 <input type="text" id='name' placeholder=' Enter Username' onChange={(event) => {
                   sentUsername(event.target.value)
                 }} />
-
               </div>
             </div>
             <div className="inputDiv">
@@ -95,9 +91,7 @@ const Register = () => {
               <span>Register</span>
               <AiOutlineSwapRight className='icon' />
             </button>
-
           </form>
-
         </div>
       </div>
     </div>

@@ -7,7 +7,6 @@ const Todos = () => {
   return (
     <>
     <div className='container'>
-      <Loading />
       <Sidebar />
       <Body />
     </div>

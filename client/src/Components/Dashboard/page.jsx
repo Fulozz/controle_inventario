@@ -10,15 +10,11 @@ import Loading from '../Loading/Loading'
 export const AdminDashboard = () => {
   
   return (
-    <>
-    
+    <> 
         <div className='container'>
-          <Loading />
             <Sidebar />
-            <Body />
-          
-        </div>
-      
+            <Body />        
+        </div>  
     </>
   )
 }
