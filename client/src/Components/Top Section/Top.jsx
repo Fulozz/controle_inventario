@@ -327,7 +327,7 @@ const Top = () => {
   window.addEventListener('scroll', function (e) {
    // mesma posição
       if (e.scrollY === lastScrollTop) return;
-      this.scrollY < lastScrollTop ? "Cima" :  setOpenTask(false) 
+      this.scrollY < lastScrollTop ? "Cima" : ( setOpenTask(false), setOpenUser(false) )
       lastScrollTop = this.scrollY;
     }, true)
 

@@ -1,2 +1,2 @@
-.user-content{position:absolute;top:11rem;right:-3%;padding:.768rem;transform:translate(-50%, -50%);width:200px;height:150px;background-color:#fff;border-radius:20px;display:flex;flex-direction:column;flex-wrap:wrap;box-shadow:0 2px 10px #424242;z-index:10}.user-content .user-item>h4{color:red}
+.user-content{position:absolute;top:11rem;right:-3%;padding:.768rem;transform:translate(-50%, -50%);width:200px;height:150px;background-color:#fff;border-radius:20px;display:flex;flex-direction:column;flex-wrap:wrap;box-shadow:0 2px 10px #424242;z-index:10}.user-content .user-item>h3,.user-content h5,.user-content h6{margin-bottom:10px;font-size:10px;font-weight:800}.user-content .user-item>h4{margin-bottom:10px;color:red}
 /*# sourceMappingURL=user.min.css.map */

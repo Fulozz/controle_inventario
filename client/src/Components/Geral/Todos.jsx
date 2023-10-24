@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../Dashboard/Components/Sidebar Section/Sidebar'
 import Body from './components/Body'
-import Loading from '../Loading/Loading'
+
 
 const Todos = () => {
   return (

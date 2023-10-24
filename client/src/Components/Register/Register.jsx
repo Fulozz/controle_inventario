@@ -10,7 +10,7 @@ import { FaUserShield } from 'react-icons/fa';
 import { BsFillShieldLockFill } from 'react-icons/bs';
 import { AiOutlineSwapRight } from 'react-icons/ai';
 import { MdAttachEmail } from 'react-icons/md';
-import Loading from '../Loading/Loading';
+
 
 
 

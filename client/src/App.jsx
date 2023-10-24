@@ -4,7 +4,7 @@ import './App.css'
 import Dashboard from './Components/Dashboard/page.jsx'
 import Login from './Components/Login/Login.jsx'
 import Register from './Components/Register/Register.jsx'
-import UserProfile from './Components/UserProfile/UserProfile'
+
 
 
 
@@ -52,7 +52,6 @@ function App() {
         <Route element={<Login />} path='/' exact/>  
           <Route element={isAuthenticated ? <Register /> : <Navigate to="/" />} path='/register'exact/>
           <Route element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} path='/dashboard'exact/>
-          <Route element={isAuthenticated ? <UserProfile /> : <Navigate to='/' />} path='/profile' exact/>
           <Route element={isAuthenticated ? <Write /> : <Navigate to='/' />} path='/write' exact/> 
           <Route element={isAuthenticated ? <Todos /> : <Navigate to='/' />} path='/todos' exact/> 
        
