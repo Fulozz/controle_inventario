@@ -11,14 +11,14 @@ const Loading = () => {
         if(visible) return hideLoading();
     }, 2000)
   return (
-    <>
+    
         
             <div className="loading">
                 Carregando...
             </div>
         
         
-    </>
+    
   )
 }
 
