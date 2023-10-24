@@ -51,18 +51,14 @@ function App() {
       <Router>
         <Routes>
 
-          { !isAuthenticated ? (
-            <> 
-            <Route element={<Dashboard />}   path='/' exact/>
-            <Route element={<Register />}    path='/register' exact/>
-           
-            <Route element={<UserProfile />} path='/profile' exact/>
-            <Route element={<Todos />}       path='/todos' />
-            <Route element={<Write />}       path='/write' exact/>
-            </>
-          ) : 
-          <Route element={<Login />} path='/' exact/>
-          }
+        <Route element={<Login />} path='/' exact/>
+
+          <Route element={isAuthenticated ? <Register /> : <Navigate to="/" />} path='/register'exact/>
+          <Route element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} path='/dashboard'exact/>
+          <Route element={isAuthenticated ? <UserProfile /> : <Navigate to='/' />} path='/profile' exact/>
+          <Route element={isAuthenticated ? <Write /> : <Navigate to='/' />} path='/write' exact/> 
+          <Route element={isAuthenticated ? <Todos /> : <Navigate to='/' />} path='/todos' exact/> 
+       
         </Routes>
       </Router>
     </div>
