@@ -34,10 +34,10 @@ function App() {
           token: localStorage.getItem('jwt')
         }),
       };
-    const response = await fetch(`${URL}/validate`, requestInit)
-    if(response.status !== 200) {
-      return <Navigate to= "/" />, localStorage.clear(), setIsAuthenticated(false);
-    }return setIsAuthenticated(true)  
+    await fetch(`${URL}/validate`, requestInit).then((response)=>{
+      console.log(response.data.status);
+    })
+    return setIsAuthenticated(true)  
   } 
  
   useEffect(() => {
