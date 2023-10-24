@@ -3,12 +3,13 @@ import React from 'react'
 import logo from '../../../Assets/Perfil GS.png'
 import './sidebar.css'
 import { IoMdSpeedometer } from 'react-icons/io'
-import {  MdOutlineExplore, MdOutlinePermContactCalendar } from 'react-icons/md'
+import {  MdOutlineExplore } from 'react-icons/md'
 
-import { AiOutlineUserAdd, AiOutlinePoweroff } from 'react-icons/ai'
+import { AiOutlineUserAdd, AiOutlinePoweroff, AiOutlinePieChart } from 'react-icons/ai'
 import { BsQuestionCircle, BsArrowReturnRight } from 'react-icons/bs'
 import { logout } from '../../../AuthProvider/AuthTS/utils'
 import { useNavigate } from 'react-router-dom'
+
 const Sidebar = () => {
 
   const navigate = useNavigate();
@@ -57,6 +58,14 @@ const Sidebar = () => {
               </span>
             </a>
           </li>
+          <li className="listItem">
+            <a href="" className='menuLink flex'>
+              <AiOutlinePieChart className='icon' />
+              <span className="smallText">
+                Visualizar
+              </span>
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -71,16 +80,6 @@ const Sidebar = () => {
               <AiOutlineUserAdd className='icon' />
               <span className="smallText">
                 Add user
-              </span>
-            </a>
-          </li>
-
-
-          <li className="listItem">
-            <a href="" className='menuLink flex'>
-              <MdOutlinePermContactCalendar className='icon' />
-              <span className="smallText">
-                Inclusões
               </span>
             </a>
           </li>
