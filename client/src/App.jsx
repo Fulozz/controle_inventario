@@ -36,8 +36,8 @@ function App() {
       };
     const response = await fetch(`${URL}/validate`, requestInit)
     if(response.status !== 200) {
-      return <Navigate to= "/" />, localStorage.clear(), setIsAuthenticated(true);
-    }return setIsAuthenticated(false)  
+      return <Navigate to= "/" />, localStorage.clear(), setIsAuthenticated(false);
+    }return setIsAuthenticated(true)  
   } 
  
   useEffect(() => {
