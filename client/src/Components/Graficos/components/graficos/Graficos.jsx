@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react'
 import API from '../../../API/API';
 
 const Graficos = () => {
-    const [quantidade, setQuantidade] = useState()
+    const [numeroDeProdutos, setNumeroDeProdutos] = useState(null);
 
     useEffect(() => {
         API().get("/patrimonios").then((response) => {
-            setQuantidade(response.data);
+            const a = JSON.stringify(response.data)
+            
+            console.log(a);
         });
       }, []);
+      
 
   return (
     <div>Graficos</div>

@@ -55,14 +55,12 @@ const Top = () => {
   const switchTask = () =>{
     setOpenUser(false)
     if(!openTask){
-      setOpenTask(true)
-      
+      setOpenTask(true)  
     } else {
       setOpenTask(false)
     }
   };
-  const switchUser = () =>{
-    console.log('clicou');
+  const switchUser = () =>{ 
     setOpenTask(false)
     if(!openUser){ 
       setOpenUser(true)
