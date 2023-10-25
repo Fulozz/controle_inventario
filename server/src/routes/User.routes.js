@@ -32,7 +32,7 @@ router.post('/delete/:id',  productController.deletePatrimonio)
 // ==> Rota responsavel por procurar os patrimonios: (GET) localhost:3000/api/v1/search/:id
 router.post('/search/:id', productController.searchItem)
 
-
+router.get('/patrimonios', productController.countPatrimonios)
 
 
 

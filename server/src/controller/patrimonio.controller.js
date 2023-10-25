@@ -106,21 +106,20 @@ exports.updatePatrimonio = async (req,res) => {
         res.status(404).send({
           error: "O patrimônio não foi encontrado",
         });
+        
       }
 }
 
-exports.searchPatrimonio = async(req, res)=> {
-    const patrimonio = await Patrimonio.findById(req.params.id);
-    
-    // Atualizar o produto
-    patrimonio.name = req.body.name;
-    patrimonio.serial_number = req.body.serial_number;
-    patrimonio.host_name = req.body.host_name;
-    patrimonio.categoria = req.body.categoria;
+exports.countPatrimonios = async (req, res) => {
+    const categorias = await Patrimonio.distinct('categoria');
   
-    // Salvar o produto
-    await patrimonio.save();
+    const numerosDeProdutos = [];
+    for (const categoria of categorias) {
+      const numeroDePatrimonios = await Patrimonio.find({ categoria }).count();
+      numerosDeProdutos.push({
+        [categoria]: numeroDePatrimonios,
+      });
+    }
   
-    // Enviar a resposta
-    res.send(patrimonio);
-};
+    res.json(numerosDeProdutos);
+  };

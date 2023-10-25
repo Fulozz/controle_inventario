@@ -59,7 +59,7 @@ const Sidebar = () => {
             </a>
           </li>
           <li className="listItem">
-            <a href="" className='menuLink flex'>
+            <a href="/graficos" className='menuLink flex'>
               <AiOutlinePieChart className='icon' />
               <span className="smallText">
                 Visualizar

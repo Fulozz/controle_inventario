@@ -13,6 +13,7 @@ import Write from './Components/Write/Write'
 
 import Todos from './Components/Geral/Todos'
 import Loading from './Components/Loading/Loading'
+import Graphs from './Components/Graficos/Graphs'
 
   
 
@@ -54,7 +55,7 @@ function App() {
           <Route element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} path='/dashboard'exact/>
           <Route element={isAuthenticated ? <Write /> : <Navigate to='/' />} path='/write' exact/> 
           <Route element={isAuthenticated ? <Todos /> : <Navigate to='/' />} path='/todos' exact/> 
-       
+          <Route element={isAuthenticated ? <Graphs /> : <Navigate to='/' />} path='/graficos' exact/> 
         </Routes>
       </Router>
     </div>
