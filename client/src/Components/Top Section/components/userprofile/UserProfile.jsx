@@ -1,26 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import './user.css'
-import API from '../../../API/API.user'
+import APIUser from '../../../API/API.user'
 const UserProfile = () => {
   const [user, setUser] = useState(null)
   const [email, setEmail] = useState(null)
   
   useEffect(() => {
-    const URLocal = "http://localhost:3001/api/v1"
-    const URL = "http://10.0.50.39:3001/api/v1/user"
-    const requestInit = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: localStorage.getItem("jwt"),
-      }),
-    };
-    fetch(`${URL}/user`, requestInit).then((response) => {
+    
+    APIUser().post(`/user`, {
+      token: localStorage.getItem("jwt"),
+    }).then((response) => {
       response.json().then((data) => {
         setUser(data.name);
-        setEmail(data.email)
       });
     });
   }, []);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./listing.css";;
-import API from '../../../../API/API.patrimonio'
+import APIPatrimonio from '../../../../API/API.patrimonio'
 
 // imported icons;
 import { AiOutlineEye } from "react-icons/ai";
@@ -19,7 +19,7 @@ const Listing = () => {
 
     const [patrimonio, setPatrimonio] = useState([])
     useEffect(()=>{
-      API().get('/listing').then((response)=>{
+        APIPatrimonio().get('/listing').then((response)=>{
         setPatrimonio(response.data)
       })
     },[])

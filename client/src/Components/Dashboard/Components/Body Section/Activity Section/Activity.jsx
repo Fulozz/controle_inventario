@@ -1,38 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import './activity.css'
-import API from '../../../../API/API.patrimonio'
+import APIPatrimonio from '../../../../API/API.patrimonio'
 
 //imported icons ==>
 import { BsArrowRightShort } from 'react-icons/bs'
 
 //import images
 import img from '../../../../Assets/1693004941361.jpeg'
+import APIUser from '../../../../API/API.user'
 
 const Activity = () => {
-  const URLocal = "http://localhost:3001/api/v1"
-  const URL = "http://10.0.50.39:3001/api/v1/user"
+
   const [user, setUser] = useState(null)
   const [patrimonio, setPatrimonio] = useState([])
 
   useEffect(() => {
-    const requestInit = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: localStorage.getItem("jwt"),
-      }),
-    };
-    fetch(`${URL}/user`, requestInit).then((response) => {
-      response.json().then((data) => {
-        setUser(data.name);
-      });
+    
+    APIUser().post(`/user`, {
+      token: localStorage.getItem("jwt"),
+    }).then((response) => {
+      setUser(response.data.name)
     });
   }, []);
   
   useEffect(()=>{
-    API().get('/listing').then((response)=>{
+    APIPatrimonio().get('/listing').then((response)=>{
       setPatrimonio(response.data)
     })
   },[]);

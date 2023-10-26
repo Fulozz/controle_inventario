@@ -23,10 +23,9 @@ import APIUser from "./Components/API/API.user";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const statusValidate = async () => {
-    const URL = "http://10.0.50.39:3001/api/v1/user";
-    const URLocal = "http://localhost:3001/api/v1/user";
+
     
-    await APIUser().post(`${URL}/validate`,{
+    await APIUser().post(`/validate`,{
       token: localStorage.getItem("jwt")
     }).then((response) => {
       if (response.status === 200) return setIsAuthenticated(true);

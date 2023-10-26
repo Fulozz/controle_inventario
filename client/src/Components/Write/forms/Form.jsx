@@ -65,19 +65,11 @@ const Form = () => {
 
   // Request for the user data
   useEffect(() => {
-    const requestInit = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: localStorage.getItem("jwt"),
-      }),
-    };
-    fetch(`${URL}/user`, requestInit).then((response) => {
-      response.json().then((data) => {
-        setUser(data.name);
-      });
+    
+    APIUser().post(`/user`, {
+      token: localStorage.getItem("jwt"),
+    }).then((response) => {
+      setUser(response.data.name)
     });
   }, []);
 

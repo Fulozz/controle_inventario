@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './top.css';
-import API from '../API/API.patrimonio';
+import APIPatrimonio from '../API/API.patrimonio';
 
 
 // Import de Icons 
@@ -125,7 +125,7 @@ const Top = () => {
     // Informação
     switch (selector && singlePatrimonio.categoria) {
         case "informação" && "computador":
-        API().post(
+        APIPatrimonio().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
@@ -137,7 +137,7 @@ const Top = () => {
         );
         break;
         case "informação" && "notebook":
-        API().post(
+        APIPatrimonio().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
@@ -149,7 +149,7 @@ const Top = () => {
         );
         break;
         case "informação" && "impressora":
-        API().post(
+        APIPatrimonio().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
@@ -162,7 +162,7 @@ const Top = () => {
         );
         break;
         case "informação" && "monitor":
-        API().post(
+        APIPatrimonio().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
@@ -177,7 +177,7 @@ const Top = () => {
         );
         break;
         case "informação" && "telefone":
-        API().post(
+        APIPatrimonio().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
@@ -189,7 +189,7 @@ const Top = () => {
         );
         break;
         case "informação" && "switch":
-        API().post(
+        APIPatrimonio().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
@@ -201,7 +201,7 @@ const Top = () => {
         );
         break;
         case "informação" && "servidor":
-        API().post(
+        APIPatrimonio().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
@@ -212,13 +212,12 @@ const Top = () => {
           window.location.reload()
         );
         break;
-        
-            break;
+      
     }
     // Hardware
     switch(selector && singlePatrimonio.categoria) {
         case "hardware" && "computador":
-        API().post(
+        APIPatrimonio().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
@@ -232,7 +231,7 @@ const Top = () => {
         );
         break;
         case "hardware" && "notebook":
-        API().post(
+        APIPatrimonio().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
@@ -247,7 +246,7 @@ const Top = () => {
         );
         break;
         case "hardware" && "monitor":
-        API().post(
+        APIPatrimonio().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
@@ -259,7 +258,7 @@ const Top = () => {
         );
         break;
         case "hardware" && "servidor":
-          API().post(
+          APIPatrimonio().post(
             `/update/${singlePatrimonio.patrimonio}`,
             {
               patrimonio: singlePatrimonio.patrimonio,
@@ -277,7 +276,7 @@ const Top = () => {
           );
           break;
         case "hardware" && "switch":
-          API().post(`/update/${singlePatrimonio.patrimonio}`,
+          APIPatrimonio().post(`/update/${singlePatrimonio.patrimonio}`,
               {
                 patrimonio: singlePatrimonio.patrimonio,
                 poe: poe,
@@ -291,7 +290,7 @@ const Top = () => {
     // Local
     switch (selector) {
       case "local":
-        API().post(
+        APIPatrimonio().post(
           `/update/${singlePatrimonio.patrimonio}`,
           {
             patrimonio: singlePatrimonio.patrimonio,
@@ -309,7 +308,7 @@ const Top = () => {
   };
 
   const findData = async () =>{
-    await API().post(`/search/${searchData}`,{
+    await APIPatrimonio().post(`/search/${searchData}`,{
       patrimonio: searchData
     }).then((response)=>{
       console.log(response);

@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import '../../App.css';
 import {  useNavigate } from 'react-router-dom';
-import API from '../API/API.user'
+import APIUser from '../API/API.user'
 // //import video
 
 import logo from '../Login/LoginAssets/Perfil GS.png';
@@ -31,7 +31,7 @@ const Register = () => {
       return;
     };
     //Require API to create an API to connect with the server
-    API().post('/register', {
+    APIUser().post('/register', {
       email: email,
       name: username,
       password: password

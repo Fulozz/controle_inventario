@@ -22,11 +22,6 @@ const Geral = () => {
   const [isEditable, setIsEditable] = useState(false);
   const [singlePatrimonio, setSinglePatrimonio] = useState();
 
-  const [selector, setSelector] = useState("informação");
-
-  const [isActiveInfo, setIsActiveInfo] = useState(false);
-  const [isActiveHardware, setIsActiveHardware] = useState(false);
-  const [isActiveLocal, setIsActiveLocal] = useState(false);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
 
   // Função para filtrar os dados de patrimônio com base na categoria selecionada

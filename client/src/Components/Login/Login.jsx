@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import API from '../API/API.user'
+import APIUser from '../API/API.user'
 // CSS
 
 import '../../App.scss';
@@ -30,7 +30,7 @@ const Login = () => {
       setLoginStatus('Preencha todos os campos');
       return;
     };
-    API().post('/login', {
+    APIUser().post('/login', {
       name: name,
       password: password,
     }, {
