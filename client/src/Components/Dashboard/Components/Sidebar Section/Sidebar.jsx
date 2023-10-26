@@ -7,7 +7,7 @@ import {  MdOutlineExplore } from 'react-icons/md'
 
 import { AiOutlineUserAdd, AiOutlinePoweroff, AiOutlinePieChart } from 'react-icons/ai'
 import { BsQuestionCircle, BsArrowReturnRight } from 'react-icons/bs'
-import { logout } from '../../../AuthProvider/AuthTS/utils'
+import { logout }from '../../../API/utils'
 import { useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {

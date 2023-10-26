@@ -11,7 +11,7 @@ import logo from './LoginAssets/Perfil GS.png';
 import { FaUserShield } from 'react-icons/fa';
 import { BsFillShieldLockFill } from 'react-icons/bs';
 import { AiOutlineSwapRight } from 'react-icons/ai';
-import { setUserLocalStorage } from '../AuthProvider/AuthTS/utils';
+import { setPayload } from '../API/utils';
 
 
 
@@ -39,31 +39,28 @@ const Login = () => {
       },
     })
       .then((response) => {
-        console.log(response)
         const payload = { token: response.data.token } // , name, id: response.data.id
         // =============== Payload
 
         switch (response.status) {
           case 200:
-            console.log('Logado com sucesso');
+            setPayload(payload);
             navigate('/dashboard');
-            setUserLocalStorage(payload);
             break;
           case 401:
             navigate('/');
-            console.log('Credenciais não coincidem');
             setLoginStatus('Credenciais não coincidem');
             window.location.reload();
             break;
           case 404:
             navigate('/');
-            console.log('Usuario nao encontrado');
             setLoginStatus('Usuário não encontrado');
+            window.location.reload();
             break;
           case 500:
             navigate('/');
-            console.log('Erro de servidor');
             setLoginStatus('Erro de servidor');
+            window.location.reload();
             break;
         }
       })

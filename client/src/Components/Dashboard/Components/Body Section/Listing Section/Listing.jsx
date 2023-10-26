@@ -1,31 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./listing.css";;
 import API from '../../../../API/API.patrimonio'
+
 // imported icons;
-import { BsArrowRightShort } from "react-icons/bs";
-import { AiOutlineClose, AiOutlineEye, AiOutlineEyeInvisible, AiOutlineSave } from "react-icons/ai";
-import {FiAlertTriangle, FiEdit} from 'react-icons/fi'
+import { AiOutlineEye } from "react-icons/ai";
+
 
 import { Link } from "react-router-dom";
 
 
-//imported image
-import computer from "../../../../Assets/categorias/computer.png";
-import notebook from "../../../../Assets/categorias/notebook png.png";
-import impressora from "../../../../Assets/categorias/impressora png.png";
-import monitor from "../../../../Assets/categorias/monitor png.png";
-import telefone from "../../../../Assets/categorias/telefone png.png";
-import switchI from "../../../../Assets/categorias/switch png.png";
-import server from "../../../../Assets/categorias/server png.png";
 
 
-
-import { useForm } from "react-hook-form";
 import Card from "../../../../../View/Card/Card";
 import Images from "../../../../../View/Imagens/Images";
-
-
-
 
 
 const Listing = () => {
@@ -62,7 +49,7 @@ return (
               >
                 <AiOutlineEye className="icon" />
               </button>
-              <Images patrimonio={patrimonio.categoria} />
+              <Images patrimonio={patrimonio} />
               <Link
                 onClick={() => {
                   setIsEditable(false);

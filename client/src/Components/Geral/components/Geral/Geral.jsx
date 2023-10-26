@@ -37,7 +37,6 @@ const Geral = () => {
     return patrimonios.filter((patrimonio) => patrimonio.categoria === categoriaSelecionada);
   };
 
-
   useEffect(() => {
     API().get("/patrimonio/:id").then(
       (response) => {
@@ -52,54 +51,6 @@ const Geral = () => {
     });
   }, []);
 
-  const [formData, setFormData] = useState({
-    // Geral
-    host_name: "",
-    marca: "",
-    modelo: "",
-    // Impressora
-    tipo_impressora: "",
-    // Monitor
-    tamanho: "",
-    tipo_monitor: "",
-    formato: "",
-    categoria: "",
-    // hardware
-    cpu: "",
-    gpu: "",
-    memoriaRam: "",
-    memoriaRamDDR: "",
-    hard_disk: "",
-    // Switch
-    portas: "",
-    poe: "",
-    gerenciavel: "",
-    // Servidor
-    hard_disk_2: "",
-    sistema_operacional: "",
-    power_suply: "",
-    acesso_remoto: "",
-    //Geral
-    local: "",
-    departamento: "",
-    estado: "",
-  });
-  //Handle the formData
-  const { handleSubmit } = useForm({
-    initialValues: formData,
-  });
-  const Close = () => {
-    setIsVisible(false);
-    setIsEditable(false);
-    setSelector("informação");
-    setIsActiveInfo(true);
-    setIsActiveHardware(false);
-    setIsActiveLocal(false);
-  };
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
 
 
   return (

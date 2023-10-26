@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './user.css'
+import API from '../../../API/API.user'
 const UserProfile = () => {
   const [user, setUser] = useState(null)
   const [email, setEmail] = useState(null)

@@ -9,7 +9,7 @@ const Loading = () => {
     }
     setTimeout (()=>{
         if(visible) return hideLoading();
-    }, 500)
+    }, 1000)
   return (        
             <div className="loading container">
                 <div className='loading-text'>Carregando...</div>

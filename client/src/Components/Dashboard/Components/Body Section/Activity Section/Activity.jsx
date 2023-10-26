@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './activity.css'
 import API from '../../../../API/API.patrimonio'
+
 //imported icons ==>
 import { BsArrowRightShort } from 'react-icons/bs'
-
 
 //import images
 import img from '../../../../Assets/1693004941361.jpeg'
