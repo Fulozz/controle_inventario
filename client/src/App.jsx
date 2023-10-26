@@ -16,26 +16,19 @@ import Write from "./Components/Write/Write";
 import Todos from "./Components/Geral/Todos";
 import Loading from "./Components/Loading/Loading";
 import Graphs from "./Components/Graficos/Graphs";
+import APIUser from "./Components/API/API.user";
 
 // router
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-
   const statusValidate = async () => {
     const URL = "http://10.0.50.39:3001/api/v1/user";
     const URLocal = "http://localhost:3001/api/v1/user";
-    const requestInit = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: localStorage.getItem("jwt"),
-      }),
-    };
-    await fetch(`${URL}/validate`, requestInit).then((response) => {
+    
+    await APIUser().post(`${URL}/validate`,{
+      token: localStorage.getItem("jwt")
+    }).then((response) => {
       if (response.status === 200) return setIsAuthenticated(true);
       if (response.status != 200) return setIsAuthenticated(false);
     });
