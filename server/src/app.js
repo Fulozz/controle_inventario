@@ -12,7 +12,7 @@ const app = express();
 
 const index = require('./routes/index')
 const userRoutes = require('./routes/User.routes')
-
+const patrimonioRoutes = require('./routes/Patrimonio.routes')
 
 
 app.use(express.urlencoded({ extended : true }));
@@ -24,7 +24,7 @@ app.use(morgan('dev'));
 app.set("mongoose connection", mongooseConnection);
 
 app.use(index);
-app.use('/api/v1', userRoutes)
+app.use('/api/v1', userRoutes, patrimonioRoutes)
 
 
 
