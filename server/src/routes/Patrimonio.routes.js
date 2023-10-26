@@ -4,9 +4,6 @@ const productController = require('../controller/patrimonio.controller')
 
 
 
-
-
-
 // ==> Rota responsavel por criar os patrimonios: (GET) localhost:3000/api/v1/create
 router.post('/create',  productController.createPatrimonio)
 
@@ -25,3 +22,4 @@ router.delete('/delete/:id',  productController.deletePatrimonio)
 router.post('/search/:id', productController.searchItem)
 
 router.get('/patrimonios', productController.countPatrimonios)
+module.exports = router

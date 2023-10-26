@@ -13,9 +13,6 @@ router.post('/login', userController.loginUser)
 // ==> Rota responsavel por fazer a validação de usuario logado ou não logado
 router.post('/validate', userController.validateUser)
 
-
-
-
 // ==> Rota responsavel por acessar o perfil do usuario: (GET) localhost:3000/api/v1/dashboard
 router.get('/dashboard', auth, userController.returnUserProfile)
 

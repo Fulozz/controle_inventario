@@ -24,8 +24,8 @@ app.use(morgan('dev'));
 app.set("mongoose connection", mongooseConnection);
 
 app.use(index);
-app.use('/api/v1', userRoutes, patrimonioRoutes)
-
+app.use('/api/v1/user', userRoutes)
+app.use('/api/v1/patrimonio', patrimonioRoutes)
 
 
 module.exports = app;
