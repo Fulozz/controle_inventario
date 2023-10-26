@@ -14,6 +14,7 @@ import Write from './Components/Write/Write'
 import Todos from './Components/Geral/Todos'
 import Loading from './Components/Loading/Loading'
 import Graphs from './Components/Graficos/Graphs'
+import Card from './View/Card/Card'
 
   
 
@@ -25,8 +26,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   
   const statusValidate = async()=>{
-    const URL = "http://10.0.50.39:3001/api/v1";
-    const URLocal = "http://localhost:3001/api/v1";
+    const URL = "http://10.0.50.39:3001/api/v1/user";
+    const URLocal = "http://localhost:3001/api/v1/user";
     const requestInit = {
         method: 'POST',
         headers: {
@@ -51,6 +52,7 @@ function App() {
       <Router>
         <Routes>
         <Route element={<Login />} path='/' exact/>  
+        <Route element={<Card />} path='/card' exact/> 
           <Route element={isAuthenticated ? <Register /> : <Navigate to="/" />} path='/register'exact/>
           <Route element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} path='/dashboard'exact/>
           <Route element={isAuthenticated ? <Write /> : <Navigate to='/' />} path='/write' exact/> 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import API from '../API/API'
+import API from '../API/API.user'
 // CSS
 
 import '../../App.scss';

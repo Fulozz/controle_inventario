@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import API from '../../API/API'
+import API from '../../API/API.patrimonio'
 
 const Form = () => {
   const URLocal = "http://localhost:3001/api/v1"
-  const URL = "http://10.0.50.39:3001/api/v1"
+  const URL = "http://10.0.50.39:3001/api/v1/user"
 
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();

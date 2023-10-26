@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './top.css';
-import API from '../API/API';
+import API from '../API/API.patrimonio';
 
 
 // Import de Icons 

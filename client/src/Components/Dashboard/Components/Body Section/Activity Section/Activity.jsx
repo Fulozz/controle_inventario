@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './activity.css'
-import API from '../../../../API/API'
+import API from '../../../../API/API.patrimonio'
 //imported icons ==>
 import { BsArrowRightShort } from 'react-icons/bs'
 
@@ -10,7 +10,7 @@ import img from '../../../../Assets/1693004941361.jpeg'
 
 const Activity = () => {
   const URLocal = "http://localhost:3001/api/v1"
-  const URL = "http://10.0.50.39:3001/api/v1"
+  const URL = "http://10.0.50.39:3001/api/v1/user"
   const [user, setUser] = useState(null)
   const [patrimonio, setPatrimonio] = useState([])
 
