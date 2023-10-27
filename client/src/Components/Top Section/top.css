@@ -33,6 +33,11 @@
   color: var(--greyText);
   font-weight: 500;
 }
+@media screen and (max-width: 768px) {
+  .topSection .headerSection .title, .topSection .headerSection .adminDiv {
+    display: none;
+  }
+}
 .topSection .headerSection .searchBar {
   padding: 1rem 2rem;
   background-color: var(--whiteColor);
@@ -197,4 +202,5 @@
   .topSection .cardSection .leftCard .imgDiv img {
     display: none;
   }
-}/*# sourceMappingURL=top.css.map */
+}
+/*# sourceMappingURL=top.css.map */

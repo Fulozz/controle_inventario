@@ -6,14 +6,16 @@ const UserProfile = () => {
   const [email, setEmail] = useState(null)
   
   useEffect(() => {
-    
-    APIUser().post(`/user`, {
-      token: localStorage.getItem("jwt"),
-    }).then((response) => {
-      response.json().then((data) => {
-        setUser(data.name);
+    const fetchUser = async () => {
+      const response = await APIUser().post(`/user`, {
+        token: localStorage.getItem("jwt"),
       });
-    });
+      const data = await response.data;
+      setUser(data.name);
+      setEmail(data.email);
+    };
+
+    fetchUser();
   }, []);
   return (
     <div className="userProfile">

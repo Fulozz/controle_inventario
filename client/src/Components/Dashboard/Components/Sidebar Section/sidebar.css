@@ -28,6 +28,15 @@
   gap: 3rem 10px;
   overflow: auto;
 }
+@media screen and (max-width: 768px) {
+  .sideBar .logoDiv > h2 {
+    display: none;
+  }
+  .sideBar .logoDiv > img {
+    justify-content: center;
+    text-align: center;
+  }
+}
 .sideBar .logoDiv {
   padding: 1.5rem 1.5rem 0;
   cursor: pointer;

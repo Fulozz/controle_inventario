@@ -7,7 +7,7 @@ import APIPatrimonio from '../API/API.patrimonio';
 // Import de Icons 
 import { BiSearchAlt } from 'react-icons/bi';
 import { IoIosNotificationsOutline } from 'react-icons/io';
-import { AiOutlineClose, AiOutlineEyeInvisible, AiOutlinePaperClip, AiOutlinePushpin, AiOutlineSave } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineCloudDownload, AiOutlineEyeInvisible, AiOutlinePaperClip, AiOutlinePushpin, AiOutlineSave } from 'react-icons/ai';
 import { FiAlertTriangle, FiEdit } from 'react-icons/fi';
 //Imported Images
 
@@ -346,7 +346,7 @@ const Top = () => {
 
         <div className="adminDiv flex">
           <AiOutlinePushpin className='icon' onClick={switchTask}/>
-          <IoIosNotificationsOutline className='icon'/>
+          <AiOutlineCloudDownload className='icon'/>
           <div className="adminImage" >
             <img src={img} alt="Admin Image" className='userImage' onClick={switchUser} />
              {/* incluir uma maneira de puxar essa imagem do usuario do banco de dados, 

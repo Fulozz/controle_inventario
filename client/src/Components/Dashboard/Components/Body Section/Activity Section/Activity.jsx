@@ -46,7 +46,7 @@ const Activity = () => {
 
       {patrimonio && patrimonio.map((patrimonio, index) => (
         <div className="singleCustomer flex" key={index}>
-          <img src={img} alt="User image" />
+          
           <div className="customerDetails">
             
             <span className="name"> {patrimonio.name}  </span>
