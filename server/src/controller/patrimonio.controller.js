@@ -112,10 +112,12 @@ exports.updatePatrimonio = async (req,res) => {
 
 exports.countPatrimonios = async (req, res) => {
     const categorias = await Patrimonio.distinct('categoria');
-  
+    
     const numerosDeProdutos = [];
     for (const categoria of categorias) {
       const numeroDePatrimonios = await Patrimonio.find({ categoria }).count();
+    
+        
       numerosDeProdutos.push({
         [categoria]: numeroDePatrimonios,
       });

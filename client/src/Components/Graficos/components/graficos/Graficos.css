@@ -1,7 +1,8 @@
 .graphs {
   display: flex;
-  padding: 20px;
+  padding-right: 3rem;
 }
 .graphs .graficos {
-  padding: 10%;
-}/*# sourceMappingURL=Graficos.css.map */
+  padding-right: 10%;
+}
+/*# sourceMappingURL=Graficos.css.map */
