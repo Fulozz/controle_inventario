@@ -36,13 +36,13 @@ const Graficos = () => {
 
 const dataTeste = [
   ["Patrimonios", "Quantidade"],
-  ["Computador", data.computador],
-  ["Notebook", data.notebook],
-  ["Impressora", data.impressora],
-  ["Telefone", data.telefone],
-  ["Switch", data.switch],
-  ["Monitor", data.monitor],
-  ["Servidor", data.servidor]
+  [`Computador - ${data.computador}`, data.computador],
+  [`Monitor - ${data.monitor}`, data.monitor],
+  [`Telefone - ${data.telefone}`, data.telefone],
+  [`Notebook - ${data.notebook}`, data.notebook],
+  [`Impressora - ${data.impressora}`, data.impressora],
+  [`Switch - ${data.switch}`, data.switch],
+  [`Servidor - ${data.servidor}`, data.servidor]
 ];
 const options = {
   title: "Grafico de relação de patrimonio",
@@ -55,7 +55,7 @@ const options = {
         chartType="PieChart"
         data={dataTeste}
         options={options}
-        width="100%"
+        width="500px"
         height="300px"
         legendToggle
         />
