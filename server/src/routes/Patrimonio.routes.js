@@ -22,4 +22,6 @@ router.delete('/delete/:id',  productController.deletePatrimonio)
 router.post('/search/:id', productController.searchItem)
 
 router.get('/patrimonios', productController.countPatrimonios)
+
+router.get('/exportar', productController.exportDados)
 module.exports = router
