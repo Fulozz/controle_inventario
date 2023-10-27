@@ -27,7 +27,6 @@ const Register = () => {
   const createUser = (e) => {
     e.preventDefault();
     if (!email || !username || !password) {
-      console.log('Por favor, preencha todos os campos.');
       return;
     };
     //Require API to create an API to connect with the server
@@ -40,13 +39,12 @@ const Register = () => {
         return status === 400 || status === 401 || status === 200 || status === 409; // Trate <400 como bem-sucedido
       },
     }).then(() => {
-      console.log('user has been created ')
       navigateTo('/')
       sentPassword('')
       sentUsername('')
       sentEmail('')
     }).catch((err) => {
-      console.log(err)
+      return err
     })
 
   };

@@ -29,7 +29,7 @@ const Top = () => {
     initialValues: formData,
   });
  const onSubmit = (data) => {
-  console.log(data);
+  return data
  };
 
   const [singlePatrimonio, setSinglePatrimonio] = useState();
@@ -311,7 +311,6 @@ const Top = () => {
     await APIPatrimonio().post(`/search/${searchData}`,{
       patrimonio: searchData
     }).then((response)=>{
-      console.log(response);
       setSinglePatrimonio(response.data)
       setIsVisible(true)
       setIsEditable(true);

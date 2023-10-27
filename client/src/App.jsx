@@ -23,8 +23,6 @@ import APIUser from "./Components/API/API.user";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const statusValidate = async () => {
-
-    
     await APIUser().post(`/validate`,{
       token: localStorage.getItem("jwt")
     }).then((response) => {

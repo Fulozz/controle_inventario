@@ -115,7 +115,6 @@ const Form = () => {
             alert(
               "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
             );
-            console.log(err);
           });
         break;
       case "notebook":
@@ -147,7 +146,6 @@ const Form = () => {
             alert(
               "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
             );
-            console.log(err);
           });
         break;
       case "monitor":
@@ -176,7 +174,6 @@ const Form = () => {
             alert(
               "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
             );
-            console.log(err);
           });
         break;
       case "impressora":
@@ -203,7 +200,6 @@ const Form = () => {
             alert(
               "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
             );
-            console.log(err);
           });
         break;
       case "telefone":
@@ -229,7 +225,6 @@ const Form = () => {
             alert(
               "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
             );
-            console.log(err);
           });
         break;
       case "switch":
@@ -258,7 +253,6 @@ const Form = () => {
             alert(
               "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
             );
-            console.log(err);
           });
         break;
       case "servidor":
@@ -288,7 +282,6 @@ const Form = () => {
           .catch((err) => {
             alert( "Verifique as inforamações se o Patrimonio ou Número de série está correto, caso seja generico coloque => Generico e o número de patrimonio. Ex: Generico 0178"
             );
-            console.log(err);
           });
         break;
      }

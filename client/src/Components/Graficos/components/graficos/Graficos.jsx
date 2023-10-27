@@ -5,7 +5,7 @@ import Chart from 'react-google-charts'
 
 import './Graficos.css'
 const Graficos = () => {
-  const [total, setTotal] = useState()
+
     const [data, setData] = useState({
       computador: Number,
       monitor: Number,
@@ -29,10 +29,8 @@ const Graficos = () => {
               switch: items[5].switch, 
               telefone: items[6].telefone, 
             })
-            console.log(data)
         });
       }, []);
-      console.log(data)
 
 const dataTeste = [
   ["Patrimonios", "Quantidade"],
@@ -57,7 +55,6 @@ const options = {
         options={options}
         width="500px"
         height="300px"
-        legendToggle
         />
       </div>
     </div>

@@ -25,7 +25,6 @@ const Listas = () => {
               switch: items[5].switch, 
               telefone: items[6].telefone, 
             })
-            console.log(data)
         });
       }, []);
       
