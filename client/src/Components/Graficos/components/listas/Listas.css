@@ -1,0 +1,9 @@
+.Listas ul, .Listas li {
+  gap: 40px;
+  list-style: none;
+}
+.Listas li {
+  border-bottom: 1px solid grey;
+  margin-bottom: 20px;
+  font-size: 18px;
+}/*# sourceMappingURL=Listas.css.map */

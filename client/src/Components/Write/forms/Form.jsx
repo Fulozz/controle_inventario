@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import API from '../../API/API.patrimonio'
+import APIPatrimonio from '../../API/API.patrimonio'
+import APIUser from '../../API//API.user'
 
 const Form = () => {
-  const URLocal = "http://localhost:3001/api/v1"
-  const URL = "http://10.0.50.39:3001/api/v1/user"
 
   const [user, setUser] = useState(null);
   const navigateTo = useNavigate();
@@ -89,7 +88,7 @@ const Form = () => {
     }
     switch (formData.categoria) {
       case "computador":
-        API().post("/create", {
+        APIPatrimonio().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -120,7 +119,7 @@ const Form = () => {
           });
         break;
       case "notebook":
-        API().post("/create", {
+        APIPatrimonio().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -152,7 +151,7 @@ const Form = () => {
           });
         break;
       case "monitor":
-        API().post("/create", {
+        APIPatrimonio().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -181,7 +180,7 @@ const Form = () => {
           });
         break;
       case "impressora":
-        API().post("/create", {
+        APIPatrimonio().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -208,7 +207,7 @@ const Form = () => {
           });
         break;
       case "telefone":
-        API().post("/create", {
+        APIPatrimonio().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -234,7 +233,7 @@ const Form = () => {
           });
         break;
       case "switch":
-        API().post("/create", {
+        APIPatrimonio().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -263,7 +262,7 @@ const Form = () => {
           });
         break;
       case "servidor":
-        API().post("/create", {
+        APIPatrimonio().post("/create", {
           name: user,
           host_name: formData.host_name,
           serial_number: formData.serial_number,
@@ -1062,7 +1061,7 @@ const Form = () => {
                     }}
                   />
                 </th>
-                <tr>
+                <td>
                   <th>
                     <label htmlFor="acesso_remoto">Acesso remoto</label>
                   </th>
@@ -1081,7 +1080,7 @@ const Form = () => {
                       }}
                     />
                   </th>
-                </tr>
+                </td>
               </tr>
               <tr>
                 <th>

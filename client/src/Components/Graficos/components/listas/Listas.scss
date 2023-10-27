@@ -1,0 +1,12 @@
+.Listas{
+
+    ul, li {
+        gap: 40px;
+        list-style: none;
+    }
+    li{
+        border-bottom: 1px solid grey;
+        margin-bottom: 20px;
+        font-size: 18px;
+    }
+}

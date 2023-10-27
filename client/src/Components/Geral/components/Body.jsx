@@ -6,9 +6,9 @@ import Geral from './Geral/Geral';
 function Body() {
   return (
     <div className='mainContent'>
-      <div className="top">
+     
         <Top />
-      </div>
+      
         <div className="bottom flex">
            <Geral /> 
         </div>

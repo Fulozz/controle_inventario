@@ -17,7 +17,7 @@
 .task-content .task-item {
   border-bottom: 1px solid grey;
 }
-.task-content .task-item ul, .task-content .task-item li {
+.task-content .task-item h4, .task-content .task-item ul, .task-content .task-item li {
   list-style: none;
-}
-/*# sourceMappingURL=taskbar.css.map */
+  margin-bottom: 6px;
+}/*# sourceMappingURL=taskbar.css.map */

@@ -6,7 +6,7 @@ exports.getPatrimonioListing = async(req,  res )=>{
     
     try{
         await Patrimonio.find().sort({createdAt: -1})
-        .limit(6)
+        .limit(8)
         .then((patrimonios)=>{
             return res.send(patrimonios)
         })

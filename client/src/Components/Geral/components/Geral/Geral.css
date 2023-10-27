@@ -164,7 +164,6 @@
 }
 .listingSection .secContainer .singleItem .link {
   border-bottom: 1px solid crimson;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   padding: 2px 0px;
@@ -197,5 +196,4 @@
   font-size: var(--h3FontSize);
   color: var(--blackColor);
   padding: 1rem 0;
-}
-/*# sourceMappingURL=Geral.css.map */
+}/*# sourceMappingURL=Geral.css.map */
