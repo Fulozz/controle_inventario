@@ -246,7 +246,7 @@ const Form = () => {
           .then((response) => {
             if (response.status === 200) {
               navigateTo("/dashboard");
-              alert("Impressora registrada com sucesso!");
+              alert("Switch registrada com sucesso!");
             }
           })
           .catch((err) => {
@@ -276,7 +276,7 @@ const Form = () => {
           .then((response) => {
             if (response.status === 200) {
               navigateTo("/dashboard");
-              alert("Impressora registrada com sucesso!");
+              alert("Servidor registrada com sucesso!");
             }
           })
           .catch((err) => {
