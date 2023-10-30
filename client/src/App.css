@@ -103,7 +103,7 @@ img, video {
 }
 
 .loginPage .container, .registerPage .container {
-  height: 75vh;
+  height: 85vh;
   width: 60%;
   margin: auto;
   justify-content: space-between;

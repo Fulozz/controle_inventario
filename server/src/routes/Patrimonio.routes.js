@@ -10,7 +10,7 @@ router.post('/create',  productController.createPatrimonio)
 // ==> Rota responsavel por enviar para o frontend os patrimonios  e informações
 router.get('/listing',  productController.getPatrimonioListing)
 router.get('/all',  productController.allPatrimonio)
-router.get('/patrimonio/:id', productController.searchItem)
+router.get('/patrimonio', productController.searchItem)
 
 // ==> Rota responsavel por atualizar os patrimonios: (GET) localhost:3000/api/v1/update/:id
 router.post('/update/:id',  productController.updatePatrimonio)

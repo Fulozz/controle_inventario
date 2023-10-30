@@ -4,7 +4,7 @@ import '../../Card.css'
 
 const Hardware = (patrimonio) => {
     const singlePatrimonio = patrimonio.patrimonio
-
+  console.log(singlePatrimonio.poe);
   
 
   return (
@@ -75,13 +75,13 @@ const Hardware = (patrimonio) => {
                       <strong>Hardware</strong>
                     </h2>
                     <h3>
-                      <strong>Portas:</strong> {singlePatrimonio.portas}
+                      <strong>Portas: </strong> {singlePatrimonio.portas}
                     </h3>
                     <h3>
-                      <strong>POE:</strong> {singlePatrimonio.poe}
+                      <strong>POE: </strong> {singlePatrimonio.poe}
                     </h3>
                     <h3>
-                      <strong>Geranciavel:</strong>
+                      <strong>Geranciavel: </strong>
                       {singlePatrimonio.gerenciavel}
                     </h3>
                   </>

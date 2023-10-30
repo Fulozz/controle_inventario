@@ -33,7 +33,7 @@ const Geral = () => {
   };
 
   useEffect(() => {
-    API().get("/patrimonio/:id").then(
+    API().get("/patrimonio").then(
       (response) => {
         setPatrimonio(response.data);
       }

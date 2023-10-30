@@ -1708,6 +1708,82 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                       </tbody>
                     </table>
                   </form>
+                ) : singlePatrimonio.categoria === "switch" ? (
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <h1>Hardware</h1>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <th>
+                            <label htmlFor="Portas">Portas:</label>
+                          </th>
+                          <td>
+                            <input
+                              type="text"
+                              name="portas"
+                              id="portas"
+                              placeholder={singlePatrimonio.portas}
+                              value={formData.portas}
+                              onChange={(e) => {
+                                setFormData({
+                                  ...formData,
+                                  portas: e.target.value,
+                                });
+                              }}
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>
+                            <label htmlFor="POE">
+                              POE: 
+                            </label>
+                          </th>
+                          <td>
+                            <select
+                              name="poe"
+                              id="poe"
+                              className="appearance-select"
+                              value={formData.poe}
+                              onChange={(e) => {
+                                setFormData({
+                                  ...formData,
+                                  poe: e.target.value,
+                                });
+                              }}
+                            >
+                              <option value=""></option>
+                              <option value="sim"> Sim</option>
+                              <option value="nao"> Não</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>
+                            <label htmlFor="gerenciavel">Gerenciavel: </label>
+                          </th>
+                          <td>
+                          <select
+                              name="gerenciavel"
+                              id="gerenciavel"
+                              className="appearance-select"
+                              value={formData.gerenciavel}
+                              onChange={(e) => {
+                                setFormData({
+                                  ...formData,
+                                  gerenciavel: e.target.value,
+                                });
+                              }}
+                            >
+                              <option value=""></option>
+                              <option value="sim"> Sim</option>
+                              <option value="nao"> Não</option>
+                            </select>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
                 ) : selector === "hardware" &&
                 singlePatrimonio.categoria === "servidor" ? (
                   <form onSubmit={handleSubmit(onSubmit)}>
