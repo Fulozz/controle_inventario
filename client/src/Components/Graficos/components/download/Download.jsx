@@ -21,7 +21,6 @@ const Download = () => {
         ],
         content: patrimonio,
       },
-      //Computadores
       {
         sheet: "COMPUTADOR",
         columns: [
@@ -41,7 +40,6 @@ const Download = () => {
         ],
         content: patrimonio.filter((item) => item.categoria === "computador"),
       },
-      //Notebook
       {
         sheet: "NOTEBOOK",
         columns: [
@@ -62,7 +60,6 @@ const Download = () => {
         ],
         content: patrimonio.filter((item) => item.categoria === "notebook"),
       },
-      //Monitores
       {
         sheet: "MONITOR",
         columns: [
@@ -122,7 +119,7 @@ const Download = () => {
         ],
         content: patrimonio.filter((item) => item.categoria === "switch"),
       },
-      
+     
       {
         sheet: "SERVIDOR",
         columns: [
@@ -149,6 +146,7 @@ const Download = () => {
     ];
     let settings = {
       fileName: `Patrimonio ${new Date().toLocaleDateString('pt-BR')}`,
+      extraLength: 3,
     };
     xlsx(data, settings);
   };

@@ -3,7 +3,7 @@ import './body.css';
 import Top from '../../Top Section/Top'
 import Geral from './Geral/Geral';
 
-function Body() {
+const Body = () => {
   return (
     <div className='mainContent'>
      

@@ -4,7 +4,7 @@ import './body.css';
 import Listing from './Listing Section/Listing';
 import Activity from './Activity Section/Activity';
 import Top from '../../../Top Section/Top';
-function Body() {
+const Body = () => {
   return (
     <div className='mainContent'>
         <Top />

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 import Dashboard from "./Components/Dashboard/page.jsx";
@@ -20,7 +20,7 @@ import APIUser from "./Components/API/API.user";
 
 // router
 
-function App() {
+const  App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const statusValidate = async () => {
     await APIUser().post(`/validate`,{

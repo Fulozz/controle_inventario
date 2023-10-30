@@ -4,13 +4,13 @@ import './Listas.css'
 import Download from '../download/Download';
 const Listas = () => {
   const [data, setData] = useState({
-    computador: Number,
-    monitor: Number,
-    telefone: Number,
-    switch: Number,
-    servidor: Number,
-    notebook: Number,
-    impressora: Number,
+    computador: "",
+    monitor: "",
+    telefone: "",
+    switch: "",
+    servidor: "",
+    notebook: "",
+    impressora: "",
   });
 
     useEffect(() => {
@@ -42,9 +42,8 @@ const Listas = () => {
           <li><strong>Servidores:</strong> {data.servidor}</li>
           <li><strong>Monitores:</strong> {data.monitor}</li>
         </ul>
-        <Download />
       </div>
-      
+      <Download />
     </div>
   )
 }
