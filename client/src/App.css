@@ -88,7 +88,7 @@ img, video {
 }
 
 .btn:hover {
-  color: var(--tertiary);
+  color: black;
   font-weight: 500;
   background: var(--secundaryColor);
 }
@@ -108,7 +108,7 @@ img, video {
   margin: auto;
   justify-content: space-between;
   border-radius: 10px;
-  background: hsl(0, 0%, 91%);
+  background: hsl(0deg, 0%, 91%);
 }
 
 .loginPage .container .videoDiv, .registerPage .container .videoDiv {
@@ -401,4 +401,5 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-feature-settings: "cv11", "salt", "ss01", "ss03", "cv01", "cv02", "cv03", "cv04", "cv05", "cv06", "cv09", "cv10";
-} /*# sourceMappingURL=App.css.map */
+}
+/*# sourceMappingURL=App.css.map */

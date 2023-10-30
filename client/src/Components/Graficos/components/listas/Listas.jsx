@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import API from '../../../API/API.patrimonio';
 import './Listas.css'
+import Download from '../download/Download';
 const Listas = () => {
   const [data, setData] = useState({
     computador: Number,
@@ -41,6 +42,7 @@ const Listas = () => {
           <li><strong>Servidores:</strong> {data.servidor}</li>
           <li><strong>Monitores:</strong> {data.monitor}</li>
         </ul>
+        <Download />
       </div>
       
     </div>

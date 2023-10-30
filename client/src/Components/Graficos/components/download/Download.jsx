@@ -14,7 +14,7 @@ const Download = () => {
   const downloadFile = () => {
     let data = [
       {
-        sheet: "Patrimonio",
+        sheet: "PATRIMONIO",
         columns: [
           { label: "Patrimonio", value: "patrimonio" },
           { label: "Categoria", value: "categoria" },
@@ -154,7 +154,7 @@ const Download = () => {
   };
 
   return (
-    <button onClick={downloadFile}>Data Download</button>
+    <button onClick={downloadFile} className='btn '>GERAR RELATÓRIO</button>
   );
 };
 

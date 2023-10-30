@@ -3,7 +3,7 @@ import Top from '../../Top Section/Top'
 
 import Graficos from './graficos/Graficos';
 import Listas from './listas/Listas';
-import Download from './download/Download';
+
 
 const Body = () => {
   return (
@@ -12,7 +12,7 @@ const Body = () => {
         <div className="bottom flex">
             <Listas /> 
             <Graficos />
-            <Download />
+
         </div>
        </div>
   )
