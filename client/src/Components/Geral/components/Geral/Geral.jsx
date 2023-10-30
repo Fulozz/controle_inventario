@@ -54,6 +54,7 @@ const Geral = () => {
         <select onChange={(event) => setCategoriaSelecionada(event.target.value)}>
           <option value="Todos">Todos</option>
           <option value="monitor">Monitores</option>
+          <option value="notebook">Notebooks</option>
           <option value="computador">Computadores</option>
           <option value="servidor">Servidores</option>
           <option value="switch">Switches</option>
