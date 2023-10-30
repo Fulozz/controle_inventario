@@ -35,7 +35,11 @@ const Listing = () => {
 return (
   <div className="listingSection">
     <div className="flex">
+      
       <div className="secContainer flex">
+      <div className="heading flex">
+        <h1>Ultimas inclusões</h1>
+      </div>
         {patrimonio &&
           patrimonio.map((patrimonio, index) => (
             <div className="singleItem" key={index}>

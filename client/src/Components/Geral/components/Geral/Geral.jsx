@@ -35,7 +35,8 @@ const Geral = () => {
   useEffect(() => {
     API().get("/patrimonio").then(
       (response) => {
-        setPatrimonio(response.data);
+        if(response.status === 200) setPatrimonio(response.data);
+        return null
       }
     );
   }, []);

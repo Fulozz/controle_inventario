@@ -72,11 +72,11 @@ exports.createPatrimonio = async (req,res)=> {
 };
 
 exports.searchItem = async (req, res) =>{
-    
     try{
         await Patrimonio.findOne({patrimonio: req.body.patrimonio})
         .then((patrimonio)=>{
-            res.status(200).json(patrimonio)
+            if(patrimonio === null) res.status(404).json({message:  "Não encontrado"});
+            if(patrimonio !== null) res.status(200).json(patrimonio);
         })
     }
     catch (err) {

@@ -35,15 +35,11 @@ const Activity = () => {
     <div className='activitySection'>
       <div className="heading flex">
         <h1>Atividade recente</h1>
-        <button className='btn flex'>
-          Veja tudo
-          <BsArrowRightShort className='icon' />
-        </button>
       </div>
 
       
       <div className="secContainer grid">
-
+    
       {patrimonio && patrimonio.map((patrimonio, index) => (
         <div className="singleCustomer flex" key={index}>
           
