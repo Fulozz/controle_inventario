@@ -23,10 +23,11 @@ const Geral = () => {
   const [singlePatrimonio, setSinglePatrimonio] = useState();
 
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
-
+  const [localSelecionado, setLocalSelecionado] = useState("Todos");
   // Função para filtrar os dados de patrimônio com base na categoria selecionada
   const filterPatrimonios = (patrimonios) => {
     // Se a categoria selecionada for "Todos", retorna todos os patrimônios
+    // if (localSelecionado === "Todos") return patrimonios
     if (categoriaSelecionada === "Todos") return patrimonios;
     // Caso contrário, retorna apenas os patrimônios da categoria selecionada
     return patrimonios.filter((patrimonio) => patrimonio.categoria === categoriaSelecionada);
@@ -62,6 +63,11 @@ const Geral = () => {
           <option value="telefone">Telefones</option>
           <option value="impressora">Impressoras</option>
         </select>
+        {/* <select onChange={(event) => setLocalSelecionado(event.target.value)}>
+          <option value="Todos">Todos</option>
+          <option value="Viva Mais Plan">VMP</option>
+          <option value="Gs Contact Center">GS</option>
+        </select> */}
       <div className="flex">
         <div className="secContainer flex">  
         {patrimonios &&
