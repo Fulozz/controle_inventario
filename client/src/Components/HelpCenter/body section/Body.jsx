@@ -4,7 +4,6 @@ import Top from '../../Top Section/Top'
 const Body = () => {
   return (
     <div className="mainContent">
-        <Top />
         <div className="bottom">
             <h1>Dicas principais</h1>
             <br />
@@ -23,7 +22,7 @@ const Body = () => {
                 <p>Infelizmente não é possivel ainda alterar a senha do usuario</p>
                 <br />
                 <br />
-                
+
                 <h1>API</h1>
                 <br />
                 

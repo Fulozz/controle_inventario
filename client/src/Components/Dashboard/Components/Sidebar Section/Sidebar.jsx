@@ -20,11 +20,13 @@ const Sidebar = () => {
     navigate('/');
   };
   return (
-    <div className='sideBar grid'>
-      <div className="logoDiv flex">
+    <div className='sideBar grid'> 
+    <a href="/dashboard">
+        <div className="logoDiv flex">
         <img src={logo} alt="Image" className='logo' />
-        <h2>Inventario</h2>
-      </div>
+          <h2>Inventario</h2>
+        </div>
+      </a>
       <div className="menuDiv">
         <h3 className="divTitle">
           QUICK MENU

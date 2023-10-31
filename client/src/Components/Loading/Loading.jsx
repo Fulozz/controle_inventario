@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Loading.css'
 const Loading = () => {
     const [visible, setVisible] = useState(true);
@@ -9,10 +9,26 @@ const Loading = () => {
     }
     setTimeout (()=>{
         if(visible) return hideLoading();
-    }, 1000)
+    }, 700)
+
+    const loadinAnimation = () =>{
+        function typeWriter(elemento) {
+            const textoArray = elemento.innerHTML.split('');
+            elemento.innerHTML = '';
+            textoArray.forEach((letra, i) => {
+              setTimeout(() => elemento.innerHTML += letra, 35 * i);
+            });
+          }  
+          const titulo = document.querySelector('.typeWriter');
+        
+          typeWriter(titulo);
+    }
+    useEffect(()=>{
+        loadinAnimation()
+    })
   return (        
             <div className="loading container">
-                <div className='loading-text'>Carregando...</div>
+                <div className='loading-text'><h3 className='typeWriter'>Carregando...</h3></div>
             </div>    
   )
 }
