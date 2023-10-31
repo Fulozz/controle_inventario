@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import xlsx from 'json-as-xlsx'
 import './top.css';
 import APIPatrimonio from '../API/API.patrimonio';
 
