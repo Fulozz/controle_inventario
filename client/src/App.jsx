@@ -16,7 +16,7 @@ import Write from "./Components/Write/Write";
 import Todos from "./Components/Geral/Todos";
 import Loading from "./Components/Loading/Loading";
 import Graphs from "./Components/Graficos/Graphs";
-import APIUser from "./API/API.user";
+import APIUser from '../src/API/API.user'
 
 // router
 

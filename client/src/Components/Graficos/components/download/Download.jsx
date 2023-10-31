@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import APIPatrimonio from '../../../API/API.patrimonio';
+import APIPatrimonio from '../../../../API/API.patrimonio'
 import xlsx from 'json-as-xlsx';
 
 const Download = () => {

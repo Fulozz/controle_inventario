@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+// API
+import APIPatrimonio from '../../../../../API/API.patrimonio'
+// Estilização
 import "./listing.css";;
-import APIPatrimonio from '../../../../API/API.patrimonio'
-
 // imported icons;
 import { AiOutlineEye } from "react-icons/ai";
-
-
-import { Link } from "react-router-dom";
-
-
-
-
+// Views
 import Card from "../../../../../View/Card/Card";
 import Images from "../../../../../View/Imagens/Images";
 
@@ -24,9 +20,7 @@ const Listing = () => {
       })
     },[])
 
-
   const [isVisible, setIsVisible] = useState(false);
-  const [isEditable, setIsEditable] = useState(false);
   const [singlePatrimonio, setSinglePatrimonio] = useState()
 
 
@@ -47,7 +41,6 @@ return (
               <button
                 onClick={() => {
                   setIsVisible(true);
-                  setIsEditable(true);
                   setSinglePatrimonio(patrimonio);
                 }}
               >
@@ -56,7 +49,6 @@ return (
               <Images patrimonio={patrimonio} />
               <Link
                 onClick={() => {
-                  setIsEditable(false);
                   setIsVisible(true);
                 }}
               >
@@ -66,7 +58,7 @@ return (
           ))}
       </div>
       {isVisible && (
-       <Card singlePatrimonio={singlePatrimonio} setIsVisible={setIsVisible} />
+       <Card singlePatrimonio={singlePatrimonio} setIsVisible={isVisible} />
       )}
     </div>
   </div>

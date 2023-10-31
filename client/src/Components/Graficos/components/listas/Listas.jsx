@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import API from '../../../API/API.patrimonio';
+import API from '../../../../API/API.patrimonio';
 import './Listas.css'
 import Download from '../download/Download';
 const Listas = () => {

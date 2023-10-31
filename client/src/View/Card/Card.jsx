@@ -6,7 +6,7 @@ import {
   AiOutlineSave,
 } from "react-icons/ai";
 
-import APIPatrimonio from '../../Components/API/API.patrimonio'
+import APIPatrimonio from '../../API/API.patrimonio'
 import { FiAlertTriangle, FiEdit } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 

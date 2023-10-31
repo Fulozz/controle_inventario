@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import APIUser from '../API/API.user'
+import APIUser from '../../API/API.user'
 // CSS
 
 import '../../App.scss';
@@ -11,7 +11,7 @@ import logo from './LoginAssets/Perfil GS.png';
 import { FaUserShield } from 'react-icons/fa';
 import { BsFillShieldLockFill } from 'react-icons/bs';
 import { AiOutlineSwapRight } from 'react-icons/ai';
-import { setPayload } from '../API/utils';
+import { setPayload } from '../../API/utils';
 
 
 

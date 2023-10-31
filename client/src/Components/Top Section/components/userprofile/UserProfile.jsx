@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './user.css'
-import APIUser from '../../../API/API.user'
+import APIUser from '../../../../API/API.user'
 const UserProfile = () => {
   const [user, setUser] = useState(null)
   const [email, setEmail] = useState(null)

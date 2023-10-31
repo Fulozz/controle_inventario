@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./Geral.css";
 
 
-import API from '../../../API/API.patrimonio'
+import API from '../../../../API/API.patrimonio'
 import {
   AiOutlineEye,
 } from "react-icons/ai";
@@ -11,15 +11,13 @@ import {
 
 import { Link } from "react-router-dom";
 
-
-import { useForm } from "react-hook-form";
 import Card from "../../../../View/Card/Card";
 import Images from "../../../../View/Imagens/Images";
 
 const Geral = () => {
   const [patrimonios, setPatrimonio] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
-  const [isEditable, setIsEditable] = useState(false);
+
   const [singlePatrimonio, setSinglePatrimonio] = useState();
 
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
@@ -77,7 +75,6 @@ const Geral = () => {
             <button
               onClick={() => {
                 setIsVisible(true);
-                setIsEditable(true);
                 setSinglePatrimonio(patrimonio);
               }}
             >
@@ -86,7 +83,6 @@ const Geral = () => {
             <Images patrimonio={patrimonio} />
             <Link
               onClick={() => {
-                setIsEditable(false);
                 setIsVisible(true);
               }}
             >
@@ -96,7 +92,7 @@ const Geral = () => {
         ))}
         </div>
         {isVisible && (
-          <Card singlePatrimonio={singlePatrimonio} setIsVisible={setIsVisible} />
+          <Card singlePatrimonio={singlePatrimonio} setIsVisible={isVisible} />
         )}
       </div>
     </div>

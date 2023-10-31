@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './activity.css'
-import APIPatrimonio from '../../../../API/API.patrimonio'
+import APIPatrimonio from '../../../../../API/API.patrimonio'
 
-//imported icons ==>
-import { BsArrowRightShort } from 'react-icons/bs'
+
 
 //import images
-import img from '../../../../Assets/1693004941361.jpeg'
-import APIUser from '../../../../API/API.user'
+import APIUser from '../../../../../API/API.user'
 
 const Activity = () => {
 
@@ -36,10 +34,7 @@ const Activity = () => {
       <div className="heading flex">
         <h1>Atividade recente</h1>
       </div>
-
-      
       <div className="secContainer grid">
-    
       {patrimonio && patrimonio.map((patrimonio, index) => (
         <div className="singleCustomer flex" key={index}>
           

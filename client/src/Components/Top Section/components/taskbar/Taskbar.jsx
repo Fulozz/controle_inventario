@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './taskbar.css'
-import APIPatrimonio from '../../../API/API.patrimonio'
+import APIPatrimonio from '../../../../API/API.patrimonio'
 const Taskbar = () => {
   const [patrimonios, setPatrimonios] = useState([]);
 
