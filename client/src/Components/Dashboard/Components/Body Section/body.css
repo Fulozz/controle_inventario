@@ -7,4 +7,134 @@
   margin-top: 2rem;
   gap: 2rem;
   align-items: flex-start;
-}/*# sourceMappingURL=body.css.map */
+}
+
+.cardSection {
+  margin-top: 3rem;
+  gap: 1rem;
+}
+.cardSection .rightCard {
+  position: relative;
+  flex-basis: 70%;
+  height: 200px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.cardSection .rightCard .videoDiv {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.cardSection .rightCard .videoDiv .topImage {
+  height: 130%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.cardSection .rightCard h1,
+.cardSection .rightCard p,
+.cardSection .rightCard .btn {
+  z-index: 11;
+}
+.cardSection .rightCard h1 {
+  font-size: var(--h1FontSize);
+  color: var(--whiteColor);
+  font-weight: 800;
+}
+.cardSection .rightCard p {
+  padding: 1rem;
+  color: var(--secundaryColor);
+  font-weight: 500;
+}
+.cardSection .rightCard .buttons {
+  gap: 1rem;
+}
+.cardSection .rightCard .buttons .btn {
+  box-shadow: none;
+  padding: 0.8rem 1.5rem;
+  color: var(--, );
+  border-radius: 2px solid trasparent;
+}
+.cardSection .rightCard .buttons .transparent {
+  background: none;
+  border: 2px solid var(--secundaryColor);
+  color: var(--secundaryColor);
+}
+.cardSection .rightCard .buttons .transparent:hover {
+  background: var(--secundaryColor);
+  font-weight: 500;
+  color: var(--tertiary);
+}
+.cardSection .leftCard {
+  flex-basis: 50%;
+}
+.cardSection .leftCard .main {
+  position: relative;
+  padding: 1rem;
+  height: 200px;
+  border-radius: 1rem;
+  justify-content: space-between;
+}
+.cardSection .leftCard .main::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 75%;
+  left: 0;
+  background: var(--tertiary);
+  bottom: 0;
+  border-radius: 1rem;
+}
+.cardSection .leftCard .textDiv {
+  z-index: 11;
+}
+.cardSection .leftCard .textDiv h1 {
+  font-size: var(--h1FontSize);
+  padding: 1rem;
+  color: var(--blackColor);
+}
+.cardSection .leftCard .textDiv .flex {
+  gap: 1.5rem;
+  font-weight: 500;
+  color: var(--blackColor);
+}
+.cardSection .leftCard .textDiv .flex small {
+  font-size: var(--normalFontSize);
+  display: block;
+  color: var(--primaryColor);
+  font-weight: 500;
+  padding: 0.5rem 0;
+}
+.cardSection .leftCard .textDiv .link {
+  margin-top: 2rem;
+  cursor: pointer;
+}
+.cardSection .leftCard .textDiv .link:hover {
+  color: var(--primaryColor);
+}
+.cardSection .leftCard .textDiv .link:hover .icon {
+  transform: translateX(10px);
+  transition: 0.3s ease;
+}
+.cardSection .leftCard .imgDiv {
+  transform: translateY(-20px);
+  transform: translateX(-5px);
+}
+.cardSection .leftCard .imgDiv img {
+  width: 150px;
+}
+@media screen and (max-width: 768px) {
+  .cardSection .leftCard .imgDiv img {
+    display: none;
+  }
+}
+/*# sourceMappingURL=body.css.map */

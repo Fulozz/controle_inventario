@@ -7,13 +7,12 @@ import APIPatrimonio from '../../API/API.patrimonio';
 
 // Import de Icons 
 import { BiSearchAlt } from 'react-icons/bi';
-import { IoIosNotificationsOutline } from 'react-icons/io';
-import { AiOutlineClose, AiOutlineCloudDownload, AiOutlineEyeInvisible, AiOutlinePaperClip, AiOutlinePushpin, AiOutlineSave } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineCloudDownload, AiOutlineEyeInvisible, AiOutlinePushpin, AiOutlineSave } from 'react-icons/ai';
 import { FiAlertTriangle, FiEdit } from 'react-icons/fi';
 //Imported Images
 
 import img from '../Assets/Perfil GS.png';
-import img2 from '../Assets/gscN.jpg';
+
 
 
 import Taskbar from './components/taskbar/Taskbar';
@@ -503,15 +502,6 @@ const Top = () => {
       </div>
       { openTask  ? <Taskbar /> : null}
       { openUser  ? <UserProfile /> : null}
-      <div className="cardSection flex">
-        <div className="rightCard flex">
-          <h1>Esse é o inventario de Patrimonio GS/VMP</h1>
-          <p>Esses foram os ultimos computadores inclusos em sistema</p>
-          <div className="videoDiv">
-          <img src={img2} alt="Admin Image" className='topImage' />
-          </div>
-          </div>
-          </div>
 
           {isVisible && (
         <div className="modal" style={{ zIndex: 100}}>

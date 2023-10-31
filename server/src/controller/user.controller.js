@@ -75,30 +75,34 @@ exports.returnUserProfile = async (req, res) => {
 
 exports.validateUser = async (req, res) => {
     const json = req.body.token;
+    if(json === null){
+      return res.status(400).send({
+        message: "deu problema aqui ó",
+      });
+    }
     try {
       const jsonP = JSON.parse(json);
       const token = (jsonP.token);
       const decodedToken = jwt.decode(token, 'secret');
         if(!decodedToken){
-          return res.status(401).send({
+          return res.status(400).send({
           message: "Algo de errado não está certo"
           })
         }
-        if(decodedToken.exp < Date.now()){
-          return  res.status(401).send({
-            message: "Algo de errado não está certo"
-          })
+        if(decodedToken < Date.now()){
+          return res.status(401).send({
+              message: 'Token expirado - Auth.js',
+            }) && localStorage.removeItem('jwt')
         }
-        if(decodedToken.exp > Date.now()){
+        if (decodedToken.exp > Date.now()) {
           return res.status(200).send({
-            message: "Deu certo!"
-          })
-        }
+            message: 'Token válido',
+          });
+        } 
+        
        
     } catch (err) {
-      return res.status(500).send({
-        message: "deu problema aqui ó",
-      });
+      return null
     }
 
 }

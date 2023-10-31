@@ -106,10 +106,9 @@ const Sidebar = () => {
           <div className="circle2"></div>
           <h3>Help Center</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Veritatis esse, dolor,
+            Informações gerais sobre o sistema, e sobre a API de integração multiplataforma
           </p>
-          <button className="btn">Go to Help Center</button>
+          <a href="/help"> <button className="btn">Vá para o Help Center</button> </a>
         </div>
       </div>
     </div>

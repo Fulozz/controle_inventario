@@ -16,9 +16,9 @@ module.exports = (req, res, next) => {
       const token = (jsonP.token);
       const decodedToken = jwt.decode(token, 'secret');
       
-      if(decodedToken <= Date.now()){
+      if(decodedToken < Date.now()){
         return res.status(401).send({
-            message: 'Token expirado',
+            message: 'Token expirado - Auth.js',
           }) && localStorage.removeItem('jwt')
       }
       if (decodedToken.exp > Date.now()) {

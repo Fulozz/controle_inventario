@@ -14,6 +14,7 @@ import Graphs from "./Components/Graficos/Graphs";
 
 
 import APIUser from './API/API.user'
+import HelpCenter from "./Components/HelpCenter/HelpCenter";
 
 // router
 
@@ -26,9 +27,11 @@ const  App = () => {
       token: localStorage.getItem("jwt")
     },{
       validateStatus: function (status) {
-        return status === 200 || status === 401 || status === 404 || status === 500; 
+        return status === 200 ||  status === 400 || status === 401 || status === 404 || status === 500; 
         // Trate 401, 404, 500 como bem-sucedido
       },
+    },{
+      hideResponse: true,
     }).then((response) => {
       if(response.status !== 200){
         setIsAuthenticated(false)
@@ -76,6 +79,11 @@ const  App = () => {
           <Route
             element={isAuthenticated ? <Graphs /> : <Navigate to="/" />}
             path="/graficos"
+            exact
+          />
+          <Route
+            element={isAuthenticated ? <HelpCenter /> : <Navigate to="/" />}
+            path="/help"
             exact
           />
         </Routes>
