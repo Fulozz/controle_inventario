@@ -75,25 +75,21 @@ exports.returnUserProfile = async (req, res) => {
 
 exports.validateUser = async (req, res) => {
     const json = req.body.token;
-    console.log(json);
     try {
       const jsonP = JSON.parse(json);
       const token = (jsonP.token);
       const decodedToken = jwt.decode(token, 'secret');
-        console.log(decodedToken.exp, Date.now());
         if(!decodedToken){
           return res.status(401).send({
           message: "Algo de errado não está certo"
           })
         }
         if(decodedToken.exp < Date.now()){
-          console.log("Menor que");
           return  res.status(401).send({
             message: "Algo de errado não está certo"
           })
         }
         if(decodedToken.exp > Date.now()){
-          console.log("Maior que");
           return res.status(200).send({
             message: "Deu certo!"
           })

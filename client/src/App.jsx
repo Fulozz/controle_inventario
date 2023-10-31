@@ -14,7 +14,7 @@ import Graphs from "./Components/Graficos/Graphs";
 
 
 import APIUser from './API/API.user'
-import { logout } from './API/utils'
+
 // router
 
 const  App = () => {
@@ -30,7 +30,6 @@ const  App = () => {
         // Trate 401, 404, 500 como bem-sucedido
       },
     }).then((response) => {
-      console.log(response);
       if(response.status !== 200){
         setIsAuthenticated(false)
         localStorage.clear()
@@ -40,7 +39,7 @@ const  App = () => {
       }
       
     }).catch((err)=>{
-      console.log(err);
+      return null
     });
   };
  

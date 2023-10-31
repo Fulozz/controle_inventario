@@ -108,7 +108,7 @@ const Login = () => {
               <label htmlFor="password">Senha</label>
               <div className="input flex">
                 <BsFillShieldLockFill className='icon' />
-                <input type="password" id='password' placeholder=' Senha' onChange={(event) => {
+                <input type="password" id='password' autoComplete="on" placeholder=' Senha' onChange={(event) => {
                   setPassword(event.target.value)
                 }} />
               </div>
