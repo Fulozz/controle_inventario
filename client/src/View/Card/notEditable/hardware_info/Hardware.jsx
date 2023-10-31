@@ -27,6 +27,9 @@ const Hardware = (patrimonio) => {
                     <h3>
                       <strong>Hard Disk:</strong> {singlePatrimonio.hard_disk}
                     </h3>
+                    <h3>
+                      <strong>Numero da PA:</strong> {singlePatrimonio.num_pa}
+                    </h3>
                   </>
                 ) : 
                   singlePatrimonio.categoria === "notebook" ? (
@@ -50,6 +53,9 @@ const Hardware = (patrimonio) => {
                     <h3>
                       <strong>Hard Disk:</strong> {singlePatrimonio.hard_disk}
                     </h3>
+                    <h3>
+                      <strong>Numero da PA:</strong> {singlePatrimonio.num_pa}
+                    </h3>
                   </>
                 ) : 
                   singlePatrimonio.categoria === "monitor" ? (
@@ -65,6 +71,9 @@ const Hardware = (patrimonio) => {
                     </h3>
                     <h3>
                       <strong>Formato:</strong> {singlePatrimonio.formato}
+                    </h3>
+                    <h3>
+                      <strong>Numero da PA:</strong> {singlePatrimonio.num_pa}
                     </h3>
                   </>
                 ) : 

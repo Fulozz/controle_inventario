@@ -221,6 +221,11 @@ const Info = (patrimonio) => {
                       <strong> Modelo: </strong>
                       {singlePatrimonio.modelo}
                     </h3>
+                    <h3>
+                      
+                      <strong> Número da PA: </strong>
+                      {singlePatrimonio.num_pa}
+                    </h3>
                    
                   </>
                 ) : null}

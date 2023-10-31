@@ -98,8 +98,9 @@ exports.updatePatrimonio = async (req,res) => {
     const patrimonio = await Patrimonio.findOneAndUpdate({
         patrimonio: req.body.patrimonio
     },{
-        $set: req.body   
-    });
+        $set: {num_pa: req.body.num_pa}   
+    },
+    { upsert: true });
     if (patrimonio) {
         // Salve as alterações
         await patrimonio.save();

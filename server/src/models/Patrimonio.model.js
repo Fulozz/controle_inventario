@@ -32,6 +32,7 @@ const patrimonioSchema = new Schema({
   portas: { type: String, maxLenght: 50},
   poe: { type: String, maxLenght: 50},
   gerenciavel: { type: String, maxLenght: 50},
+  num_pa: { type: String, maxLenght: 50},
   local: { type: String, maxLenght: 50, required: true},
   departamento: { type: String, maxLenght: 50, required: true},
   estado: { type: String, maxLenght: 50, required: true},

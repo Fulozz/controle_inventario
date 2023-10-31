@@ -6,7 +6,7 @@ import {
   AiOutlineSave,
 } from "react-icons/ai";
 
-import APIPatrimonio from '../../API/API.patrimonio'
+import APIPatrimonio from "../../API/API.patrimonio";
 import { FiAlertTriangle, FiEdit } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 
@@ -61,6 +61,8 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
     host_name: "",
     marca: "",
     modelo: "",
+    // Localização
+    num_pa: "",
     // Impressora
     tipo_impressora: "",
     // Monitor
@@ -97,6 +99,8 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
     const host_name = formData.host_name || singlePatrimonio.host_name;
     const modelo = formData.modelo || singlePatrimonio.modelo;
     const marca = formData.marca || singlePatrimonio.marca;
+    // Localização
+    const num_pa = formData.num_pa || singlePatrimonio.num_pa;
     // Impressora
     const tipo_impressora =
       formData.tipo_impressora || singlePatrimonio.tipo_impressora;
@@ -116,8 +120,8 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
     const power_suply = formData.power_suply || singlePatrimonio.power_suply;
     const acesso_remoto =
       formData.acesso_remoto || singlePatrimonio.acesso_remoto;
-    const sistema_operacional = 
-    formData.sistema_operacional || singlePatrimonio.sistema_operacional;
+    const sistema_operacional =
+      formData.sistema_operacional || singlePatrimonio.sistema_operacional;
     //switch
     const portas = formData.portas || singlePatrimonio.portas;
     const poe = formData.poe || singlePatrimonio.poe;
@@ -189,6 +193,7 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
             host_name: host_name,
             modelo: modelo,
             marca: marca,
+            num_pa: num_pa
           },
           window.location.reload()
         );
@@ -217,8 +222,6 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
           window.location.reload()
         );
         break;
-
-        break;
     }
     // Hardware
     switch (selector && singlePatrimonio.categoria) {
@@ -232,6 +235,7 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
             memoriaRam: memoriaRam,
             memoriaRamDDR: memoriaRamDDR,
             hard_disk: hard_disk,
+            num_pa: num_pa,
           },
           window.location.reload()
         );
@@ -247,6 +251,7 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
             memoriaRam: memoriaRam,
             memoriaRamDDR: memoriaRamDDR,
             hard_disk: hard_disk,
+            num_pa: num_pa,
           },
           window.location.reload()
         );
@@ -259,6 +264,7 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
             tamanho: tamanho,
             tipo_monitor: tipo_monitor,
             formato: formato,
+            num_pa: num_pa,
           },
           window.location.reload()
         );
@@ -1203,7 +1209,7 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                     </table>
                   </form>
                 ) : null}
-                {   selector === "hardware" &&
+                {selector === "hardware" &&
                 singlePatrimonio.categoria === "computador" ? (
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <h1>Hardware</h1>
@@ -1305,33 +1311,35 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                             />
                           </td>
                         </tr>
+                        <tr>
+                          <th>
+                            <label htmlFor="num_pa">Número da PA: </label>
+                          </th>
+                          <td>
+                            <input
+                              type="text"
+                              name="num_pa"
+                              id="num_pa"
+                              placeholder={singlePatrimonio.num_pa}
+                              value={formData.num_pa}
+                              onChange={(e) => {
+                                setFormData({
+                                  ...formData,
+                                  num_pa: e.target.value,
+                                });
+                              }}
+                            />
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </form>
                 ) : selector === "hardware" &&
-                singlePatrimonio.categoria === "notebook" ? (
+                  singlePatrimonio.categoria === "notebook" ? (
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <h1>Hardware</h1>
                     <table>
                       <tbody>
-                       
-                          <tr>
-                            <th>
-                              <label htmlFor="cpu">Tamanho:</label>
-                            </th>
-                            <td>
-                              <input
-                                type="text"
-                                name="tamanho"
-                                id="tamanho"
-                                placeholder="tamanho"
-                                value={singlePatrimonio.tamanho}
-                                readOnly
-                              />
-                              <FiAlertTriangle className="icon icon-attention" />
-                            </td>
-                          </tr>
-                      
                         <tr>
                           <th>
                             <label htmlFor="cpu">CPU:</label>
@@ -1428,33 +1436,52 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                             />
                           </td>
                         </tr>
+                        <tr>
+                          <th>
+                            <label htmlFor="num_pa">Número da PA: </label>
+                          </th>
+                          <td>
+                            <input
+                              type="text"
+                              name="num_pa"
+                              id="num_pa"
+                              placeholder={singlePatrimonio.num_pa}
+                              value={formData.num_pa}
+                              onChange={(e) => {
+                                setFormData({
+                                  ...formData,
+                                  num_pa: e.target.value,
+                                });
+                              }}
+                            />
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </form>
                 ) : selector === "hardware" &&
-                singlePatrimonio.categoria === "servidor" ? (
+                  singlePatrimonio.categoria === "servidor" ? (
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <h1>Hardware</h1>
                     <table>
                       <tbody>
-                       
-                          <tr>
-                            <th>
-                              <label htmlFor="cpu">Tamanho:</label>
-                            </th>
-                            <td>
-                              <input
-                                type="text"
-                                name="tamanho"
-                                id="tamanho"
-                                placeholder="tamanho"
-                                value={singlePatrimonio.tamanho}
-                                readOnly
-                              />
-                              <FiAlertTriangle className="icon icon-attention" />
-                            </td>
-                          </tr>
-                      
+                        <tr>
+                          <th>
+                            <label htmlFor="cpu">Tamanho:</label>
+                          </th>
+                          <td>
+                            <input
+                              type="text"
+                              name="tamanho"
+                              id="tamanho"
+                              placeholder="tamanho"
+                              value={singlePatrimonio.tamanho}
+                              readOnly
+                            />
+                            <FiAlertTriangle className="icon icon-attention" />
+                          </td>
+                        </tr>
+
                         <tr>
                           <th>
                             <label htmlFor="cpu">CPU:</label>
@@ -1613,7 +1640,9 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                         </tr>
                         <tr>
                           <th>
-                            <label htmlFor="sistema_operacional">Sistema Operacional</label>
+                            <label htmlFor="sistema_operacional">
+                              Sistema Operacional
+                            </label>
                           </th>
                           <td>
                             <input
@@ -1705,6 +1734,26 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                             />
                           </td>
                         </tr>
+                        <tr>
+                          <th>
+                            <label htmlFor="num_pa">Número da PA: </label>
+                          </th>
+                          <td>
+                            <input
+                              type="text"
+                              name="num_pa"
+                              id="num_pa"
+                              placeholder={singlePatrimonio.num_pa}
+                              value={formData.num_pa}
+                              onChange={(e) => {
+                                setFormData({
+                                  ...formData,
+                                  num_pa: e.target.value,
+                                });
+                              }}
+                            />
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </form>
@@ -1735,9 +1784,7 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                         </tr>
                         <tr>
                           <th>
-                            <label htmlFor="POE">
-                              POE: 
-                            </label>
+                            <label htmlFor="POE">POE:</label>
                           </th>
                           <td>
                             <select
@@ -1763,7 +1810,7 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                             <label htmlFor="gerenciavel">Gerenciavel: </label>
                           </th>
                           <td>
-                          <select
+                            <select
                               name="gerenciavel"
                               id="gerenciavel"
                               className="appearance-select"
@@ -1781,16 +1828,36 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                             </select>
                           </td>
                         </tr>
+                        <tr>
+                          <th>
+                            <label htmlFor="num_pa">Número da PA: </label>
+                          </th>
+                          <td>
+                            <input
+                              type="text"
+                              name="num_pa"
+                              id="num_pa"
+                              placeholder={singlePatrimonio.num_pa}
+                              value={formData.num_pa}
+                              onChange={(e) => {
+                                setFormData({
+                                  ...formData,
+                                  num_pa: e.target.value,
+                                });
+                              }}
+                            />
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </form>
                 ) : selector === "hardware" &&
-                singlePatrimonio.categoria === "servidor" ? (
+                  singlePatrimonio.categoria === "servidor" ? (
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <h1>Hardware</h1>
                     <table>
                       <tbody>
-                      <tr>
+                        <tr>
                           <th>
                             <label htmlFor="portas">Portas:</label>
                           </th>
@@ -1812,9 +1879,7 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                         </tr>
                         <tr>
                           <th>
-                            <label htmlFor="gerenciavel">
-                            Gerenciavel:
-                            </label>
+                            <label htmlFor="gerenciavel">Gerenciavel:</label>
                           </th>
                           <td>
                             <select
@@ -1835,7 +1900,7 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                             </select>
                           </td>
                         </tr>
-                      
+
                         <tr>
                           <th>
                             <label htmlFor="poe">POE:</label>
@@ -1856,7 +1921,6 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                             />
                           </td>
                         </tr>
-                        
                       </tbody>
                     </table>
                   </form>

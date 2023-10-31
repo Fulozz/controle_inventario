@@ -58,7 +58,7 @@ return (
           ))}
       </div>
       {isVisible && (
-       <Card singlePatrimonio={singlePatrimonio} setIsVisible={isVisible} />
+       <Card singlePatrimonio={singlePatrimonio} setIsVisible={setIsVisible} />
       )}
     </div>
   </div>
