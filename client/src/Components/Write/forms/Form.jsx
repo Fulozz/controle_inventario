@@ -15,7 +15,7 @@ const Form = () => {
 
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
-  const date = new Date();
+  
   const [formData, setFormData] = useState({
     // Geral
     host_name: "",
