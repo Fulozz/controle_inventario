@@ -1,3 +1,10 @@
+/**
+ * Arquivo: src/controllers/patrimonio.controller.js
+ * Descrição: arquivo responsável pelo CRUD da classe: 'Patrimonio'
+ * Data: 07/10/2023
+ * Author Thiago Silva Andrade
+ */
+
 const Patrimonio = require('../models/Patrimonio.model')
 
 exports.getPatrimonioListing = async(req,  res )=>{

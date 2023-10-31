@@ -1,3 +1,11 @@
+/**
+ * file:src/models/Patrimonio.model.js
+ * description:  arquivo responsavel pelo modelo da classe 'Patrimonio'
+ * data: 07/10/2023
+ * author: Thiago Silva Andrade
+ */
+
+
 const mongoose = require('mongoose')
 
 // Criar o esquema do modelo

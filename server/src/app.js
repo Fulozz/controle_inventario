@@ -1,3 +1,10 @@
+/**
+ * file: app.js
+ * description: arquivo responsável por fazer a conexão com arquivo 'server.js'
+ * data: 07/10/2023
+ * author: Thiago Silva Andrade
+ */
+
 const express = require('express')
 const cors = require('cors');
 const morgan = require('morgan')

@@ -1,3 +1,10 @@
+/**
+ * Arquivo: src/controllers/user.controller.js
+ * Descrição: arquivo responsável pelo CRUD da classe: 'User'
+ * Data: 07/10/2023
+ * Author Thiago Silva Andrade
+ */
+
 const User = require('../models/User.model')
 
 const jwt = require('jsonwebtoken')

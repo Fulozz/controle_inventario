@@ -1,3 +1,12 @@
+/**
+ * file:src/models/USer.model.js
+ * description:  arquivo responsavel pelo modelo da classe 'User'
+ * data: 07/10/2023
+ * author: Thiago Silva Andrade
+ */
+
+
+
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');

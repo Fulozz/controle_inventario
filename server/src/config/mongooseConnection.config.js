@@ -1,3 +1,10 @@
+/**
+ * file: src/config/mongooseConnection.config.js
+ * description: arquivo responsável por fazer a conexão via mongoose'
+ * Data: 07/10/2023
+ * author: Thiago Silva Andrade
+ */
+
 const mongoose = require('mongoose');
 
 // ==> Importar o arquivo: 'db.config.js'

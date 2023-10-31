@@ -1,3 +1,10 @@
+/**
+ * file: src/routes/index.js
+ * description: arquivo responsável pela rota default da aplicação
+ * data: 07/10/2023
+ * author: Thiago Silva Andrade
+ */
+
 const express = require('express')
 const router = express.Router();
 

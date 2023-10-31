@@ -1,3 +1,10 @@
+/**
+ * file: src/routes/user.routes.js
+ * description:  arquivo responsável pelas rotas do 'Patrimonio'
+ * data: 07/10/2023
+ * author: Thiago Silva Andrade
+ */
+
 const express = require('express')
 const router = express.Router();
 const productController = require('../controller/patrimonio.controller')

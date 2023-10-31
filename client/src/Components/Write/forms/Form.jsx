@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import APIPatrimonio from '../../API/API.patrimonio'
-import APIUser from '../../API//API.user'
+import APIPatrimonio from '../../../API/API.patrimonio'
+import APIUser from '../../../API/API.user'
 
 const Form = () => {
 

@@ -1,5 +1,9 @@
-// APP principal
-
+/**
+ * file: server.js
+ * description: arquivo responsável por toda a configuração e execução da aplicação
+ * data: 07/10/2023
+ * author: Thiago Silva Andrade
+ */
 
 const app = require('./src/app')
 
