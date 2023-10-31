@@ -79,21 +79,26 @@ exports.validateUser = async (req, res) => {
     try {
       const jsonP = JSON.parse(json);
       const token = (jsonP.token);
-
       const decodedToken = jwt.decode(token, 'secret');
-        console.log(decodedToken);
+        console.log(decodedToken.exp, Date.now());
         if(!decodedToken){
-         return res.status(401).send({
-            message: "pobre"
+          return res.status(401).send({
+          message: "Algo de errado não está certo"
           })
         }
-        if(decodedToken){
-        return  res.status(200).send({
-            message: "Vai tomar no cu PUTA"
+        if(decodedToken.exp < Date.now()){
+          console.log("Menor que");
+          return  res.status(401).send({
+            message: "Algo de errado não está certo"
           })
         }
-        
-      
+        if(decodedToken.exp > Date.now()){
+          console.log("Maior que");
+          return res.status(200).send({
+            message: "Deu certo!"
+          })
+        }
+       
     } catch (err) {
       return res.status(500).send({
         message: "deu problema aqui ó",
