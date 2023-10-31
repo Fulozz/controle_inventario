@@ -4,8 +4,7 @@ import '../../Card.css'
 
 const Hardware = (patrimonio) => {
     const singlePatrimonio = patrimonio.patrimonio
-  console.log(singlePatrimonio.poe);
-  
+
 
   return (
     <>

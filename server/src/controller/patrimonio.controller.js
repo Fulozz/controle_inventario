@@ -131,29 +131,3 @@ exports.countPatrimonios = async (req, res) => {
     res.json(numerosDeProdutos);
   };
 
-// exports.exportDados = ()=>{
-//     const data = Patrimonio.find().toArray()
-//     const csv = data.map((item)=> JSON.stringify(item));
-//     const filename = "patrimonio.csv";
-//     fs.writeFile("patrimonio.csv"), csv.join("\n"), (err)=>{
-//         if(err){
-//             throw err;
-//         };
-//         console.log("Arquivo exportado com sucesso!");
-//     }
-//     if (response.ok) {
-//         // Avisa o usuário que o arquivo foi exportado com sucesso
-//         console.log("Arquivo exportado com sucesso!");
-  
-//         // Abre o arquivo para download
-//         response.blob().then((blob) => {
-//           const link = document.createElement("a");
-//           link.href = window.URL.createObjectURL(blob);
-//           link.download = filename;
-//           link.click();
-//         });
-//       } else {
-//         // Avisa o usuário que houve um erro
-//         console.log("Erro ao exportar arquivo!");
-//       }
-// }

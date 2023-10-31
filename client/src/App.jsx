@@ -1,35 +1,50 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate}  from "react-router-dom";
+
 import "./App.css";
 
+// Components
 import Dashboard from "./Components/Dashboard/page.jsx";
 import Login from "./Components/Login/Login.jsx";
 import Register from "./Components/Register/Register.jsx";
-
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
 import Write from "./Components/Write/Write";
-
 import Todos from "./Components/Geral/Todos";
 import Loading from "./Components/Loading/Loading";
 import Graphs from "./Components/Graficos/Graphs";
-import APIUser from '../src/API/API.user'
 
+
+import APIUser from './API/API.user'
+import { logout } from './API/utils'
 // router
 
 const  App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  
   const statusValidate = async () => {
-    await APIUser().post(`/validate`,{
+   
+     APIUser().post(`/validate`,{
       token: localStorage.getItem("jwt")
+    },{
+      validateStatus: function (status) {
+        return status === 200 || status === 401 || status === 404 || status === 500; 
+        // Trate 401, 404, 500 como bem-sucedido
+      },
     }).then((response) => {
-      if (response.status === 200) return setIsAuthenticated(true);
-      if (response.status != 200) return setIsAuthenticated(false);
+      console.log(response);
+      if(response.status !== 200){
+        setIsAuthenticated(false)
+        localStorage.clear()
+      }
+      if(response.status === 200){
+        setIsAuthenticated(true)
+      }
+      
+    }).catch((err)=>{
+      console.log(err);
     });
   };
+ 
+
   useEffect(() => {
     statusValidate();
   }, []);

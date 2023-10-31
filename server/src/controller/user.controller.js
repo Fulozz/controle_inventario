@@ -58,7 +58,7 @@ exports.returnUserProfile = async (req, res) => {
       const token = (jsonP.token);
       const decodedToken = jwt.decode(token, 'secret');
       const user = decodedToken
-    console.log(decodedToken)
+
       return res.status(200).send({
         id: user._id,
         name: user.name,
@@ -75,27 +75,28 @@ exports.returnUserProfile = async (req, res) => {
 
 exports.validateUser = async (req, res) => {
     const json = req.body.token;
-  
+    console.log(json);
     try {
       const jsonP = JSON.parse(json);
       const token = (jsonP.token);
+
       const decodedToken = jwt.decode(token, 'secret');
-      if (decodedToken.exp <  Date.now()) {
-        res.status(200).send({
-          message: 'Token válido',
-          userStatus: 'authenticated',
-         
-        });
-      } 
-      if(decodedToken > Date.now()){
-        res.status(401).send({
-            message: 'Token expirado',
+        console.log(decodedToken);
+        if(!decodedToken){
+         return res.status(401).send({
+            message: "pobre"
           })
-      }
+        }
+        if(decodedToken){
+        return  res.status(200).send({
+            message: "Vai tomar no cu PUTA"
+          })
+        }
+        
       
     } catch (err) {
       return res.status(500).send({
-        message: 'error',
+        message: "deu problema aqui ó",
       });
     }
 
