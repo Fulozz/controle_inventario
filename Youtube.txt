@@ -1,1 +1,0 @@
-Glasslt-VSC,  Template String Converter, Figma, Pretty TypeScript Errors, Multiple cursor case preserve
