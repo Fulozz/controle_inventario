@@ -12,7 +12,6 @@ function Write() {
       <div className="itemForm">
         <FormProvider>
             <Form />  
-           {/* <FormTest /> */}
         </FormProvider>
       </div>
     </div>

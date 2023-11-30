@@ -8,14 +8,12 @@
 
 const jwt = require('jsonwebtoken');
 
-module.exports = (req, res, next) => {
+module.exports = (req, res) => {
     const json = req.body.token;
-  
     try {
       const jsonP = JSON.parse(json);
       const token = (jsonP.token);
-      const decodedToken = jwt.decode(token, 'secret');
-      
+      const decodedToken = jwt.decode(token, 'secret');      
       if(decodedToken < Date.now()){
         return res.status(401).send({
             message: 'Token expirado - Auth.js',
@@ -25,8 +23,7 @@ module.exports = (req, res, next) => {
         return res.status(200).send({
           message: 'Token válido',
         });
-      } 
-      
+      }      
     } catch (err) {
       return res.status(500).send({
         message: 'error',

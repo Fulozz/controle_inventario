@@ -119,7 +119,6 @@ const Download = () => {
         ],
         content: patrimonio.filter((item) => item.categoria === "switch"),
       },
-     
       {
         sheet: "SERVIDOR",
         columns: [

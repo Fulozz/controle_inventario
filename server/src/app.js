@@ -5,21 +5,21 @@
  * author: Thiago Silva Andrade
  */
 
-const express = require('express')
+const express = require('express');
 const cors = require('cors');
-const morgan = require('morgan')
+const morgan = require('morgan');
 
 
-const mongooseConnection = require("./config/mongooseConnection.config");;
+const mongooseConnection = require("./config/mongooseConnection.config");
 
 const app = express();
 
 
 // => Rotas da API:
 
-const index = require('./routes/index')
-const userRoutes = require('./routes/User.routes')
-const patrimonioRoutes = require('./routes/Patrimonio.routes')
+const index = require('./routes/index');
+const userRoutes = require('./routes/User.routes');
+const patrimonioRoutes = require('./routes/Patrimonio.routes');
 
 
 app.use(express.urlencoded({ extended : true }));
@@ -31,8 +31,8 @@ app.use(morgan('dev'));
 app.set("mongoose connection", mongooseConnection);
 
 app.use(index);
-app.use('/api/v1/user', userRoutes)
-app.use('/api/v1/patrimonio', patrimonioRoutes)
+app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/patrimonio', patrimonioRoutes);
 
 
 module.exports = app;

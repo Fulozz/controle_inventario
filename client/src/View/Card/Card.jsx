@@ -851,6 +851,26 @@ const Card = ({ singlePatrimonio, setIsVisible }) => {
                             <FiAlertTriangle className="icon icon-attention" />
                           </td>
                         </tr>
+                        <tr>
+                          <th>
+                            <label htmlFor="num_pa">Número PA:</label>
+                          </th>
+                          <td>
+                            <input
+                              type="text"
+                              name="num_pa"
+                              id="num_pa"
+                              placeholder={singlePatrimonio.num_pa}
+                              value={formData.num_pa}
+                              onChange={(e) => {
+                                setFormData({
+                                  ...formData,
+                                  num_pa: e.target.value,
+                                });
+                              }}
+                            />
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </form>

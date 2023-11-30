@@ -73,7 +73,7 @@ const Hardware = (patrimonio) => {
                       <strong>Formato:</strong> {singlePatrimonio.formato}
                     </h3>
                     <h3>
-                      <strong>Numero da PA:</strong> {singlePatrimonio.num_pa}
+                      <strong>Numero da PA: </strong> {singlePatrimonio.num_pa}
                     </h3>
                   </>
                 ) : 

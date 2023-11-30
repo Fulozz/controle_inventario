@@ -50,26 +50,20 @@ exports.allPatrimonio = async(req, res)=>{
             message: 'Erro do servidor',
             err: err
         })
-
     }
 }
 
 exports.createPatrimonio = async (req,res)=> {
-        
-
     try{
         let isPatrimonio = await Patrimonio.find({ 
             patrimonio: req.body.patrimonio, serial_number: req.body.serial_number
         })
-
         if(isPatrimonio.length >= 1){
             return res.status(400).send({ message: 'Patrimonio já registrado' });
         }
-
         const newPatrimonio = new Patrimonio(req.body);
           // Salvar o produto
-        const patrimonio = await newPatrimonio.save();
-    
+        const patrimonio = await newPatrimonio.save();  
         return res.status(200).send({ message: 'Patrimonio registrado com sucesso', 
         patrimonio })
     } catch (error) {
@@ -81,6 +75,22 @@ exports.createPatrimonio = async (req,res)=> {
 exports.searchItem = async (req, res) =>{
     try{
         await Patrimonio.findOne({patrimonio: req.body.patrimonio})
+        .then((patrimonio)=>{
+            if(patrimonio === null) res.status(404).json({message:  "Não encontrado"});
+            if(patrimonio !== null) res.status(200).json(patrimonio);
+        })
+    }
+    catch (err) {
+        return res.status(401).send({
+            message: 'Erro do servidor',
+            err: err
+        })
+
+    }
+}
+exports.searchSerialNumber = async (req, res) =>{
+    try{
+        await Patrimonio.findOne({serial_number: req.body.serial_number})
         .then((patrimonio)=>{
             if(patrimonio === null) res.status(404).json({message:  "Não encontrado"});
             if(patrimonio !== null) res.status(200).json(patrimonio);
@@ -107,13 +117,10 @@ exports.updatePatrimonio = async (req,res) => {
     
         // Retorne o documento atualizado
         res.status(200).send(patrimonio);
-      } else {
-        // Retorne um erro
-        res.status(404).send({
-          error: "O patrimônio não foi encontrado",
-        });
-        
       }
+      res.status(404).send({
+        error: "O patrimônio não foi encontrado",
+      });
 }
 
 exports.countPatrimonios = async (req, res) => {
@@ -121,14 +128,11 @@ exports.countPatrimonios = async (req, res) => {
     
     const numerosDeProdutos = [];
     for (const categoria of categorias) {
-      const numeroDePatrimonios = await Patrimonio.find({ categoria }).count();
-    
-        
+      const numeroDePatrimonios = await Patrimonio.find({ categoria }).count();     
       numerosDeProdutos.push({
         [categoria]: numeroDePatrimonios,
       });
     }
-  
     res.json(numerosDeProdutos);
   };
 

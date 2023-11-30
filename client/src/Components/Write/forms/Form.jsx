@@ -395,6 +395,7 @@ const Form = () => {
                     onChange={(e) => {
                       setFormData({ ...formData, categoria: e.target.value });
                     }}
+                    required
                   >
                     <option value=""></option>
                     <option value="computador"> Computador</option>
@@ -429,7 +430,32 @@ const Form = () => {
           </table>
         </form>
       ) : page === 1 && formData.categoria === "telefone" ? (
-        setPage(2)
+        <>
+        <h1>Telefone</h1>
+        <table>
+          <tr>
+            <th>não possui hardware</th>
+          </tr>
+          <tr>
+                <th>
+                  <input
+                    type="submit"
+                    value="Voltar"
+                    onClick={Previous}
+                    className="btn-form"
+                  />
+                </th>
+                <th>
+                  <input
+                    type="submit"
+                    value="Proximo"
+                    onClick={Next}
+                    className="btn-form"
+                  />
+                </th>
+              </tr>
+        </table>
+        </>
       ) : page === 1 && formData.categoria === "impressora" ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Impressora</h1>
